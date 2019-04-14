@@ -1,0 +1,486 @@
+# Spring
+## Spring MVC
+### 启动流程
+Spring MVC启动过程依据这两个配置大致分为两个过程：
+1. ContextLoaderListener初始化，实例化IoC容器，并将此容器实例注册到ServletContext中。
+2. DispatcherServlet初始化，建立自己的上下文，也注册到ServletContext中。
+
+web容器正是通过这两个配置才和Spring关联起来。这两个配置与web容器的ServletContext关联，为Spring的Ioc容器提供了一个宿主，在建立起Ioc容器体系之后，把DispatcherServlet作为Spring MVC处理web请求的转发器建立起来，从而完成响应Http请求的准备。
+
+**Spring IOC容器的启动**
+ContextLoaderListener实现ServletContextListener，这个接口里面的函数会结合web容器的生命周期被调用。因为ServletContextListener是ServletContext的监听者，在服务器启动，ServletContext被创建的时候，ServletContextListener的contextInitialized()方法被调用，从而开始初始化Spring IOC容器。
+![此处输入图片的描述](images/spring-mvc-contextListener-start.png)
+首先从Servlet的启动事件中得到ServletContext，然后读取web.xml中的各个相关的属性值，接着ContextLoader会实例化WebApplicationContext，并完成载入和初始化的过程，这个被初始化的第一个上下文作为**根上下文**而存在，这个根上下文载入后，被绑定到web应用程序的ServletContext上，这样，IOC容器中的类就可以在任何地方访问到了。
+
+**DispatchServlet的启动**
+DispatchServlet本质上是一个Servlet，web容器启动的时候，servlet也会初始化，其init方法被调用，开启初始化之旅。
+DispatchServlet会建立自己的上下文来持有Spring MVC特殊的bean对象，在建立这个自己持有的Ioc容器的时候，会从ServletContext中得到根上下文作为DispatchServlet上下文的parent上下文。有了这个根上下文，再对自己持有的上下文进行初始化，最后把自己持有的这个上下文保存到ServletContext中，供以后检索和使用。
+
+![此处输入图片的描述](images/spring-mvc-dispatchservlet-start.png)
+
+在initWebApplicationContext中完成了对自己上下文的初始化，这里面也有一个refresh的过程，和普通的Ioc容器初始化大同小异。
+
+另外一些MVC的特性初始化时在initStrategies()中实现的，包括支持国际化的LocalResolver、**支持Request映射的HandlerMappings**，以及视图生成的ViewResolver等等。
+
+
+### 执行流程
+![此处输入图片的描述](images/spring-mvc-dispatchServlet-invoke-process.png)
+
+![此处输入图片的描述](images/spring-mvc-dispatchServlet-invoke-process-2.png)
+
+## SpringBoot的启动流程
+启动流程主要分为三个部分
+1. 进行SpringApplication的初始化模块，配置一些基本的环境变量、资源、构造器、监听器
+2. 实现了应用具体的启动方案，包括启动流程的监听模块、加载配置环境模块、及核心的创建上下文环境模块
+3. 是自动化配置模块，该模块作为springboot自动配置核心
+
+### 启动源码
+```
+    /**
+ * 运行应用程序，创建并刷新一个新的应用程序上下文
+ *
+ * @param args
+ * @return
+ */
+public ConfigurableApplicationContext run(String... args) {
+	/**
+	 *  StopWatch: 简单的秒表，允许定时的一些任务，公开每个指定任务的总运行时间和运行时间。
+	 *  这个对象的设计不是线程安全的，没有使用同步。SpringApplication是在单线程环境下，使用安全。
+	 */
+	StopWatch stopWatch = new StopWatch();
+	// 设置当前启动的时间为系统时间startTimeMillis = System.currentTimeMillis();
+	stopWatch.start();
+	// 创建一个应用上下文引用
+	ConfigurableApplicationContext context = null;
+	// 异常收集，报告启动异常
+	Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList<>();
+	/**
+	 * 系统设置headless模式（一种缺乏显示设备、键盘或鼠标的环境下，比如服务器），
+	 * 通过属性：java.awt.headless=true控制
+	 */
+	configureHeadlessProperty();
+	/*
+	 * 获取事件推送监器，负责产生事件，并调用支某类持事件的监听器
+	 * 事件推送原理看上面的事件推送原理图
+	 */
+	SpringApplicationRunListeners listeners = getRunListeners(args);
+	/**
+	 * 发布一个启动事件(ApplicationStartingEvent)，通过上述方法调用支持此事件的监听器
+	 */
+	listeners.starting();
+	try {
+		// 提供对用于运行SpringApplication的参数的访问。取默认实现
+		ApplicationArguments applicationArguments = new DefaultApplicationArguments(args);
+		/**
+		 * 构建容器环境，这里加载配置文件
+		 */
+		ConfigurableEnvironment environment = prepareEnvironment(listeners, applicationArguments);
+		// 对环境中一些bean忽略配置
+		configureIgnoreBeanInfo(environment);
+		// 日志控制台打印设置
+		Banner printedBanner = printBanner(environment);
+		// 创建容器
+		context = createApplicationContext();
+		exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class, new Class[] { ConfigurableApplicationContext.class }, context);
+		/**
+		 * 准备应用程序上下文
+		 * 追踪源码prepareContext（）进去我们可以发现容器准备阶段做了下面的事情：
+		 * 容器设置配置环境，并且监听容器，初始化容器，记录启动日志，
+		 * 将给定的singleton对象添加到此工厂的singleton缓存中。
+		 * 将bean加载到应用程序上下文中。
+		 */
+		prepareContext(context, environment, listeners, applicationArguments, printedBanner);
+		/**
+		 * 刷新上下文
+		 * 1、同步刷新，对上下文的bean工厂包括子类的刷新准备使用，初始化此上下文的消息源，注册拦截bean的处理器，检查侦听器bean并注册它们，实例化所有剩余的(非延迟-init)单例。
+		 * 2、异步开启一个同步线程去时时监控容器是否被关闭，当关闭此应用程序上下文，销毁其bean工厂中的所有bean。
+		 * 。。。底层调refresh方法代码量较多
+		 */
+		refreshContext(context);
+		afterRefresh(context, applicationArguments);
+		// stopwatch 的作用就是记录启动消耗的时间，和开始启动的时间等信息记录下来
+		stopWatch.stop();
+		if (this.logStartupInfo) {
+			new StartupInfoLogger(this.mainApplicationClass).logStarted(getApplicationLog(), stopWatch);
+		}
+		// 发布一个已启动的事件
+		listeners.started(context);
+		callRunners(context, applicationArguments);
+	}
+	catch (Throwable ex) {
+		handleRunFailure(context, ex, exceptionReporters, listeners);
+		throw new IllegalStateException(ex);
+	}
+	try {
+		// 发布一个运行中的事件
+		listeners.running(context);
+	}
+	catch (Throwable ex) {
+		// 启动异常，里面会发布一个失败的事件
+		handleRunFailure(context, ex, exceptionReporters, null);
+		throw new IllegalStateException(ex);
+	}
+	return context;
+}
+```
+
+### 自动配置原理
+[自动配置原理](https://www.cnblogs.com/jiadp/p/9276826.html)
+
+## BeanFactory和ApplicationContext
+1. 利用MessageSource进行国际化
+2. 强大的事件机制(Event)：
+ ApplicationContext的事件机制主要通过ApplicationEvent和ApplicationListener这两个接口来提供的，和java swing中的事件机制一样。即当ApplicationContext中发布一个事件的时，所有扩展了ApplicationListener的Bean都将会接受到这个事件，并进行相应的处理。  
+3. 底层资源的访问  
+    ApplicationContext扩展了ResourceLoader(资源加载器)接口，从而可以用来加载多个Resource，而BeanFactory是没有扩展ResourceLoader  
+4. 对Web应用的支持  
+   与BeanFactory通常以编程的方式被创建不同的是，ApplicationContext能以声明的方式创建，如使用ContextLoader。当然你也可以使用ApplicationContext的实现之一来以编程的方式创建ApplicationContext实例 。
+5. 加载形式
+BeanFactroy采用的是延迟加载形式来注入Bean的。而ApplicationContext则相反，它是在容器启动时，一次性创建了所有的Bean。
+6. PostProcesor的使用
+BeanFactory和ApplicationContext都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，但两者之间的区别是：BeanFactory需要手动注册，而ApplicationContext则是自动注册
+
+## Spring Bean生命周期
+### ApplicationContext Bean生命周期
+![此处输入图片的描述](images/spring-ioc-application-context-bean-life-circle.png)
+
+### BeanFactory Bean生命周期
+![此处输入图片的描述](images/spring-ioc-bean-factory-bean-life-circle.png)
+
+**两者区别：**
+1. BeanFactory容器中，不会调用ApplicationContextAware接口的setApplicationContext()方法
+2. BeanPostProcessor接口的postProcessBeforeInitialzation()方法和postProcessAfterInitialization()方法不会自动调用，必须自己通过代码手动注册
+3. BeanFactory容器启动的时候，不会去实例化所有Bean,包括所有scope为singleton且非懒加载的Bean也是一样，而是在调用的时候去实例化。
+
+### Spring IoC
+**依赖注入**
+三种实现方式：
+
+- 构造函数注入
+
+```
+    <bean id="userDao4Oracle" class="com.tgb.spring.dao.UserDao4OracleImpl"/>    
+    <bean id="userManager" class="com.tgb.spring.manager.UserManagerImpl"> 
+        <constructor-arg ref="userDao4Oracle"/>    
+    </bean>    
+```
+    
+```
+    public class UserManagerImpl implements UserManager{    
+        
+        private UserDao userDao;    
+        
+        //使用构造方式赋值    
+        public UserManagerImpl(UserDao userDao) {    
+            this.userDao = userDao;    
+        }    
+        
+        @Override    
+        public void addUser(String userName, String password) {    
+        
+            userDao.addUser(userName, password);    
+        }    
+```
+
+- setter注入
+```
+    <bean id="userDao4Oracle" class="com.tgb.spring.dao.UserDao4OracleImpl"/> 
+    <bean id="userManager" class="com.tgb.spring.manager.UserManagerImpl">
+        <property name="userDao" ref="userDao4Oracle"></property>    
+    </bean>    
+```
+
+```
+    public class UserManagerImpl implements UserManager{    
+    
+    private UserDao userDao;    
+    
+    //使用设值方式赋值    
+    public void setUserDao(UserDao userDao) {    
+        this.userDao = userDao;    
+    }    
+        
+    @Override    
+    public void addUser(String userName, String password) {    
+    
+        userDao.addUser(userName, password);    
+    }    
+} 
+```
+
+- 静态工厂注入
+```
+    public class DaoFactory { 
+        //静态工厂 
+        public static final FactoryDao getStaticFactoryDaoImpl(){ 
+            return new StaticFacotryDaoImpl(); 
+        } 
+    }
+    
+    
+    public class SpringAction { 
+        //注入对象 
+        private FactoryDao staticFactoryDao; 
+        
+        public void staticFactoryOk(){ 
+            staticFactoryDao.saveFactory(); 
+        } 
+        //注入对象的set方法 
+        public void setStaticFactoryDao(FactoryDao staticFactoryDao) { 
+            this.staticFactoryDao = staticFactoryDao; 
+        } 
+    } 
+    
+    
+    <!--配置bean,配置后该类由spring管理--> 
+    <bean name="springAction" class="com.bless.springdemo.action.SpringAction" > 
+    <!--(3)使用静态工厂的方法注入对象,对应下面的配置文件(3)--> 
+    <property name="staticFactoryDao" ref="staticFactoryDao"></property> 
+    </property> 
+    </bean> 
+    <!--(3)此处获取对象的方式是从工厂类中获取静态方法--> 
+    <bean name="staticFactoryDao" class="com.bless.springdemo.factory.DaoFactory" factory-method="getStaticFactoryDaoImpl"></bean> 
+```
+
+- 实例工厂注入
+```
+    public class DaoFactory { 
+        //实例工厂 
+        public FactoryDao getFactoryDaoImpl(){ 
+        return new FactoryDaoImpl(); 
+        } 
+    }
+    
+    public class SpringAction { 
+        //注入对象 
+        private FactoryDao factoryDao; 
+        
+        public void factoryOk(){ 
+            factoryDao.saveFactory(); 
+        } 
+        
+        public void setFactoryDao(FactoryDao factoryDao) { 
+            this.factoryDao = factoryDao; 
+        } 
+    } 
+    
+    <!--配置bean,配置后该类由spring管理--> 
+    <bean name="springAction" class="com.bless.springdemo.action.SpringAction"> 
+    <!--(4)使用实例工厂的方法注入对象,对应下面的配置文件(4)--> 
+    <property name="factoryDao" ref="factoryDao"></property> 
+    </bean> 
+    
+    <!--(4)此处获取对象的方式是从工厂类中获取实例方法--> 
+    <bean name="daoFactory" class="com.bless.springdemo.factory.DaoFactory"></bean> 
+    <bean name="factoryDao" factory-bean="daoFactory" factory-method="getFactoryDaoImpl"></bean> 
+```
+
+
+**四种注入方法比较**
+构造方法注入：
+1. 构造函数可以保证一些重要的属性在bean实例化的时候就设置好，避免因为一些重要的属性没有提供而导致一个无用的Bean 实例情况
+2. 如果一个类属性太多，那么构造函数的参数将变成一个庞然大物，可读性较差
+3. 构造函数不利于类的继承和拓展，因为子类需要引用父类复杂的构造函数
+4. 构造函数注入有时会造成**循环依赖**的问题
+
+setter方法注入：
+具有可选择性和高灵活性的特点
+
+**IOC容器的初始化**
+*初始化的入口在容器实现中的 **refresh()**调用来完成*
+
+ - ResourceLoader：来完成资源文件位置的定位
+ - BeanDefinitionReader：来完成定义信息的解析和 Bean 信息的注册
+
+注册过程就是在 IOC 容器内部维护的一个HashMap 来保存得到的 BeanDefinition 的过程。这个 HashMap 是 IoC 容器持有 bean 信息的场所，以后对 bean 的操作都是围绕这个HashMap 来实现的.
+
+**IOC容器的依赖注入**
+1. 单例模式并且是非延迟加载的对象，会在**IOC容器初始化**的时候被创建且初始化。
+2. 非单例模式或者是延迟加载的对象，是应用**第一次向容器索要该Bean对象**的时候被创建且初始化。
+
+虽然入口场景不同，但是Bean对象创建过程是一样的，都是调用`AbstractBeanFactory`中`getBean`方法。
+
+**autowiring自动装配实现原理：**
+
+1. 对Bean的属性迭代调用getBean方法，完成依赖Bean的初始化和依赖注入。
+2. 将依赖Bean的属性引用设置到被依赖的Bean属性上。
+3. 将依赖Bean的名称和被依赖Bean的名称存储在IoC容器的集合中。
+
+**Spring循环依赖**
+定义： 循环依赖就是循环引用，就是两个或多个Bean相互之间的持有对方，比方CircularityA引用CircularityB，CircularityB引用CircularityA，形成一个环状引用关系。
+
+首先，需要明确的是spring对循环依赖的处理有三种情况：
+1. **构造器的循环依赖**：这种依赖spring是处理不了的，直 接抛出BeanCurrentlylnCreationException异常。
+2. **单例模式下的setter循环依赖**：通过“三级缓存”处理循环依赖。
+3. **非单例循环依赖**：无法处理。
+
+构造器循环依赖
+`this.singletonsCurrentlylnCreation.add(beanNam）`将当前正要创建的bean 记录在缓存中
+Spring 容器将每一个正在创建的bean 标识符放在一个**当前创建bean池**中，在创建过程中将一直保持在这个池中，因此如果在创建bean 过程中发现自己已经在“当前创建bean 池” 里时，将抛出`BeanCurrentlylnCreationException` 异常表示循环依赖；而对于创建完毕的bean 将从“ 当前创建bean 池”中清除掉。
+
+
+setter循环依赖
+
+- （三级）singletonFactories ： 单例对象工厂的cache
+- （二级）earlySingletonObjects ：提前暴光的单例对象的Cache
+- （一级）singletonObjects：单例对象的cache
+
+解释：
+
+A首先完成了初始化的第一步，并且将自己提前曝光到singletonFactories中，此时进行初始化的第二步，发现自己依赖对象B，此时就尝试去get(B)，发现B还没有被create，所以走create流程，B在初始化第一步的时候发现自己依赖了对象A，于是尝试get(A)，尝试一级缓存singletonObjects(肯定没有，因为A还没初始化完全)，尝试二级缓存earlySingletonObjects（也没有），尝试三级缓存singletonFactories，由于A通过ObjectFactory将自己提前曝光了，所以B能够通过ObjectFactory.getObject拿到A对象(虽然A还没有初始化完全，但是总比没有好呀)，B拿到A对象后顺利完成了初始化阶段1、2、3，完全初始化之后将自己放入到一级缓存singletonObjects中。此时返回A中，A此时能拿到B的对象顺利完成自己的初始化阶段2、3，最终A也完成了初始化，进去了一级缓存singletonObjects中，而且更加幸运的是，由于B拿到了A的对象引用，所以B现在hold住的A对象完成了初始化。
+
+
+### Spring AOP
+**静态代理**：
+缺点是需要为每个目标对象生成不同的代理对象，而且在运行前就需要编写好代理类。
+
+**动态代理**
+
+Bean生成代理的时机：在每个Bean初始化之后，如果需要，调用`AspectJAwareAdvisorAutoProxyCreator`中的`postProcessAfterInitialization`为Bean生成代理
+
+JDK：主要通过Proxy.newProxyInstance生成代理对象，调用InvocationHandler的invoke方法实现拦截
+```
+    publicObject invoke(Object proxy, Method method, Object[] args) throwsThrowable {
+       MethodInvocation invocation = null;
+       Object oldProxy = null;
+       boolean setProxyContext = false;
+ 
+       TargetSource targetSource = this.advised.targetSource;
+       Class targetClass = null;
+       Object target = null;
+ 
+       try {
+           //eqauls()方法，具目标对象未实现此方法
+           if (!this.equalsDefined && AopUtils.isEqualsMethod(method)){
+                return (equals(args[0])? Boolean.TRUE : Boolean.FALSE);
+           }
+ 
+           //hashCode()方法，具目标对象未实现此方法
+           if (!this.hashCodeDefined && AopUtils.isHashCodeMethod(method)){
+                return newInteger(hashCode());
+           }
+ 
+           //Advised接口或者其父接口中定义的方法,直接反射调用,不应用通知
+           if (!this.advised.opaque &&method.getDeclaringClass().isInterface()
+                    &&method.getDeclaringClass().isAssignableFrom(Advised.class)) {
+                // Service invocations onProxyConfig with the proxy config...
+                return AopUtils.invokeJoinpointUsingReflection(this.advised,method, args);
+           }
+ 
+           Object retVal = null;
+ 
+           if (this.advised.exposeProxy) {
+                // Make invocation available ifnecessary.
+                oldProxy = AopContext.setCurrentProxy(proxy);
+                setProxyContext = true;
+           }
+ 
+           //获得目标对象的类
+           target = targetSource.getTarget();
+           if (target != null) {
+                targetClass = target.getClass();
+           }
+ 
+           //获取可以应用到此方法上的Interceptor列表
+           List chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method,targetClass);
+ 
+           //如果没有可以应用到此方法的通知(Interceptor)，此直接反射调用 method.invoke(target, args)
+           if (chain.isEmpty()) {
+                retVal = AopUtils.invokeJoinpointUsingReflection(target,method, args);
+           } else {
+                //创建MethodInvocation
+                invocation = newReflectiveMethodInvocation(proxy, target, method, args, targetClass, chain);
+                retVal = invocation.proceed();
+           }
+ 
+           // Massage return value if necessary.
+           if (retVal != null && retVal == target &&method.getReturnType().isInstance(proxy)
+                    &&!RawTargetAccess.class.isAssignableFrom(method.getDeclaringClass())) {
+                // Special case: it returned"this" and the return type of the method
+                // is type-compatible. Notethat we can't help if the target sets
+                // a reference to itself inanother returned object.
+                retVal = proxy;
+           }
+           return retVal;
+       } finally {
+           if (target != null && !targetSource.isStatic()) {
+                // Must have come fromTargetSource.
+               targetSource.releaseTarget(target);
+           }
+           if (setProxyContext) {
+                // Restore old proxy.
+                AopContext.setCurrentProxy(oldProxy);
+           }
+       }
+    }
+```
+
+CGLIB:通过enhander生成代理对象，再通过MethodInterceptor的intercept方法实现拦截调用
+
+```
+    //CGLIB回调AOP拦截器链  
+public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {  
+            Object oldProxy = null;  
+            boolean setProxyContext = false;  
+            Class targetClass = null;  
+            Object target = null;  
+            try {  
+                //如果通知器暴露了代理  
+                if (this.advised.exposeProxy) {  
+                    //设置给定的代理对象为要被拦截的代理                                          oldProxy = AopContext.setCurrentProxy(proxy);  
+                    setProxyContext = true;  
+                }  
+                //获取目标对象  
+                target = getTarget();  
+                if (target != null) {  
+                    targetClass = target.getClass();  
+                }  
+                //获取AOP配置的通知  
+                List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);  
+                Object retVal;  
+                //如果没有配置通知  
+                if (chain.isEmpty() && Modifier.isPublic(method.getModifiers())) {  
+                    //直接调用目标对象的方法  
+                    retVal = methodProxy.invoke(target, args);  
+                }  
+                //如果配置了通知  
+                else {  
+                    //通过CglibMethodInvocation来启动配置的通知  
+                    retVal = new CglibMethodInvocation(proxy, target, method, args, targetClass, chain, methodProxy).proceed();  
+                }  
+                //获取目标对象对象方法的回调结果，如果有必要则封装为代理  
+                retVal = massageReturnTypeIfNecessary(proxy, target, method, retVal);  
+                return retVal;  
+            }  
+            finally {  
+                if (target != null) {  
+                    releaseTarget(target);  
+                }  
+                if (setProxyContext) {  
+                    //存储被回调的代理  
+                    AopContext.setCurrentProxy(oldProxy);  
+                }  
+            }  
+        }  
+```
+
+### spring事务
+事务的实现方式：
+
+ - 编程式事务（手动commit/rollback）
+ - 声明式事务（XML配置和注解形式）
+
+**事务的执行流程**
+核心：**TransactionInterceptor**
+
+1. 调用被事务增强的方法，进入事务切面。
+2. 解析事务属性，调用具体的TxMgr负责生成TxStatus。
+3. 如果当前已经有事务，进入step 5。
+4. 根据事务传播行为，校验是否需要抛出异常(如MANDATORY)，或者挂起事务信息(由于没有真正的物理事务，所以没有需要挂起的事务资源)并创建事务(REQUIRED, REQUIREDS_NEW, NESTED等)，又或者创建一个空事务(SUPPORTS, NOT_SUPPORTED, NEVER等)。进入step 6。
+5. 根据事务传播行为，抛出异常(NEVER)，或者挂起事务资源与信息并根据情况决定是否创建事务(NOT_SUPPORTED, REQUIRES_NEW等)，或者根据情况处理嵌套事务(NESTED)或者加入已有事务(SUPPORTS, REQUIRED, MANDATORY等)。
+6. 生成TxInfo并绑定到线程。
+7. 回调MethodInterceptor，事务切面前置工作至此完成。
+8. 如果发生异常进入step 10。
+9. 根据TxStatus是否被标记回滚，事务本身是否被标记回滚等决定是否要进入处理回滚的逻辑。只有在某事务最外层边界，才可能进行物理提交/回滚，否则最多就在需要回滚的情况下给事务打标需要回滚，不会有真正的动作。并且一般情况下，如果在事务最外边界发现事务需要回滚，会抛出UnexpectedRollbackException。其余情况进入step 11。
+10. 根据异常情况与事务属性判断异常是否需要进入处理回滚的逻辑还是进入处理提交的逻辑。如果需要回滚则根据是否到了某事务最外层边界决定是否进行物理回滚，否则给事务打标需要回滚。如果进入处理提交逻辑则同样只有在事务最外层边界才可能有真正的物理提交动作。
+11. 无论是否发生异常，都会恢复TxInfo为前一个事务的TxInfo（类似于弹栈）。
