@@ -77,4 +77,20 @@ LOOKING。
 - EPHEMERAL_SEQUENTIAL：暂时化顺序编号目录节点
 
 
-  [1]: https://upload-images.jianshu.io/upload_images/13194828-863153330c27ff8a.png?imageMogr2/auto-orient/
+## 使用场景
+### 分布式协调
+这个其实是 zookeeper 很经典的一个用法，简单来说，就好比，你 A 系统发送个请求到 mq，然后 B 系统消息消费之后处理了。那 A 系统如何知道 B 系统的处理结果？用 zookeeper 就可以实现分布式系统之间的协调工作。A 系统发送请求之后可以在 zookeeper 上**对某个节点的值注册个监听器**，一旦 B 系统处理完了就修改 zookeeper 那个节点的值，A 立马就可以收到通知，完美解决。
+
+![此处输入图片的描述](images/zookeeper-distributed-coordination.png)
+
+### 分布式锁
+
+### 元数据/配置信息管理
+zookeeper 可以用作很多系统的配置信息的管理，比如 kafka、storm 等等很多分布式系统都会选用 zookeeper 来做一些元数据、配置信息的管理，包括 dubbo 注册中心不也支持 zookeeper 么？
+
+![此处输入图片的描述](images/zookeeper-meta-data-manage.png)
+
+### HA高可用性
+这个应该是很常见的，比如 hadoop、hdfs、yarn 等很多大数据系统，都选择基于 zookeeper 来开发 HA 高可用机制，就是一个**重要进程一般会做主备两个**，主进程挂了立马通过 zookeeper 感知到切换到备用进程。
+
+![此处输入图片的描述](images/zookeeper-active-standby.png)
