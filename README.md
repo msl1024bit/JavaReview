@@ -12,7 +12,7 @@
 * [集合](docs/collection/collection.md)
 
 ### JVM
-* [JVM Java虚拟机](docs/jvm/jvm.md)
+* [Java虚拟机](docs/jvm/jvm.md)
 
 ### 多线程
 * [Java多线程](docs/multi-thread/multi-thread.md)
