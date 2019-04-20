@@ -1,18 +1,17 @@
-# Java¼¯ºÏ
+# Javaé›†åˆ
 
-### HashMapÔ­Àí(*)
-- HashMap×î¶àÖ»ÔÊÐíÒ»ÌõEntryµÄ¼üÎªNull(¶àÌõ»á¸²¸Ç)£¬µ«ÔÊÐí¶àÌõEntryµÄÖµÎªNull
-- HashSet ±¾Éí¾ÍÊÇÔÚ HashMap µÄ»ù´¡ÉÏÊµÏÖµÄ
-- Èô¸ºÔØÒò×ÓÔ½´ó£¬ÄÇÃ´¶Ô¿Õ¼äµÄÀûÓÃ¸ü³ä·Ö£¬µ«²éÕÒÐ§ÂÊµÄÒ²¾ÍÔ½µÍ£»Èô¸ºÔØÒò×ÓÔ½Ð¡£¬ÄÇÃ´¹þÏ£±íµÄÊý¾Ý½«Ô½Ï¡Êè£¬¶Ô¿Õ¼äÔì³ÉµÄÀË·ÑÒ²¾ÍÔ½ÑÏÖØ¡£ÏµÍ³Ä¬ÈÏ¸ºÔØÒò×Ó0.75
-- µ÷ÓÃput·½·¨´æÖµÊ±£¬HashMapÊ×ÏÈ»áµ÷ÓÃKeyµÄhashCode·½·¨£¬È»ºó»ùÓÚ´Ë»ñÈ¡Key¹þÏ£Âë£¬Í¨¹ý¹þÏ£Âë¿ìËÙÕÒµ½Ä³¸öÍ°£¬Õâ¸öÎ»ÖÃ¿ÉÒÔ±»³ÆÖ®ÎªbucketIndex.Èç¹ûÁ½¸ö¶ÔÏóµÄhashCode²»Í¬£¬ÄÇÃ´equalsÒ»¶¨Îªfalse£»·ñÔò£¬Èç¹ûÆähashCodeÏàÍ¬£¬equalsÒ²²»Ò»¶¨Îªtrue¡£ËùÒÔ£¬ÀíÂÛÉÏ£¬hashCode¿ÉÄÜ´æÔÚÅö×²µÄÇé¿ö£¬µ±Åö×²·¢ÉúÊ±£¬ÕâÊ±»áÈ¡³öbucketIndexÍ°ÄÚÒÑ´æ´¢µÄÔªËØ£¬²¢Í¨¹ýhashCode()ºÍequals()À´Öð¸ö±È½ÏÒÔÅÐ¶ÏKeyÊÇ·ñÒÑ´æÔÚ¡£Èç¹ûÒÑ´æÔÚ£¬ÔòÊ¹ÓÃÐÂValueÖµÌæ»»¾ÉValueÖµ£¬²¢·µ»Ø¾ÉValueÖµ£»Èç¹û²»´æÔÚ£¬Ôò´æ·ÅÐÂµÄ¼üÖµ¶Ôµ½Í°ÖÐ¡£Òò´Ë£¬ÔÚ HashMapÖÐ£¬equals() ·½·¨Ö»ÓÐÔÚ¹þÏ£ÂëÅö×²Ê±²Å»á±»ÓÃµ½¡£
-- Ê×ÏÈ£¬ÅÐ¶ÏkeyÊÇ·ñÎªnull£¬ÈôÎªnull£¬ÔòÖ±½Óµ÷ÓÃputForNullKey·½·¨£»Èô²»Îª¿Õ£¬ÔòÏÈ¼ÆËãkeyµÄhashÖµ£¬È»ºó¸ù¾ÝhashÖµËÑË÷ÔÚtableÊý×éÖÐµÄË÷ÒýÎ»ÖÃ£¬Èç¹ûtableÊý×éÔÚ¸ÃÎ»ÖÃ´¦ÓÐÔªËØ£¬Ôò²éÕÒÊÇ·ñ´æÔÚÏàÍ¬µÄkey£¬Èô´æÔÚÔò¸²¸ÇÔ­À´keyµÄvalue£¬·ñÔò½«¸ÃÔªËØ±£´æÔÚÁ´Í·£¨×îÏÈ±£´æµÄÔªËØ·ÅÔÚÁ´Î²£©¡£´ËÍâ£¬ÈôtableÔÚ¸Ã´¦Ã»ÓÐÔªËØ£¬ÔòÖ±½Ó±£´æ¡£
-- HashMap ÓÀÔ¶¶¼ÊÇÔÚÁ´±íµÄ±íÍ·Ìí¼ÓÐÂÔªËØ¡£
+### HashMapåŽŸç†(*)
+- HashMapæœ€å¤šåªå…è®¸ä¸€æ¡Entryçš„é”®ä¸ºNull(å¤šæ¡ä¼šè¦†ç›–)ï¼Œä½†å…è®¸å¤šæ¡Entryçš„å€¼ä¸ºNull
+- HashSet æœ¬èº«å°±æ˜¯åœ¨ HashMap çš„åŸºç¡€ä¸Šå®žçŽ°çš„
+- è‹¥è´Ÿè½½å› å­è¶Šå¤§ï¼Œé‚£ä¹ˆå¯¹ç©ºé—´çš„åˆ©ç”¨æ›´å……åˆ†ï¼Œä½†æŸ¥æ‰¾æ•ˆçŽ‡çš„ä¹Ÿå°±è¶Šä½Žï¼›è‹¥è´Ÿè½½å› å­è¶Šå°ï¼Œé‚£ä¹ˆå“ˆå¸Œè¡¨çš„æ•°æ®å°†è¶Šç¨€ç–ï¼Œå¯¹ç©ºé—´é€ æˆçš„æµªè´¹ä¹Ÿå°±è¶Šä¸¥é‡ã€‚ç³»ç»Ÿé»˜è®¤è´Ÿè½½å› å­0.75
+- é¦–å…ˆï¼Œåˆ¤æ–­keyæ˜¯å¦ä¸ºnullï¼Œè‹¥ä¸ºnullï¼Œåˆ™ç›´æŽ¥è°ƒç”¨putForNullKeyæ–¹æ³•ï¼›è‹¥ä¸ä¸ºç©ºï¼Œåˆ™å…ˆè®¡ç®—keyçš„hashå€¼ï¼Œç„¶åŽæ ¹æ®hashå€¼æœç´¢åœ¨tableæ•°ç»„ä¸­çš„ç´¢å¼•ä½ç½®ï¼Œå¦‚æžœtableæ•°ç»„åœ¨è¯¥ä½ç½®å¤„æœ‰å…ƒç´ ï¼Œåˆ™æŸ¥æ‰¾æ˜¯å¦å­˜åœ¨ç›¸åŒçš„keyï¼Œè‹¥å­˜åœ¨åˆ™è¦†ç›–åŽŸæ¥keyçš„valueï¼Œå¦åˆ™å°†è¯¥å…ƒç´ ä¿å­˜åœ¨é“¾å¤´ï¼ˆæœ€å…ˆä¿å­˜çš„å…ƒç´ æ”¾åœ¨é“¾å°¾ï¼‰ã€‚æ­¤å¤–ï¼Œè‹¥tableåœ¨è¯¥å¤„æ²¡æœ‰å…ƒç´ ï¼Œåˆ™ç›´æŽ¥ä¿å­˜ã€‚
+- HashMap æ°¸è¿œéƒ½æ˜¯åœ¨é“¾è¡¨çš„è¡¨å¤´æ·»åŠ æ–°å…ƒç´ ã€‚ï¼ˆjdk1.7ï¼‰
 
 
 ----------
 
 
-### hash()·½·¨
+### hash()æ–¹æ³•
 ```
 static final int hash(Object key) {
         int h;
@@ -20,68 +19,68 @@ static final int hash(Object key) {
     }
 ```
 
-- hash() ·½·¨ÓÃÓÚ¶ÔKeyµÄhashCode½øÐÐÖØÐÂ¼ÆËã£¬¶øµ±¼ÆËã³öÀ´µÄhashÖµÓëhashMapµÄ(length-1)×öÁË&ÔËËãºó£¬»áµÃµ½Î»ÓÚÇø¼ä[0£¬length-1]µÄÒ»¸öÖµ¡£ÌØ±ðµØ£¬Õâ¸öÖµ·Ö²¼µÄÔ½¾ùÔÈ£¬HashMap µÄ¿Õ¼äÀûÓÃÂÊÒ²¾ÍÔ½¸ß£¬´æÈ¡Ð§ÂÊÒ²¾ÍÔ½ºÃ£¬±£Ö¤ÔªËØ¾ùÔÈ·Ö²¼µ½tableµÄÃ¿¸öÍ°ÖÐÒÔ±ã³ä·ÖÀûÓÃ¿Õ¼ä¡£
-- hash():Ê¹ÓÃhash()·½·¨¶ÔÒ»¸ö¶ÔÏóµÄhashCode½øÐÐÖØÐÂ¼ÆËãÊÇÎªÁË·ÀÖ¹ÖÊÁ¿µÍÏÂµÄhashCode()º¯ÊýÊµÏÖ¡£ÓÉÓÚhashMapµÄÖ§³ÅÊý×é³¤¶È×ÜÊÇ2µÄÃÝ´Î£¬Í¨¹ýÓÒÒÆ¿ÉÒÔÊ¹µÍÎ»µÄÊý¾Ý¾¡Á¿µÄ²»Í¬£¬´Ó¶øÊ¹hashÖµµÄ·Ö²¼¾¡Á¿¾ùÔÈ¡£
-- ±£Ö¤ÔªËØ¾ùÔÈ·Ö²¼µ½tableµÄÃ¿¸öÍ°ÖÐ; µ±lengthÎª2µÄn´Î·½Ê±£¬h&(length -1)¾ÍÏàµ±ÓÚ¶Ôh%length£¬²»½ö»á¼õÉÙhashÅö×²£¬¶øÇÒËÙ¶È±ÈÖ±½ÓÈ¡Ä£Òª¿ìµÃ¶à£¬¿Õ¼äÀûÓÃÂÊÒ²»á¸ü¸ß£¬ÕâÊÇHashMapÔÚËÙ¶ÈÉÏµÄÒ»¸öÓÅ»¯¡£
+- hash() æ–¹æ³•ç”¨äºŽå¯¹Keyçš„hashCodeè¿›è¡Œé‡æ–°è®¡ç®—ï¼Œè€Œå½“è®¡ç®—å‡ºæ¥çš„hashå€¼ä¸ŽhashMapçš„(length-1)åšäº†&è¿ç®—åŽï¼Œä¼šå¾—åˆ°ä½äºŽåŒºé—´[0ï¼Œlength-1]çš„ä¸€ä¸ªå€¼ã€‚ç‰¹åˆ«åœ°ï¼Œè¿™ä¸ªå€¼åˆ†å¸ƒçš„è¶Šå‡åŒ€ï¼ŒHashMap çš„ç©ºé—´åˆ©ç”¨çŽ‡ä¹Ÿå°±è¶Šé«˜ï¼Œå­˜å–æ•ˆçŽ‡ä¹Ÿå°±è¶Šå¥½ï¼Œä¿è¯å…ƒç´ å‡åŒ€åˆ†å¸ƒåˆ°tableçš„æ¯ä¸ªæ¡¶ä¸­ä»¥ä¾¿å……åˆ†åˆ©ç”¨ç©ºé—´ã€‚
+- hash():ä½¿ç”¨hash()æ–¹æ³•å¯¹ä¸€ä¸ªå¯¹è±¡çš„hashCodeè¿›è¡Œé‡æ–°è®¡ç®—æ˜¯ä¸ºäº†é˜²æ­¢è´¨é‡ä½Žä¸‹çš„hashCode()å‡½æ•°å®žçŽ°ã€‚ç”±äºŽhashMapçš„æ”¯æ’‘æ•°ç»„é•¿åº¦æ€»æ˜¯2çš„å¹‚æ¬¡ï¼Œé€šè¿‡å³ç§»å¯ä»¥ä½¿ä½Žä½çš„æ•°æ®å°½é‡çš„ä¸åŒï¼Œä»Žè€Œä½¿hashå€¼çš„åˆ†å¸ƒå°½é‡å‡åŒ€ã€‚
+- ä¿è¯å…ƒç´ å‡åŒ€åˆ†å¸ƒåˆ°tableçš„æ¯ä¸ªæ¡¶ä¸­; å½“lengthä¸º2çš„næ¬¡æ–¹æ—¶ï¼Œh&(length -1)å°±ç›¸å½“äºŽå¯¹h%lengthï¼Œä¸ä»…ä¼šå‡å°‘hashç¢°æ’žï¼Œè€Œä¸”é€Ÿåº¦æ¯”ç›´æŽ¥å–æ¨¡è¦å¿«å¾—å¤šï¼Œç©ºé—´åˆ©ç”¨çŽ‡ä¹Ÿä¼šæ›´é«˜ï¼Œè¿™æ˜¯HashMapåœ¨é€Ÿåº¦ä¸Šçš„ä¸€ä¸ªä¼˜åŒ–ã€‚
 
-### resize()·½·¨
-- ÎÒÃÇÔÚÀ©³äHashMapµÄÊ±ºò£¬²»ÐèÒªÏñJDK1.7µÄÊµÏÖÄÇÑùÖØÐÂ¼ÆËãhash£¬Ö»ÐèÒª¿´¿´Ô­À´µÄhashÖµÐÂÔöµÄÄÇ¸öbitÊÇ1»¹ÊÇ0¾ÍºÃÁË£¬ÊÇ0µÄ»°Ë÷ÒýÃ»±ä£¬ÊÇ1µÄ»°Ë÷Òý±ä³É"Ô­Ë÷Òý+oldCap"
+### resize()æ–¹æ³•
+- æˆ‘ä»¬åœ¨æ‰©å……HashMapçš„æ—¶å€™ï¼Œä¸éœ€è¦åƒJDK1.7çš„å®žçŽ°é‚£æ ·é‡æ–°è®¡ç®—hashï¼Œåªéœ€è¦çœ‹çœ‹åŽŸæ¥çš„hashå€¼æ–°å¢žçš„é‚£ä¸ªbitæ˜¯1è¿˜æ˜¯0å°±å¥½äº†ï¼Œæ˜¯0çš„è¯ç´¢å¼•æ²¡å˜ï¼Œæ˜¯1çš„è¯ç´¢å¼•å˜æˆ"åŽŸç´¢å¼•+oldCap"
 
-## ConcurrenytHashMapÔ­Àí(*)
-### JDK1.7Í¼Ê¾£º
-![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/collection-concurrent-hashmap-jdk1.7.jpg)
-
-
-### JDK1.8Í¼Ê¾£º
-  ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/collection-concurrent-hashmap-jdk1.8.jpg)
+## ConcurrenytHashMapåŽŸç†(*)
+### JDK1.7å›¾ç¤ºï¼š
+![æ­¤å¤„è¾“å…¥å›¾ç‰‡çš„æè¿°](images/collection-concurrent-hashmap-jdk1.7.jpg)
 
 
-- 1.7²ÉÓÃµÄ·Ö¶ÎËø£¬¶ø1.8²ÉÓÃµÄÊÇCASºÍsynchronize·½·¨
-- 1.8Ëø×¡µÄÊÇtable¼¶±ð£¬¶ø1.7Ëø×¡µÄsegment¼¶±ð£¬ËøÁ£¶È¸üÏ¸£¬²¢·¢ÐÔÄÜ¸ü¸ß
-- µ«ÊÇ1.8²¢·¢Ëø×¡µÄÊÇtableÔÚÀ©ÈÝÊ±»áÓ°ÏìÆäËûÏß³ÌµÄ¶ÁÐ´£¬µ«ÊÇÓÐÓÅ»¯¡£ÆäËûÏß³ÌÒ»Æð²ÎÓëÀ©ÈÝ£¬¼Ó¿ìÀ©ÈÝËÙ¶È
-- ²¢·¢À©ÈÝ¡£ÒýÈëForwardingNodeÀà£¬»á¸Ä±äsizeCtlÕâ¸öÖµ
+### JDK1.8å›¾ç¤ºï¼š
+  ![æ­¤å¤„è¾“å…¥å›¾ç‰‡çš„æè¿°](images/collection-concurrent-hashmap-jdk1.8.jpg)
 
-### HashMapÏß³Ì²»°²È«
-- ÔÚHashMap½øÐÐÀ©ÈÝÖØ¹þÏ£Ê±µ¼ÖÂEntryÁ´ÐÎ³É»·¡£Ò»µ©EntryÁ´ÖÐÓÐ»·£¬ÊÆ±Ø»áµ¼ÖÂÔÚÍ¬Ò»¸öÍ°ÖÐ½øÐÐ²åÈë¡¢²éÑ¯¡¢É¾³ýµÈ²Ù×÷Ê±ÏÝÈëËÀÑ­»·¡£
 
-### SegmentÊý×é
-- Segment Àà¼Ì³ÐÓÚ ReentrantLock Àà£¬´Ó¶øÊ¹µÃ Segment ¶ÔÏóÄÜ³äµ±ËøµÄ½ÇÉ«
-- ÔÚSegmentÀàÖÐ£¬count ±äÁ¿ÊÇÒ»¸ö¼ÆÊýÆ÷£¬Ëü±íÊ¾Ã¿¸ö Segment ¶ÔÏó¹ÜÀíµÄ table Êý×é°üº¬µÄ HashEntry ¶ÔÏóµÄ¸öÊý£¬Ò²¾ÍÊÇ Segment ÖÐ°üº¬µÄ HashEntry ¶ÔÏóµÄ×ÜÊý¡£ÌØ±ðÐèÒª×¢ÒâµÄÊÇ£¬Ö®ËùÒÔÔÚÃ¿¸ö Segment ¶ÔÏóÖÐ°üº¬Ò»¸ö¼ÆÊýÆ÷£¬¶ø²»ÊÇÔÚ ConcurrentHashMap ÖÐÊ¹ÓÃÈ«¾ÖµÄ¼ÆÊýÆ÷£¬ÊÇ¶Ô ConcurrentHashMap ²¢·¢ÐÔµÄ¿¼ÂÇ£ºÒòÎªÕâÑùµ±ÐèÒª¸üÐÂ¼ÆÊýÆ÷Ê±£¬²»ÓÃËø¶¨Õû¸öConcurrentHashMap¡£
+- 1.7é‡‡ç”¨çš„åˆ†æ®µé”ï¼Œè€Œ1.8é‡‡ç”¨çš„æ˜¯CASå’Œsynchronizeæ–¹æ³•
+- 1.8é”ä½çš„æ˜¯tableçº§åˆ«ï¼Œè€Œ1.7é”ä½çš„segmentçº§åˆ«ï¼Œé”ç²’åº¦æ›´ç»†ï¼Œå¹¶å‘æ€§èƒ½æ›´é«˜
+- ä½†æ˜¯1.8å¹¶å‘é”ä½çš„æ˜¯tableåœ¨æ‰©å®¹æ—¶ä¼šå½±å“å…¶ä»–çº¿ç¨‹çš„è¯»å†™ï¼Œä½†æ˜¯æœ‰ä¼˜åŒ–ã€‚å…¶ä»–çº¿ç¨‹ä¸€èµ·å‚ä¸Žæ‰©å®¹ï¼ŒåŠ å¿«æ‰©å®¹é€Ÿåº¦
+- å¹¶å‘æ‰©å®¹ã€‚å¼•å…¥ForwardingNodeç±»ï¼Œä¼šæ”¹å˜sizeCtlè¿™ä¸ªå€¼
+
+### HashMapçº¿ç¨‹ä¸å®‰å…¨
+- åœ¨HashMapè¿›è¡Œæ‰©å®¹é‡å“ˆå¸Œæ—¶å¯¼è‡´Entryé“¾å½¢æˆçŽ¯ã€‚ä¸€æ—¦Entryé“¾ä¸­æœ‰çŽ¯ï¼ŒåŠ¿å¿…ä¼šå¯¼è‡´åœ¨åŒä¸€ä¸ªæ¡¶ä¸­è¿›è¡Œæ’å…¥ã€æŸ¥è¯¢ã€åˆ é™¤ç­‰æ“ä½œæ—¶é™·å…¥æ­»å¾ªçŽ¯ã€‚
+
+### Segmentæ•°ç»„
+- Segment ç±»ç»§æ‰¿äºŽ ReentrantLock ç±»ï¼Œä»Žè€Œä½¿å¾— Segment å¯¹è±¡èƒ½å……å½“é”çš„è§’è‰²
+- åœ¨Segmentç±»ä¸­ï¼Œcount å˜é‡æ˜¯ä¸€ä¸ªè®¡æ•°å™¨ï¼Œå®ƒè¡¨ç¤ºæ¯ä¸ª Segment å¯¹è±¡ç®¡ç†çš„ table æ•°ç»„åŒ…å«çš„ HashEntry å¯¹è±¡çš„ä¸ªæ•°ï¼Œä¹Ÿå°±æ˜¯ Segment ä¸­åŒ…å«çš„ HashEntry å¯¹è±¡çš„æ€»æ•°ã€‚ç‰¹åˆ«éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œä¹‹æ‰€ä»¥åœ¨æ¯ä¸ª Segment å¯¹è±¡ä¸­åŒ…å«ä¸€ä¸ªè®¡æ•°å™¨ï¼Œè€Œä¸æ˜¯åœ¨ ConcurrentHashMap ä¸­ä½¿ç”¨å…¨å±€çš„è®¡æ•°å™¨ï¼Œæ˜¯å¯¹ ConcurrentHashMap å¹¶å‘æ€§çš„è€ƒè™‘ï¼šå› ä¸ºè¿™æ ·å½“éœ€è¦æ›´æ–°è®¡æ•°å™¨æ—¶ï¼Œä¸ç”¨é”å®šæ•´ä¸ªConcurrentHashMapã€‚
 
 ## ArrayList
-- ÒÔÎÞ²ÎÊý¹¹Ôì·½·¨´´½¨ ArrayList Ê±£¬Êµ¼ÊÉÏ³õÊ¼»¯¸³ÖµµÄÊÇÒ»¸ö¿ÕÊý×é¡£µ±ÕæÕý¶ÔÊý×é½øÐÐÌí¼ÓÔªËØ²Ù×÷Ê±£¬²ÅÕæÕý·ÖÅäÈÝÁ¿¡£¼´ÏòÊý×éÖÐÌí¼ÓµÚÒ»¸öÔªËØÊ±£¬Êý×éÈÝÁ¿À©Îª10
+- ä»¥æ— å‚æ•°æž„é€ æ–¹æ³•åˆ›å»º ArrayList æ—¶ï¼Œå®žé™…ä¸Šåˆå§‹åŒ–èµ‹å€¼çš„æ˜¯ä¸€ä¸ªç©ºæ•°ç»„ã€‚å½“çœŸæ­£å¯¹æ•°ç»„è¿›è¡Œæ·»åŠ å…ƒç´ æ“ä½œæ—¶ï¼Œæ‰çœŸæ­£åˆ†é…å®¹é‡ã€‚å³å‘æ•°ç»„ä¸­æ·»åŠ ç¬¬ä¸€ä¸ªå…ƒç´ æ—¶ï¼Œæ•°ç»„å®¹é‡æ‰©ä¸º10
 
-### À©ÈÝ
+### æ‰©å®¹
 ```
-    /ÅÐ¶ÏÊÇ·ñÐèÒªÀ©ÈÝ
+    /åˆ¤æ–­æ˜¯å¦éœ€è¦æ‰©å®¹
     private void ensureExplicitCapacity(int minCapacity) {
         modCount++;
 
         // overflow-conscious code
         if (minCapacity - elementData.length > 0)
-            //µ÷ÓÃgrow·½·¨½øÐÐÀ©ÈÝ£¬µ÷ÓÃ´Ë·½·¨´ú±íÒÑ¾­¿ªÊ¼À©ÈÝÁË
+            //è°ƒç”¨growæ–¹æ³•è¿›è¡Œæ‰©å®¹ï¼Œè°ƒç”¨æ­¤æ–¹æ³•ä»£è¡¨å·²ç»å¼€å§‹æ‰©å®¹äº†
             grow(minCapacity);
     }
     
     /**
-     * Òª·ÖÅäµÄ×î´óÊý×é´óÐ¡
+     * è¦åˆ†é…çš„æœ€å¤§æ•°ç»„å¤§å°
      */
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
     /**
-     * ArrayListÀ©ÈÝµÄºËÐÄ·½·¨¡£
+     * ArrayListæ‰©å®¹çš„æ ¸å¿ƒæ–¹æ³•ã€‚
      */
     private void grow(int minCapacity) {
-        // oldCapacityÎª¾ÉÈÝÁ¿£¬newCapacityÎªÐÂÈÝÁ¿
+        // oldCapacityä¸ºæ—§å®¹é‡ï¼ŒnewCapacityä¸ºæ–°å®¹é‡
         int oldCapacity = elementData.length;
-        //½«oldCapacity ÓÒÒÆÒ»Î»£¬ÆäÐ§¹ûÏàµ±ÓÚoldCapacity /2£¬
-        //ÎÒÃÇÖªµÀÎ»ÔËËãµÄËÙ¶ÈÔ¶Ô¶¿ìÓÚÕû³ýÔËËã£¬Õû¾äÔËËãÊ½µÄ½á¹û¾ÍÊÇ½«ÐÂÈÝÁ¿¸üÐÂÎª¾ÉÈÝÁ¿µÄ1.5±¶£¬
+        //å°†oldCapacity å³ç§»ä¸€ä½ï¼Œå…¶æ•ˆæžœç›¸å½“äºŽoldCapacity /2ï¼Œ
+        //æˆ‘ä»¬çŸ¥é“ä½è¿ç®—çš„é€Ÿåº¦è¿œè¿œå¿«äºŽæ•´é™¤è¿ç®—ï¼Œæ•´å¥è¿ç®—å¼çš„ç»“æžœå°±æ˜¯å°†æ–°å®¹é‡æ›´æ–°ä¸ºæ—§å®¹é‡çš„1.5å€ï¼Œ
         int newCapacity = oldCapacity + (oldCapacity >> 1);
-        //È»ºó¼ì²éÐÂÈÝÁ¿ÊÇ·ñ´óÓÚ×îÐ¡ÐèÒªÈÝÁ¿£¬Èô»¹ÊÇÐ¡ÓÚ×îÐ¡ÐèÒªÈÝÁ¿£¬ÄÇÃ´¾Í°Ñ×îÐ¡ÐèÒªÈÝÁ¿µ±×÷Êý×éµÄÐÂÈÝÁ¿£¬
+        //ç„¶åŽæ£€æŸ¥æ–°å®¹é‡æ˜¯å¦å¤§äºŽæœ€å°éœ€è¦å®¹é‡ï¼Œè‹¥è¿˜æ˜¯å°äºŽæœ€å°éœ€è¦å®¹é‡ï¼Œé‚£ä¹ˆå°±æŠŠæœ€å°éœ€è¦å®¹é‡å½“ä½œæ•°ç»„çš„æ–°å®¹é‡ï¼Œ
         if (newCapacity - minCapacity < 0)
             newCapacity = minCapacity;
-       // Èç¹ûÐÂÈÝÁ¿´óÓÚ MAX_ARRAY_SIZE,½øÈë(Ö´ÐÐ) `hugeCapacity()` ·½·¨À´±È½Ï minCapacity ºÍ MAX_ARRAY_SIZE£¬
-       //Èç¹ûminCapacity´óÓÚ×î´óÈÝÁ¿£¬ÔòÐÂÈÝÁ¿ÔòÎª`Integer.MAX_VALUE`£¬·ñÔò£¬ÐÂÈÝÁ¿´óÐ¡ÔòÎª MAX_ARRAY_SIZE ¼´Îª `Integer.MAX_VALUE - 8`¡£
+       // å¦‚æžœæ–°å®¹é‡å¤§äºŽ MAX_ARRAY_SIZE,è¿›å…¥(æ‰§è¡Œ) `hugeCapacity()` æ–¹æ³•æ¥æ¯”è¾ƒ minCapacity å’Œ MAX_ARRAY_SIZEï¼Œ
+       //å¦‚æžœminCapacityå¤§äºŽæœ€å¤§å®¹é‡ï¼Œåˆ™æ–°å®¹é‡åˆ™ä¸º`Integer.MAX_VALUE`ï¼Œå¦åˆ™ï¼Œæ–°å®¹é‡å¤§å°åˆ™ä¸º MAX_ARRAY_SIZE å³ä¸º `Integer.MAX_VALUE - 8`ã€‚
         if (newCapacity - MAX_ARRAY_SIZE > 0)
             newCapacity = hugeCapacity(minCapacity);
         // minCapacity is usually close to size, so this is a win:
@@ -90,26 +89,26 @@ static final int hash(Object key) {
 ```
     
 
-- ***int newCapacity = oldCapacity + (oldCapacity >> 1),ËùÒÔ ArrayList Ã¿´ÎÀ©ÈÝÖ®ºóÈÝÁ¿¶¼»á±äÎªÔ­À´µÄ 1.5 ±¶£¡*** 
-- ArrayList Ô´ÂëÖÐÓÐÒ»¸ö ensureCapacity ·½·¨£¬Õâ¸ö·½·¨ ArrayList ÄÚ²¿Ã»ÓÐ±»µ÷ÓÃ¹ý£¬ËùÒÔºÜÏÔÈ»ÊÇÌá¹©¸øÓÃ»§µ÷ÓÃµÄ£¬×îºÃÔÚ add ´óÁ¿ÔªËØÖ®Ç°ÓÃ ensureCapacity ·½·¨£¬ÒÔ¼õÉÙÔöÁ¿ÖØÐÂ·ÖÅäµÄ´ÎÊý
+- ***int newCapacity = oldCapacity + (oldCapacity >> 1),æ‰€ä»¥ ArrayList æ¯æ¬¡æ‰©å®¹ä¹‹åŽå®¹é‡éƒ½ä¼šå˜ä¸ºåŽŸæ¥çš„ 1.5 å€ï¼*** 
+- ArrayList æºç ä¸­æœ‰ä¸€ä¸ª ensureCapacity æ–¹æ³•ï¼Œè¿™ä¸ªæ–¹æ³• ArrayList å†…éƒ¨æ²¡æœ‰è¢«è°ƒç”¨è¿‡ï¼Œæ‰€ä»¥å¾ˆæ˜¾ç„¶æ˜¯æä¾›ç»™ç”¨æˆ·è°ƒç”¨çš„ï¼Œæœ€å¥½åœ¨ add å¤§é‡å…ƒç´ ä¹‹å‰ç”¨ ensureCapacity æ–¹æ³•ï¼Œä»¥å‡å°‘å¢žé‡é‡æ–°åˆ†é…çš„æ¬¡æ•°
 
 ## LinkedList
-**ÄÚ²¿½á¹¹**
-![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/collection-linked-list-structure.jpeg)
+**å†…éƒ¨ç»“æž„**
+![æ­¤å¤„è¾“å…¥å›¾ç‰‡çš„æè¿°](images/collection-linked-list-structure.jpeg)
 
-- LinkedListÊÇÒ»¸öÊµÏÖÁËList½Ó¿ÚºÍDeque½Ó¿ÚµÄË«¶ËÁ´±í¡£ 
-- LinkedListµ×²ãµÄÁ´±í½á¹¹Ê¹ËüÖ§³Ö¸ßÐ§µÄ²åÈëºÍÉ¾³ý²Ù×÷£¬ÁíÍâËüÊµÏÖÁËDeque½Ó¿Ú£¬Ê¹µÃLinkedListÀàÒ²¾ßÓÐ¶ÓÁÐµÄÌØÐÔ; 
-- LinkedList²»ÊÇÏß³Ì°²È«µÄ£¬Èç¹ûÏëÊ¹LinkedList±ä³ÉÏß³Ì°²È«µÄ£¬¿ÉÒÔµ÷ÓÃ¾²Ì¬ÀàCollectionsÀàÖÐµÄsynchronizedList·½·¨£º
+- LinkedListæ˜¯ä¸€ä¸ªå®žçŽ°äº†ListæŽ¥å£å’ŒDequeæŽ¥å£çš„åŒç«¯é“¾è¡¨ã€‚ 
+- LinkedListåº•å±‚çš„é“¾è¡¨ç»“æž„ä½¿å®ƒæ”¯æŒé«˜æ•ˆçš„æ’å…¥å’Œåˆ é™¤æ“ä½œï¼Œå¦å¤–å®ƒå®žçŽ°äº†DequeæŽ¥å£ï¼Œä½¿å¾—LinkedListç±»ä¹Ÿå…·æœ‰é˜Ÿåˆ—çš„ç‰¹æ€§; 
+- LinkedListä¸æ˜¯çº¿ç¨‹å®‰å…¨çš„ï¼Œå¦‚æžœæƒ³ä½¿LinkedListå˜æˆçº¿ç¨‹å®‰å…¨çš„ï¼Œå¯ä»¥è°ƒç”¨é™æ€ç±»Collectionsç±»ä¸­çš„synchronizedListæ–¹æ³•ï¼š
 
 
 ## Q&A
-1. ListµÄ×ÓÀàÌØµã
+1. Listçš„å­ç±»ç‰¹ç‚¹
 - ArrayList:
-µ×²ãÊý¾Ý½á¹¹ÊÇÊý×é£¬²éÑ¯¿ì£¬ÔöÉ¾Âý
-Ïß³Ì²»°²È«£¬Ð§ÂÊ¸ß
+åº•å±‚æ•°æ®ç»“æž„æ˜¯æ•°ç»„ï¼ŒæŸ¥è¯¢å¿«ï¼Œå¢žåˆ æ…¢
+çº¿ç¨‹ä¸å®‰å…¨ï¼Œæ•ˆçŽ‡é«˜
 - Vector:
-µ×²ãÊý¾Ý½á¹¹ÊÇÊý×é£¬²éÑ¯¿ì£¬ÔöÉ¾Âý
-Ïß³Ì°²È«£¬Ð§ÂÊµÍ
+åº•å±‚æ•°æ®ç»“æž„æ˜¯æ•°ç»„ï¼ŒæŸ¥è¯¢å¿«ï¼Œå¢žåˆ æ…¢
+çº¿ç¨‹å®‰å…¨ï¼Œæ•ˆçŽ‡ä½Ž
 - LinkedList:
-µ×²ãÊý¾Ý½á¹¹ÊÇË«ÏòÁ´±í£¬²éÑ¯Âý£¬ÔöÉ¾¿ì
-Ïß³Ì²»°²È«£¬Ð§ÂÊ¸ß
+åº•å±‚æ•°æ®ç»“æž„æ˜¯åŒå‘é“¾è¡¨ï¼ŒæŸ¥è¯¢æ…¢ï¼Œå¢žåˆ å¿«
+çº¿ç¨‹ä¸å®‰å…¨ï¼Œæ•ˆçŽ‡é«˜
