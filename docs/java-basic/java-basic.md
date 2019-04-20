@@ -1,27 +1,32 @@
-# Java����
+# Java基础
 
- 1. **��static���ؼ�����ʲô��˼��Java���Ƿ���Ը���(override)һ��private������static�ķ�����**
-��static���ؼ��ֱ���һ����Ա���������ǳ�Ա����������û�����������ʵ������������±����ʡ�
-Java��static�������ܱ����ǣ���Ϊ���������ǻ�������ʱ��̬�󶨵ģ���static�����Ǳ���ʱ��̬�󶨵ġ�static����������κ�ʵ��������أ����Ը����ϲ����á�
+ 1. **“static”关键字是什么意思？Java中是否可以覆盖(override)一个private或者是static的方法？**
+ 
+“static”关键字表明一个成员变量或者是成员方法可以在没有所属的类的实例变量的情况下被访问。
+Java中static方法不能被覆盖，因为方法覆盖是基于运行时动态绑定的，而static方法是编译时静态绑定的。static方法跟类的任何实例都不相关，所以概念上不适用。
 
- 2. **�Ƿ������static�����з��ʷ�static������**
-static������Java����������ģ��������е�ʵ���е�ֵ��һ���ġ����౻Java����������ʱ�򣬻��static�������г�ʼ���������Ĵ��볢�Բ���ʵ�������ʷ�static�ı������������ᱨ������Ϊ��Щ������û�б�������������û�и��κ�ʵ�������ϡ�
+ 2. **是否可以在static环境中访问非static变量？**
+ 
+static变量在Java中是属于类的，它在所有的实例中的值是一样的。当类被Java虚拟机载入的时候，会对static变量进行初始化。如果你的代码尝试不用实例来访问非static的变量，编译器会报错，因为这些变量还没有被创建出来，还没有跟任何实例关联上。
 
- 3. **ʲô��ֵ���ݺ����ô��ݣ�**
-����ֵ���ݣ���ζ�Ŵ����˶����һ����������ˣ������Ǹı��˶��󸱱���Ҳ����Ӱ��Դ�����ֵ��
-�������ô��ݣ���ζ�Ŵ��ݵĲ�����ʵ�ʵĶ��󣬶��Ƕ�������á���ˣ��ⲿ�����ö��������ĸı�ᷴӳ�����еĶ����ϡ�
+ 3. **什么是值传递和引用传递？**
+ 
+对象被值传递，意味着传递了对象的一个副本。因此，就算是改变了对象副本，也不会影响源对象的值。
+对象被引用传递，意味着传递的并不是实际的对象，而是对象的引用。因此，外部对引用对象所做的改变会反映到所有的对象上。
 
- 4. **final, finally, finalize������**
+ 4. **final, finally, finalize的区别。**
+ 
 final
-�����������ԣ��������࣬�ֱ��ʾ���Բ��ɱ䣬�������ɸ��ǣ��಻�ɼ̳С�
-finally���쳣�������ṹ��һ���֣���ʾ����ִ�С�
-finalize��Object���һ���������������ռ���ִ�е�ʱ�����ñ����ն���Ĵ˷��������Ը��Ǵ˷����ṩ�����ռ�ʱ��������Դ���գ�����ر��ļ��ȡ�
+用于声明属性，方法和类，分别表示属性不可变，方法不可覆盖，类不可继承。
+finally是异常处理语句结构的一部分，表示总是执行。
+finalize是Object类的一个方法，在垃圾收集器执行的时候会调用被回收对象的此方法，可以覆盖此方法提供垃圾收集时的其他资源回收，例如关闭文件等。
 
- 5. **ʹ��final�ؼ�������һ������ʱ�������ò��ܱ䣬�������õĶ����ܱ䣿**
-ʹ��final�ؼ�������һ������ʱ����ָ���ñ������ܱ䣬���ñ�����ָ��Ķ����е����ݻ��ǿ��Ըı�ġ����磬����������䣺
-final StringBuffer a=new StringBuffer(��immutable��);
-ִ��������佫��������ڴ���
+ 5. **使用final关键字修饰一个变量时，是引用不能变，还是引用的对象不能变？**
+ 
+使用final关键字修饰一个变量时，是指引用变量不能变，引用变量所指向的对象中的内容还是可以改变的。例如，对于如下语句：
+final StringBuffer a=new StringBuffer(“immutable”);
+执行如下语句将报告编译期错误：
 a=new StringBuffer("");
-���ǣ�ִ��������������ͨ�����룺
+但是，执行如下语句则可以通过编译：
 a.append(" broken!");
 
