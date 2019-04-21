@@ -2,25 +2,27 @@
 ## Spring MVC
 ### Æô¶¯Á÷³Ì
 Spring MVCÆô¶¯¹ý³ÌÒÀ¾ÝÕâÁ½¸öÅäÖÃ´óÖÂ·ÖÎªÁ½¸ö¹ý³Ì£º
-1. ContextLoaderListener³õÊ¼»¯£¬ÊµÀý»¯IoCÈÝÆ÷£¬²¢½«´ËÈÝÆ÷ÊµÀý×¢²áµ½ServletContextÖÐ¡£
-2. DispatcherServlet³õÊ¼»¯£¬½¨Á¢×Ô¼ºµÄÉÏÏÂÎÄ£¬Ò²×¢²áµ½ServletContextÖÐ¡£
+1. `ContextLoaderListener`³õÊ¼»¯£¬ÊµÀý»¯IoCÈÝÆ÷£¬²¢½«´ËÈÝÆ÷ÊµÀý×¢²áµ½`ServletContext`ÖÐ¡£
+2. `DispatcherServlet`³õÊ¼»¯£¬½¨Á¢×Ô¼ºµÄÉÏÏÂÎÄ£¬Ò²×¢²áµ½`ServletContext`ÖÐ¡£
 
-webÈÝÆ÷ÕýÊÇÍ¨¹ýÕâÁ½¸öÅäÖÃ²ÅºÍSpring¹ØÁªÆðÀ´¡£ÕâÁ½¸öÅäÖÃÓëwebÈÝÆ÷µÄServletContext¹ØÁª£¬ÎªSpringµÄIocÈÝÆ÷Ìá¹©ÁËÒ»¸öËÞÖ÷£¬ÔÚ½¨Á¢ÆðIocÈÝÆ÷ÌåÏµÖ®ºó£¬°ÑDispatcherServlet×÷ÎªSpring MVC´¦ÀíwebÇëÇóµÄ×ª·¢Æ÷½¨Á¢ÆðÀ´£¬´Ó¶øÍê³ÉÏìÓ¦HttpÇëÇóµÄ×¼±¸¡£
+webÈÝÆ÷ÕýÊÇÍ¨¹ýÕâÁ½¸öÅäÖÃ²ÅºÍSpring¹ØÁªÆðÀ´¡£ÕâÁ½¸öÅäÖÃÓëwebÈÝÆ÷µÄ`ServletContext`¹ØÁª£¬ÎªSpringµÄIocÈÝÆ÷Ìá¹©ÁËÒ»¸öËÞÖ÷£¬ÔÚ½¨Á¢ÆðIocÈÝÆ÷ÌåÏµÖ®ºó£¬°Ñ`DispatcherServlet`×÷ÎªSpring MVC´¦ÀíwebÇëÇóµÄ×ª·¢Æ÷½¨Á¢ÆðÀ´£¬´Ó¶øÍê³ÉÏìÓ¦HttpÇëÇóµÄ×¼±¸¡£
 
 **Spring IOCÈÝÆ÷µÄÆô¶¯**
-ContextLoaderListenerÊµÏÖServletContextListener£¬Õâ¸ö½Ó¿ÚÀïÃæµÄº¯Êý»á½áºÏwebÈÝÆ÷µÄÉúÃüÖÜÆÚ±»µ÷ÓÃ¡£ÒòÎªServletContextListenerÊÇServletContextµÄ¼àÌýÕß£¬ÔÚ·þÎñÆ÷Æô¶¯£¬ServletContext±»´´½¨µÄÊ±ºò£¬ServletContextListenerµÄcontextInitialized()·½·¨±»µ÷ÓÃ£¬´Ó¶ø¿ªÊ¼³õÊ¼»¯Spring IOCÈÝÆ÷¡£
+
+`ContextLoaderListener`ÊµÏÖ`ServletContextListener`£¬Õâ¸ö½Ó¿ÚÀïÃæµÄº¯Êý»á½áºÏwebÈÝÆ÷µÄÉúÃüÖÜÆÚ±»µ÷ÓÃ¡£ÒòÎª`ServletContextListener`ÊÇ`ServletContext`µÄ¼àÌýÕß£¬ÔÚ·þÎñÆ÷Æô¶¯£¬`ServletContext`±»´´½¨µÄÊ±ºò£¬`ServletContextListener`µÄ`contextInitialized()`·½·¨±»µ÷ÓÃ£¬´Ó¶ø¿ªÊ¼³õÊ¼»¯Spring IOCÈÝÆ÷¡£
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-mvc-contextListener-start.png)
-Ê×ÏÈ´ÓServletµÄÆô¶¯ÊÂ¼þÖÐµÃµ½ServletContext£¬È»ºó¶ÁÈ¡web.xmlÖÐµÄ¸÷¸öÏà¹ØµÄÊôÐÔÖµ£¬½Ó×ÅContextLoader»áÊµÀý»¯WebApplicationContext£¬²¢Íê³ÉÔØÈëºÍ³õÊ¼»¯µÄ¹ý³Ì£¬Õâ¸ö±»³õÊ¼»¯µÄµÚÒ»¸öÉÏÏÂÎÄ×÷Îª**¸ùÉÏÏÂÎÄ**¶ø´æÔÚ£¬Õâ¸ö¸ùÉÏÏÂÎÄÔØÈëºó£¬±»°ó¶¨µ½webÓ¦ÓÃ³ÌÐòµÄServletContextÉÏ£¬ÕâÑù£¬IOCÈÝÆ÷ÖÐµÄÀà¾Í¿ÉÒÔÔÚÈÎºÎµØ·½·ÃÎÊµ½ÁË¡£
+Ê×ÏÈ´ÓServletµÄÆô¶¯ÊÂ¼þÖÐµÃµ½`ServletContext`£¬È»ºó¶ÁÈ¡`web.xml`ÖÐµÄ¸÷¸öÏà¹ØµÄÊôÐÔÖµ£¬½Ó×Å`ContextLoader`»áÊµÀý»¯`WebApplicationContext`£¬²¢Íê³ÉÔØÈëºÍ³õÊ¼»¯µÄ¹ý³Ì£¬Õâ¸ö±»³õÊ¼»¯µÄµÚÒ»¸öÉÏÏÂÎÄ×÷Îª**¸ùÉÏÏÂÎÄ**¶ø´æÔÚ£¬Õâ¸ö¸ùÉÏÏÂÎÄÔØÈëºó£¬±»°ó¶¨µ½webÓ¦ÓÃ³ÌÐòµÄ`ServletContext`ÉÏ£¬ÕâÑù£¬IOCÈÝÆ÷ÖÐµÄÀà¾Í¿ÉÒÔÔÚÈÎºÎµØ·½·ÃÎÊµ½ÁË¡£
 
 **DispatchServletµÄÆô¶¯**
-DispatchServlet±¾ÖÊÉÏÊÇÒ»¸öServlet£¬webÈÝÆ÷Æô¶¯µÄÊ±ºò£¬servletÒ²»á³õÊ¼»¯£¬Æäinit·½·¨±»µ÷ÓÃ£¬¿ªÆô³õÊ¼»¯Ö®ÂÃ¡£
-DispatchServlet»á½¨Á¢×Ô¼ºµÄÉÏÏÂÎÄÀ´³ÖÓÐSpring MVCÌØÊâµÄbean¶ÔÏó£¬ÔÚ½¨Á¢Õâ¸ö×Ô¼º³ÖÓÐµÄIocÈÝÆ÷µÄÊ±ºò£¬»á´ÓServletContextÖÐµÃµ½¸ùÉÏÏÂÎÄ×÷ÎªDispatchServletÉÏÏÂÎÄµÄparentÉÏÏÂÎÄ¡£ÓÐÁËÕâ¸ö¸ùÉÏÏÂÎÄ£¬ÔÙ¶Ô×Ô¼º³ÖÓÐµÄÉÏÏÂÎÄ½øÐÐ³õÊ¼»¯£¬×îºó°Ñ×Ô¼º³ÖÓÐµÄÕâ¸öÉÏÏÂÎÄ±£´æµ½ServletContextÖÐ£¬¹©ÒÔºó¼ìË÷ºÍÊ¹ÓÃ¡£
+
+`DispatchServlet`±¾ÖÊÉÏÊÇÒ»¸öServlet£¬webÈÝÆ÷Æô¶¯µÄÊ±ºò£¬servletÒ²»á³õÊ¼»¯£¬Æäinit·½·¨±»µ÷ÓÃ£¬¿ªÆô³õÊ¼»¯Ö®ÂÃ¡£
+`DispatchServlet`»á½¨Á¢×Ô¼ºµÄÉÏÏÂÎÄÀ´³ÖÓÐSpring MVCÌØÊâµÄbean¶ÔÏó£¬ÔÚ½¨Á¢Õâ¸ö×Ô¼º³ÖÓÐµÄIocÈÝÆ÷µÄÊ±ºò£¬»á´Ó`ServletContext`ÖÐµÃµ½¸ùÉÏÏÂÎÄ×÷Îª`DispatchServlet`ÉÏÏÂÎÄµÄparentÉÏÏÂÎÄ¡£ÓÐÁËÕâ¸ö¸ùÉÏÏÂÎÄ£¬ÔÙ¶Ô×Ô¼º³ÖÓÐµÄÉÏÏÂÎÄ½øÐÐ³õÊ¼»¯£¬×îºó°Ñ×Ô¼º³ÖÓÐµÄÕâ¸öÉÏÏÂÎÄ±£´æµ½`ServletContext`ÖÐ£¬¹©ÒÔºó¼ìË÷ºÍÊ¹ÓÃ¡£
 
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-mvc-dispatchservlet-start.png)
 
-ÔÚinitWebApplicationContextÖÐÍê³ÉÁË¶Ô×Ô¼ºÉÏÏÂÎÄµÄ³õÊ¼»¯£¬ÕâÀïÃæÒ²ÓÐÒ»¸örefreshµÄ¹ý³Ì£¬ºÍÆÕÍ¨µÄIocÈÝÆ÷³õÊ¼»¯´óÍ¬Ð¡Òì¡£
+ÔÚ`initWebApplicationContext`ÖÐÍê³ÉÁË¶Ô×Ô¼ºÉÏÏÂÎÄµÄ³õÊ¼»¯£¬ÕâÀïÃæÒ²ÓÐÒ»¸ö`refresh`µÄ¹ý³Ì£¬ºÍÆÕÍ¨µÄIocÈÝÆ÷³õÊ¼»¯´óÍ¬Ð¡Òì¡£
 
-ÁíÍâÒ»Ð©MVCµÄÌØÐÔ³õÊ¼»¯Ê±ÔÚinitStrategies()ÖÐÊµÏÖµÄ£¬°üÀ¨Ö§³Ö¹ú¼Ê»¯µÄLocalResolver¡¢**Ö§³ÖRequestÓ³ÉäµÄHandlerMappings**£¬ÒÔ¼°ÊÓÍ¼Éú³ÉµÄViewResolverµÈµÈ¡£
+ÁíÍâÒ»Ð©MVCµÄÌØÐÔ³õÊ¼»¯Ê±ÔÚ`initStrategies()`ÖÐÊµÏÖµÄ£¬°üÀ¨Ö§³Ö¹ú¼Ê»¯µÄ`LocalResolver`¡¢**Ö§³ÖRequestÓ³ÉäµÄ`HandlerMappings`**£¬ÒÔ¼°ÊÓÍ¼Éú³ÉµÄ`ViewResolver`µÈµÈ¡£
 
 
 ### Ö´ÐÐÁ÷³Ì
@@ -28,11 +30,18 @@ DispatchServlet»á½¨Á¢×Ô¼ºµÄÉÏÏÂÎÄÀ´³ÖÓÐSpring MVCÌØÊâµÄbean¶ÔÏó£¬ÔÚ½¨Á¢Õâ¸ö×Ô¼º³
 
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-mvc-dispatchServlet-invoke-process-2.png)
 
-## SpringBootµÄÆô¶¯Á÷³Ì
-Æô¶¯Á÷³ÌÖ÷Òª·ÖÎªÈý¸ö²¿·Ö
-1. ½øÐÐSpringApplicationµÄ³õÊ¼»¯Ä£¿é£¬ÅäÖÃÒ»Ð©»ù±¾µÄ»·¾³±äÁ¿¡¢×ÊÔ´¡¢¹¹ÔìÆ÷¡¢¼àÌýÆ÷
+## SpringBoot
+### Æô¶¯Á÷³Ì
+1. ½øÐÐ`SpringApplication`µÄ³õÊ¼»¯Ä£¿é£¬ÅäÖÃÒ»Ð©»ù±¾µÄ»·¾³±äÁ¿¡¢×ÊÔ´¡¢¹¹ÔìÆ÷¡¢¼àÌýÆ÷
 2. ÊµÏÖÁËÓ¦ÓÃ¾ßÌåµÄÆô¶¯·½°¸£¬°üÀ¨Æô¶¯Á÷³ÌµÄ¼àÌýÄ£¿é¡¢¼ÓÔØÅäÖÃ»·¾³Ä£¿é¡¢¼°ºËÐÄµÄ´´½¨ÉÏÏÂÎÄ»·¾³Ä£¿é
 3. ÊÇ×Ô¶¯»¯ÅäÖÃÄ£¿é£¬¸ÃÄ£¿é×÷Îªspringboot×Ô¶¯ÅäÖÃºËÐÄ
+
+### SpringApplication.run()×öÁËÄÄÐ©ÊÂ£¿
+- ´´½¨`SpringApplication`¶ÔÏó£¬ÔÚ¸Ã¶ÔÏó³õÊ¼»¯Ê±£¬ÕÒµ½ÅäÖÃµÄÊÂ¼þ¼àÌýÆ÷²¢±£´æÆðÀ´
+- ÀûÓÃ´´½¨ºÃµÄ`SpringApplication`¶ÔÏóµ÷ÓÃ`run()·½·¨`£¬´ËÊ±»á½«¸Õ²Å±£´æµÄÊÂ¼þ¼àÌýÆ÷¸ù¾Ýµ±Ç°Ê±»ú´¥·¢²»Í¬µÄÊÂ¼þ£¬±ÈÈçÈÝÆ÷³õÊ¼»¯£¬ÈÝÆ÷´´½¨Íê³ÉµÈ£¬Í¬Ê±Ò²»áË¢ÐÂIoCÈÝÆ÷£¬½øÐÐ×é¼þµÄÉ¨Ãè¡¢´´½¨¡¢¼ÓÔØµÈ¹¤×÷¡£
+
+![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-boot-new-spring-application.jpeg)
+![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-boot-spring-application-run.jpeg)
 
 ### Æô¶¯Ô´Âë
 ```
@@ -127,35 +136,35 @@ public ConfigurableApplicationContext run(String... args) {
 ### ×Ô¶¯ÅäÖÃÔ­Àí
 [×Ô¶¯ÅäÖÃÔ­Àí](https://www.cnblogs.com/jiadp/p/9276826.html)
 
-## BeanFactoryºÍApplicationContext
-1. ÀûÓÃMessageSource½øÐÐ¹ú¼Ê»¯
+## Spring IoC
+### BeanFactoryºÍApplicationContextµÄÇø±ð
+1. ÀûÓÃ`MessageSource`½øÐÐ¹ú¼Ê»¯
 2. Ç¿´óµÄÊÂ¼þ»úÖÆ(Event)£º
- ApplicationContextµÄÊÂ¼þ»úÖÆÖ÷ÒªÍ¨¹ýApplicationEventºÍApplicationListenerÕâÁ½¸ö½Ó¿ÚÀ´Ìá¹©µÄ£¬ºÍjava swingÖÐµÄÊÂ¼þ»úÖÆÒ»Ñù¡£¼´µ±ApplicationContextÖÐ·¢²¼Ò»¸öÊÂ¼þµÄÊ±£¬ËùÓÐÀ©Õ¹ÁËApplicationListenerµÄBean¶¼½«»á½ÓÊÜµ½Õâ¸öÊÂ¼þ£¬²¢½øÐÐÏàÓ¦µÄ´¦Àí¡£  
+    `ApplicationContext`µÄÊÂ¼þ»úÖÆÖ÷ÒªÍ¨¹ý`ApplicationEvent`ºÍ`ApplicationListener`ÕâÁ½¸ö½Ó¿ÚÀ´Ìá¹©µÄ£¬ºÍjava swingÖÐµÄÊÂ¼þ»úÖÆÒ»Ñù¡£¼´µ±`ApplicationContext`ÖÐ·¢²¼Ò»¸öÊÂ¼þµÄÊ±£¬ËùÓÐÀ©Õ¹ÁË`ApplicationListener`µÄBean¶¼½«»á½ÓÊÜµ½Õâ¸öÊÂ¼þ£¬²¢½øÐÐÏàÓ¦µÄ´¦Àí¡£  
 3. µ×²ã×ÊÔ´µÄ·ÃÎÊ  
-    ApplicationContextÀ©Õ¹ÁËResourceLoader(×ÊÔ´¼ÓÔØÆ÷)½Ó¿Ú£¬´Ó¶ø¿ÉÒÔÓÃÀ´¼ÓÔØ¶à¸öResource£¬¶øBeanFactoryÊÇÃ»ÓÐÀ©Õ¹ResourceLoader  
+    `ApplicationContext`À©Õ¹ÁË`ResourceLoader`(×ÊÔ´¼ÓÔØÆ÷)½Ó¿Ú£¬´Ó¶ø¿ÉÒÔÓÃÀ´¼ÓÔØ¶à¸öResource£¬¶ø`BeanFactory`ÊÇÃ»ÓÐÀ©Õ¹`ResourceLoader ` 
 4. ¶ÔWebÓ¦ÓÃµÄÖ§³Ö  
-   ÓëBeanFactoryÍ¨³£ÒÔ±à³ÌµÄ·½Ê½±»´´½¨²»Í¬µÄÊÇ£¬ApplicationContextÄÜÒÔÉùÃ÷µÄ·½Ê½´´½¨£¬ÈçÊ¹ÓÃContextLoader¡£µ±È»ÄãÒ²¿ÉÒÔÊ¹ÓÃApplicationContextµÄÊµÏÖÖ®Ò»À´ÒÔ±à³ÌµÄ·½Ê½´´½¨ApplicationContextÊµÀý ¡£
+   Óë`BeanFactory`Í¨³£ÒÔ±à³ÌµÄ·½Ê½±»´´½¨²»Í¬µÄÊÇ£¬`ApplicationContext`ÄÜÒÔÉùÃ÷µÄ·½Ê½´´½¨£¬ÈçÊ¹ÓÃ`ContextLoader`¡£µ±È»ÄãÒ²¿ÉÒÔÊ¹ÓÃ`ApplicationContext`µÄÊµÏÖÖ®Ò»À´ÒÔ±à³ÌµÄ·½Ê½´´½¨`ApplicationContext`ÊµÀý ¡£
 5. ¼ÓÔØÐÎÊ½
-BeanFactroy²ÉÓÃµÄÊÇÑÓ³Ù¼ÓÔØÐÎÊ½À´×¢ÈëBeanµÄ¡£¶øApplicationContextÔòÏà·´£¬ËüÊÇÔÚÈÝÆ÷Æô¶¯Ê±£¬Ò»´ÎÐÔ´´½¨ÁËËùÓÐµÄBean¡£
-6. PostProcesorµÄÊ¹ÓÃ
-BeanFactoryºÍApplicationContext¶¼Ö§³ÖBeanPostProcessor¡¢BeanFactoryPostProcessorµÄÊ¹ÓÃ£¬µ«Á½ÕßÖ®¼äµÄÇø±ðÊÇ£ºBeanFactoryÐèÒªÊÖ¶¯×¢²á£¬¶øApplicationContextÔòÊÇ×Ô¶¯×¢²á
+    `BeanFactroy`²ÉÓÃµÄÊÇÑÓ³Ù¼ÓÔØÐÎÊ½À´×¢ÈëBeanµÄ¡£¶ø`ApplicationContext`ÔòÏà·´£¬ËüÊÇÔÚÈÝÆ÷Æô¶¯Ê±£¬Ò»´ÎÐÔ´´½¨ÁËËùÓÐµÄBean¡£
+6. `PostProcesor`µÄÊ¹ÓÃ
+    `BeanFactory`ºÍ`ApplicationContext`¶¼Ö§³Ö`BeanPostProcessor`¡¢`BeanFactoryPostProcessor`µÄÊ¹ÓÃ£¬µ«Á½ÕßÖ®¼äµÄÇø±ðÊÇ£º`BeanFactory`ÐèÒªÊÖ¶¯×¢²á£¬¶ø`ApplicationContext`ÔòÊÇ×Ô¶¯×¢²á
 
-## Spring BeanÉúÃüÖÜÆÚ
-### ApplicationContext BeanÉúÃüÖÜÆÚ
+### Spring BeanÉúÃüÖÜÆÚ
+**ApplicationContext BeanÉúÃüÖÜÆÚ**
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-ioc-application-context-bean-life-circle.png)
 
-### BeanFactory BeanÉúÃüÖÜÆÚ
+**BeanFactory BeanÉúÃüÖÜÆÚ**
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/spring-ioc-bean-factory-bean-life-circle.png)
 
 **Á½ÕßÇø±ð£º**
-1. BeanFactoryÈÝÆ÷ÖÐ£¬²»»áµ÷ÓÃApplicationContextAware½Ó¿ÚµÄsetApplicationContext()·½·¨
-2. BeanPostProcessor½Ó¿ÚµÄpostProcessBeforeInitialzation()·½·¨ºÍpostProcessAfterInitialization()·½·¨²»»á×Ô¶¯µ÷ÓÃ£¬±ØÐë×Ô¼ºÍ¨¹ý´úÂëÊÖ¶¯×¢²á
-3. BeanFactoryÈÝÆ÷Æô¶¯µÄÊ±ºò£¬²»»áÈ¥ÊµÀý»¯ËùÓÐBean,°üÀ¨ËùÓÐscopeÎªsingletonÇÒ·ÇÀÁ¼ÓÔØµÄBeanÒ²ÊÇÒ»Ñù£¬¶øÊÇÔÚµ÷ÓÃµÄÊ±ºòÈ¥ÊµÀý»¯¡£
+1. `BeanFactory`ÈÝÆ÷ÖÐ£¬²»»áµ÷ÓÃ`ApplicationContextAware`½Ó¿ÚµÄ`setApplicationContext()`·½·¨
+2. `BeanPostProcessor`½Ó¿ÚµÄ`postProcessBeforeInitialzation()`·½·¨ºÍ`postProcessAfterInitialization()`·½·¨²»»á×Ô¶¯µ÷ÓÃ£¬±ØÐë×Ô¼ºÍ¨¹ý´úÂëÊÖ¶¯×¢²á
+3. `BeanFactory`ÈÝÆ÷Æô¶¯µÄÊ±ºò£¬²»»áÈ¥ÊµÀý»¯ËùÓÐBean,°üÀ¨ËùÓÐscopeÎªsingletonÇÒ·ÇÀÁ¼ÓÔØµÄBeanÒ²ÊÇÒ»Ñù£¬¶øÊÇÔÚµ÷ÓÃµÄÊ±ºòÈ¥ÊµÀý»¯¡£
 
-### Spring IoC
-**ÒÀÀµ×¢Èë**
-ÈýÖÖÊµÏÖ·½Ê½£º
-
+### ÒÀÀµ×¢Èë
 - ¹¹Ôìº¯Êý×¢Èë
 
 ```
@@ -277,6 +286,7 @@ BeanFactoryºÍApplicationContext¶¼Ö§³ÖBeanPostProcessor¡¢BeanFactoryPostProcessor
 
 
 **ËÄÖÖ×¢Èë·½·¨±È½Ï**
+
 ¹¹Ôì·½·¨×¢Èë£º
 1. ¹¹Ôìº¯Êý¿ÉÒÔ±£Ö¤Ò»Ð©ÖØÒªµÄÊôÐÔÔÚbeanÊµÀý»¯µÄÊ±ºò¾ÍÉèÖÃºÃ£¬±ÜÃâÒòÎªÒ»Ð©ÖØÒªµÄÊôÐÔÃ»ÓÐÌá¹©¶øµ¼ÖÂÒ»¸öÎÞÓÃµÄBean ÊµÀýÇé¿ö
 2. Èç¹ûÒ»¸öÀàÊôÐÔÌ«¶à£¬ÄÇÃ´¹¹Ôìº¯ÊýµÄ²ÎÊý½«±ä³ÉÒ»¸öÅÓÈ»´óÎï£¬¿É¶ÁÐÔ½Ï²î
@@ -286,27 +296,26 @@ BeanFactoryºÍApplicationContext¶¼Ö§³ÖBeanPostProcessor¡¢BeanFactoryPostProcessor
 setter·½·¨×¢Èë£º
 ¾ßÓÐ¿ÉÑ¡ÔñÐÔºÍ¸ßÁé»îÐÔµÄÌØµã
 
-**IOCÈÝÆ÷µÄ³õÊ¼»¯**
-*³õÊ¼»¯µÄÈë¿ÚÔÚÈÝÆ÷ÊµÏÖÖÐµÄ **refresh()**µ÷ÓÃÀ´Íê³É*
+### IOCÈÝÆ÷µÄ³õÊ¼»¯
+³õÊ¼»¯µÄÈë¿ÚÔÚÈÝÆ÷ÊµÏÖÖÐµÄ`refresh()`µ÷ÓÃÀ´Íê³É
 
- - ResourceLoader£ºÀ´Íê³É×ÊÔ´ÎÄ¼þÎ»ÖÃµÄ¶¨Î»
- - BeanDefinitionReader£ºÀ´Íê³É¶¨ÒåÐÅÏ¢µÄ½âÎöºÍ Bean ÐÅÏ¢µÄ×¢²á
+ - `ResourceLoader`£ºÀ´Íê³É×ÊÔ´ÎÄ¼þÎ»ÖÃµÄ¶¨Î»
+ - `BeanDefinitionReader`£ºÀ´Íê³É¶¨ÒåÐÅÏ¢µÄ½âÎöºÍBeanÐÅÏ¢µÄ×¢²á
 
-×¢²á¹ý³Ì¾ÍÊÇÔÚ IOC ÈÝÆ÷ÄÚ²¿Î¬»¤µÄÒ»¸öHashMap À´±£´æµÃµ½µÄ BeanDefinition µÄ¹ý³Ì¡£Õâ¸ö HashMap ÊÇ IoC ÈÝÆ÷³ÖÓÐ bean ÐÅÏ¢µÄ³¡Ëù£¬ÒÔºó¶Ô bean µÄ²Ù×÷¶¼ÊÇÎ§ÈÆÕâ¸öHashMap À´ÊµÏÖµÄ.
+×¢²á¹ý³Ì¾ÍÊÇÔÚ IOC ÈÝÆ÷ÄÚ²¿Î¬»¤µÄÒ»¸öHashMap À´±£´æµÃµ½µÄ`BeanDefinition`µÄ¹ý³Ì¡£Õâ¸ö HashMap ÊÇ IoC ÈÝÆ÷³ÖÓÐ bean ÐÅÏ¢µÄ³¡Ëù£¬ÒÔºó¶Ô bean µÄ²Ù×÷¶¼ÊÇÎ§ÈÆÕâ¸öHashMap À´ÊµÏÖµÄ.
 
-**IOCÈÝÆ÷µÄÒÀÀµ×¢Èë**
+### IOCÈÝÆ÷µÄÒÀÀµ×¢Èë
 1. µ¥ÀýÄ£Ê½²¢ÇÒÊÇ·ÇÑÓ³Ù¼ÓÔØµÄ¶ÔÏó£¬»áÔÚ**IOCÈÝÆ÷³õÊ¼»¯**µÄÊ±ºò±»´´½¨ÇÒ³õÊ¼»¯¡£
 2. ·Çµ¥ÀýÄ£Ê½»òÕßÊÇÑÓ³Ù¼ÓÔØµÄ¶ÔÏó£¬ÊÇÓ¦ÓÃ**µÚÒ»´ÎÏòÈÝÆ÷Ë÷Òª¸ÃBean¶ÔÏó**µÄÊ±ºò±»´´½¨ÇÒ³õÊ¼»¯¡£
 
 ËäÈ»Èë¿Ú³¡¾°²»Í¬£¬µ«ÊÇBean¶ÔÏó´´½¨¹ý³ÌÊÇÒ»ÑùµÄ£¬¶¼ÊÇµ÷ÓÃ`AbstractBeanFactory`ÖÐ`getBean`·½·¨¡£
 
-**autowiring×Ô¶¯×°ÅäÊµÏÖÔ­Àí£º**
-
-1. ¶ÔBeanµÄÊôÐÔµü´úµ÷ÓÃgetBean·½·¨£¬Íê³ÉÒÀÀµBeanµÄ³õÊ¼»¯ºÍÒÀÀµ×¢Èë¡£
+### autowiring×Ô¶¯×°ÅäÊµÏÖÔ­Àí
+1. ¶ÔBeanµÄÊôÐÔµü´úµ÷ÓÃ`getBean`·½·¨£¬Íê³ÉÒÀÀµBeanµÄ³õÊ¼»¯ºÍÒÀÀµ×¢Èë¡£
 2. ½«ÒÀÀµBeanµÄÊôÐÔÒýÓÃÉèÖÃµ½±»ÒÀÀµµÄBeanÊôÐÔÉÏ¡£
 3. ½«ÒÀÀµBeanµÄÃû³ÆºÍ±»ÒÀÀµBeanµÄÃû³Æ´æ´¢ÔÚIoCÈÝÆ÷µÄ¼¯ºÏÖÐ¡£
 
-**SpringÑ­»·ÒÀÀµ**
+### SpringÑ­»·ÒÀÀµ
 ¶¨Òå£º Ñ­»·ÒÀÀµ¾ÍÊÇÑ­»·ÒýÓÃ£¬¾ÍÊÇÁ½¸ö»ò¶à¸öBeanÏà»¥Ö®¼äµÄ³ÖÓÐ¶Ô·½£¬±È·½CircularityAÒýÓÃCircularityB£¬CircularityBÒýÓÃCircularityA£¬ÐÎ³ÉÒ»¸ö»·×´ÒýÓÃ¹ØÏµ¡£
 
 Ê×ÏÈ£¬ÐèÒªÃ÷È·µÄÊÇspring¶ÔÑ­»·ÒÀÀµµÄ´¦ÀíÓÐÈýÖÖÇé¿ö£º
@@ -314,31 +323,28 @@ setter·½·¨×¢Èë£º
 2. **µ¥ÀýÄ£Ê½ÏÂµÄsetterÑ­»·ÒÀÀµ**£ºÍ¨¹ý¡°Èý¼¶»º´æ¡±´¦ÀíÑ­»·ÒÀÀµ¡£
 3. **·Çµ¥ÀýÑ­»·ÒÀÀµ**£ºÎÞ·¨´¦Àí¡£
 
-¹¹ÔìÆ÷Ñ­»·ÒÀÀµ
-`this.singletonsCurrentlylnCreation.add(beanNam£©`½«µ±Ç°ÕýÒª´´½¨µÄbean ¼ÇÂ¼ÔÚ»º´æÖÐ
-Spring ÈÝÆ÷½«Ã¿Ò»¸öÕýÔÚ´´½¨µÄbean ±êÊ¶·û·ÅÔÚÒ»¸ö**µ±Ç°´´½¨bean³Ø**ÖÐ£¬ÔÚ´´½¨¹ý³ÌÖÐ½«Ò»Ö±±£³ÖÔÚÕâ¸ö³ØÖÐ£¬Òò´ËÈç¹ûÔÚ´´½¨bean ¹ý³ÌÖÐ·¢ÏÖ×Ô¼ºÒÑ¾­ÔÚ¡°µ±Ç°´´½¨bean ³Ø¡± ÀïÊ±£¬½«Å×³ö`BeanCurrentlylnCreationException` Òì³£±íÊ¾Ñ­»·ÒÀÀµ£»¶ø¶ÔÓÚ´´½¨Íê±ÏµÄbean ½«´Ó¡° µ±Ç°´´½¨bean ³Ø¡±ÖÐÇå³ýµô¡£
+- ¹¹ÔìÆ÷Ñ­»·ÒÀÀµ
+    - `this.singletonsCurrentlylnCreation.add(beanNam£©`½«µ±Ç°ÕýÒª´´½¨µÄbean ¼ÇÂ¼ÔÚ»º´æÖÐ
+    - Spring ÈÝÆ÷½«Ã¿Ò»¸öÕýÔÚ´´½¨µÄbean ±êÊ¶·û·ÅÔÚÒ»¸ö**µ±Ç°´´½¨bean³Ø**ÖÐ£¬ÔÚ´´½¨¹ý³ÌÖÐ½«Ò»Ö±±£³ÖÔÚÕâ¸ö³ØÖÐ£¬Òò´ËÈç¹ûÔÚ´´½¨bean ¹ý³ÌÖÐ·¢ÏÖ×Ô¼ºÒÑ¾­ÔÚ¡°µ±Ç°´´½¨bean ³Ø¡± ÀïÊ±£¬½«Å×³ö`BeanCurrentlylnCreationException` Òì³£±íÊ¾Ñ­»·ÒÀÀµ£»¶ø¶ÔÓÚ´´½¨Íê±ÏµÄbean ½«´Ó¡° µ±Ç°´´½¨bean ³Ø¡±ÖÐÇå³ýµô¡£
 
-
-setterÑ­»·ÒÀÀµ
-
-- £¨Èý¼¶£©singletonFactories £º µ¥Àý¶ÔÏó¹¤³§µÄcache
-- £¨¶þ¼¶£©earlySingletonObjects £ºÌáÇ°±©¹âµÄµ¥Àý¶ÔÏóµÄCache
-- £¨Ò»¼¶£©singletonObjects£ºµ¥Àý¶ÔÏóµÄcache
+- setterÑ­»·ÒÀÀµ
+    - £¨Èý¼¶£©singletonFactories £º µ¥Àý¶ÔÏó¹¤³§µÄcache
+    - £¨¶þ¼¶£©earlySingletonObjects £ºÌáÇ°ÆØ¹âµÄµ¥Àý¶ÔÏóµÄCache
+    - £¨Ò»¼¶£©singletonObjects£ºµ¥Àý¶ÔÏóµÄcache
 
 ½âÊÍ£º
 
-AÊ×ÏÈÍê³ÉÁË³õÊ¼»¯µÄµÚÒ»²½£¬²¢ÇÒ½«×Ô¼ºÌáÇ°ÆØ¹âµ½singletonFactoriesÖÐ£¬´ËÊ±½øÐÐ³õÊ¼»¯µÄµÚ¶þ²½£¬·¢ÏÖ×Ô¼ºÒÀÀµ¶ÔÏóB£¬´ËÊ±¾Í³¢ÊÔÈ¥get(B)£¬·¢ÏÖB»¹Ã»ÓÐ±»create£¬ËùÒÔ×ßcreateÁ÷³Ì£¬BÔÚ³õÊ¼»¯µÚÒ»²½µÄÊ±ºò·¢ÏÖ×Ô¼ºÒÀÀµÁË¶ÔÏóA£¬ÓÚÊÇ³¢ÊÔget(A)£¬³¢ÊÔÒ»¼¶»º´æsingletonObjects(¿Ï¶¨Ã»ÓÐ£¬ÒòÎªA»¹Ã»³õÊ¼»¯ÍêÈ«)£¬³¢ÊÔ¶þ¼¶»º´æearlySingletonObjects£¨Ò²Ã»ÓÐ£©£¬³¢ÊÔÈý¼¶»º´æsingletonFactories£¬ÓÉÓÚAÍ¨¹ýObjectFactory½«×Ô¼ºÌáÇ°ÆØ¹âÁË£¬ËùÒÔBÄÜ¹»Í¨¹ýObjectFactory.getObjectÄÃµ½A¶ÔÏó(ËäÈ»A»¹Ã»ÓÐ³õÊ¼»¯ÍêÈ«£¬µ«ÊÇ×Ü±ÈÃ»ÓÐºÃÑ½)£¬BÄÃµ½A¶ÔÏóºóË³ÀûÍê³ÉÁË³õÊ¼»¯½×¶Î1¡¢2¡¢3£¬ÍêÈ«³õÊ¼»¯Ö®ºó½«×Ô¼º·ÅÈëµ½Ò»¼¶»º´æsingletonObjectsÖÐ¡£´ËÊ±·µ»ØAÖÐ£¬A´ËÊ±ÄÜÄÃµ½BµÄ¶ÔÏóË³ÀûÍê³É×Ô¼ºµÄ³õÊ¼»¯½×¶Î2¡¢3£¬×îÖÕAÒ²Íê³ÉÁË³õÊ¼»¯£¬½øÈ¥ÁËÒ»¼¶»º´æsingletonObjectsÖÐ£¬¶øÇÒ¸ü¼ÓÐÒÔËµÄÊÇ£¬ÓÉÓÚBÄÃµ½ÁËAµÄ¶ÔÏóÒýÓÃ£¬ËùÒÔBÏÖÔÚhold×¡µÄA¶ÔÏóÍê³ÉÁË³õÊ¼»¯¡£
+AÊ×ÏÈÍê³ÉÁË³õÊ¼»¯µÄµÚÒ»²½£¬²¢ÇÒ½«×Ô¼ºÌáÇ°ÆØ¹âµ½`singletonFactories`ÖÐ£¬´ËÊ±½øÐÐ³õÊ¼»¯µÄµÚ¶þ²½£¬·¢ÏÖ×Ô¼ºÒÀÀµ¶ÔÏóB£¬´ËÊ±¾Í³¢ÊÔÈ¥get(B)£¬·¢ÏÖB»¹Ã»ÓÐ±»create£¬ËùÒÔ×ßcreateÁ÷³Ì£¬BÔÚ³õÊ¼»¯µÚÒ»²½µÄÊ±ºò·¢ÏÖ×Ô¼ºÒÀÀµÁË¶ÔÏóA£¬ÓÚÊÇ³¢ÊÔget(A)£¬³¢ÊÔÒ»¼¶»º´æ`singletonObjects`(¿Ï¶¨Ã»ÓÐ£¬ÒòÎªA»¹Ã»³õÊ¼»¯ÍêÈ«)£¬³¢ÊÔ¶þ¼¶»º´æ`earlySingletonObjects`£¨Ò²Ã»ÓÐ£©£¬³¢ÊÔÈý¼¶»º´æ`singletonFactories`£¬ÓÉÓÚAÍ¨¹ý`ObjectFactory`½«×Ô¼ºÌáÇ°ÆØ¹âÁË£¬ËùÒÔBÄÜ¹»Í¨¹ý`ObjectFactory.getObject`ÄÃµ½A¶ÔÏó(ËäÈ»A»¹Ã»ÓÐ³õÊ¼»¯ÍêÈ«£¬µ«ÊÇ×Ü±ÈÃ»ÓÐºÃÑ½)£¬BÄÃµ½A¶ÔÏóºóË³ÀûÍê³ÉÁË³õÊ¼»¯½×¶Î1¡¢2¡¢3£¬ÍêÈ«³õÊ¼»¯Ö®ºó½«×Ô¼º·ÅÈëµ½Ò»¼¶»º´æ`singletonObjectsÖÐ`¡£´ËÊ±·µ»ØAÖÐ£¬A´ËÊ±ÄÜÄÃµ½BµÄ¶ÔÏóË³ÀûÍê³É×Ô¼ºµÄ³õÊ¼»¯½×¶Î2¡¢3£¬×îÖÕAÒ²Íê³ÉÁË³õÊ¼»¯£¬½øÈ¥ÁËÒ»¼¶»º´æ`singletonObjectsÖÐ`£¬¶øÇÒ¸ü¼ÓÐÒÔËµÄÊÇ£¬ÓÉÓÚBÄÃµ½ÁËAµÄ¶ÔÏóÒýÓÃ£¬ËùÒÔBÏÖÔÚhold×¡µÄA¶ÔÏóÍê³ÉÁË³õÊ¼»¯¡£
 
 
-### Spring AOP
-**¾²Ì¬´úÀí**£º
+## Spring AOP
+### ¾²Ì¬´úÀí
 È±µãÊÇÐèÒªÎªÃ¿¸öÄ¿±ê¶ÔÏóÉú³É²»Í¬µÄ´úÀí¶ÔÏó£¬¶øÇÒÔÚÔËÐÐÇ°¾ÍÐèÒª±àÐ´ºÃ´úÀíÀà¡£
 
-**¶¯Ì¬´úÀí**
-
+### ¶¯Ì¬´úÀí
 BeanÉú³É´úÀíµÄÊ±»ú£ºÔÚÃ¿¸öBean³õÊ¼»¯Ö®ºó£¬Èç¹ûÐèÒª£¬µ÷ÓÃ`AspectJAwareAdvisorAutoProxyCreator`ÖÐµÄ`postProcessAfterInitialization`ÎªBeanÉú³É´úÀí
 
-JDK£ºÖ÷ÒªÍ¨¹ýProxy.newProxyInstanceÉú³É´úÀí¶ÔÏó£¬µ÷ÓÃInvocationHandlerµÄinvoke·½·¨ÊµÏÖÀ¹½Ø
+JDK£ºÖ÷ÒªÍ¨¹ý`Proxy.newProxyInstance`Éú³É´úÀí¶ÔÏó£¬µ÷ÓÃ`InvocationHandler`µÄ`invoke`·½·¨ÊµÏÖÀ¹½Ø
 ```
     publicObject invoke(Object proxy, Method method, Object[] args) throwsThrowable {
        MethodInvocation invocation = null;
@@ -415,7 +421,7 @@ JDK£ºÖ÷ÒªÍ¨¹ýProxy.newProxyInstanceÉú³É´úÀí¶ÔÏó£¬µ÷ÓÃInvocationHandlerµÄinvoke·½
     }
 ```
 
-CGLIB:Í¨¹ýenhanderÉú³É´úÀí¶ÔÏó£¬ÔÙÍ¨¹ýMethodInterceptorµÄintercept·½·¨ÊµÏÖÀ¹½Øµ÷ÓÃ
+CGLIB:Í¨¹ý`enhander`Éú³É´úÀí¶ÔÏó£¬ÔÙÍ¨¹ý`MethodInterceptor`µÄ`intercept`·½·¨ÊµÏÖÀ¹½Øµ÷ÓÃ
 
 ```
     //CGLIB»Øµ÷AOPÀ¹½ØÆ÷Á´  
@@ -464,23 +470,22 @@ public Object intercept(Object proxy, Method method, Object[] args, MethodProxy 
         }  
 ```
 
-### springÊÂÎñ
-ÊÂÎñµÄÊµÏÖ·½Ê½£º
-
+## SpringÊÂÎñ
+### ÊÂÎñµÄÊµÏÖ·½Ê½£º
  - ±à³ÌÊ½ÊÂÎñ£¨ÊÖ¶¯commit/rollback£©
  - ÉùÃ÷Ê½ÊÂÎñ£¨XMLÅäÖÃºÍ×¢½âÐÎÊ½£©
 
-**ÊÂÎñµÄÖ´ÐÐÁ÷³Ì**
+### ÊÂÎñµÄÖ´ÐÐÁ÷³Ì
 ºËÐÄ£º**TransactionInterceptor**
 
 1. µ÷ÓÃ±»ÊÂÎñÔöÇ¿µÄ·½·¨£¬½øÈëÊÂÎñÇÐÃæ¡£
-2. ½âÎöÊÂÎñÊôÐÔ£¬µ÷ÓÃ¾ßÌåµÄTxMgr¸ºÔðÉú³ÉTxStatus¡£
+2. ½âÎöÊÂÎñÊôÐÔ£¬µ÷ÓÃ¾ßÌåµÄ`TxMgr`¸ºÔðÉú³É`TxStatus`¡£
 3. Èç¹ûµ±Ç°ÒÑ¾­ÓÐÊÂÎñ£¬½øÈëstep 5¡£
-4. ¸ù¾ÝÊÂÎñ´«²¥ÐÐÎª£¬Ð£ÑéÊÇ·ñÐèÒªÅ×³öÒì³£(ÈçMANDATORY)£¬»òÕß¹ÒÆðÊÂÎñÐÅÏ¢(ÓÉÓÚÃ»ÓÐÕæÕýµÄÎïÀíÊÂÎñ£¬ËùÒÔÃ»ÓÐÐèÒª¹ÒÆðµÄÊÂÎñ×ÊÔ´)²¢´´½¨ÊÂÎñ(REQUIRED, REQUIREDS_NEW, NESTEDµÈ)£¬ÓÖ»òÕß´´½¨Ò»¸ö¿ÕÊÂÎñ(SUPPORTS, NOT_SUPPORTED, NEVERµÈ)¡£½øÈëstep 6¡£
-5. ¸ù¾ÝÊÂÎñ´«²¥ÐÐÎª£¬Å×³öÒì³£(NEVER)£¬»òÕß¹ÒÆðÊÂÎñ×ÊÔ´ÓëÐÅÏ¢²¢¸ù¾ÝÇé¿ö¾ö¶¨ÊÇ·ñ´´½¨ÊÂÎñ(NOT_SUPPORTED, REQUIRES_NEWµÈ)£¬»òÕß¸ù¾ÝÇé¿ö´¦ÀíÇ¶Ì×ÊÂÎñ(NESTED)»òÕß¼ÓÈëÒÑÓÐÊÂÎñ(SUPPORTS, REQUIRED, MANDATORYµÈ)¡£
-6. Éú³ÉTxInfo²¢°ó¶¨µ½Ïß³Ì¡£
-7. »Øµ÷MethodInterceptor£¬ÊÂÎñÇÐÃæÇ°ÖÃ¹¤×÷ÖÁ´ËÍê³É¡£
+4. ¸ù¾ÝÊÂÎñ´«²¥ÐÐÎª£¬Ð£ÑéÊÇ·ñÐèÒªÅ×³öÒì³£(`ÈçMANDATORY`)£¬»òÕß¹ÒÆðÊÂÎñÐÅÏ¢(ÓÉÓÚÃ»ÓÐÕæÕýµÄÎïÀíÊÂÎñ£¬ËùÒÔÃ»ÓÐÐèÒª¹ÒÆðµÄÊÂÎñ×ÊÔ´)²¢´´½¨ÊÂÎñ(`REQUIRED`, `REQUIREDS_NEW`, `NESTED`µÈ)£¬ÓÖ»òÕß´´½¨Ò»¸ö¿ÕÊÂÎñ(`SUPPORTS`, `NOT_SUPPORTED`, `NEVER`µÈ)¡£½øÈëstep 6¡£
+5. ¸ù¾ÝÊÂÎñ´«²¥ÐÐÎª£¬Å×³öÒì³£(`NEVER`)£¬»òÕß¹ÒÆðÊÂÎñ×ÊÔ´ÓëÐÅÏ¢²¢¸ù¾ÝÇé¿ö¾ö¶¨ÊÇ·ñ´´½¨ÊÂÎñ(`NOT_SUPPORTED`, `REQUIRES_NEW`µÈ)£¬»òÕß¸ù¾ÝÇé¿ö´¦ÀíÇ¶Ì×ÊÂÎñ(NESTED)»òÕß¼ÓÈëÒÑÓÐÊÂÎñ(SUPPORTS, REQUIRED, MANDATORYµÈ)¡£
+6. Éú³É`TxInfo`²¢°ó¶¨µ½Ïß³Ì¡£
+7. »Øµ÷`MethodInterceptor`£¬ÊÂÎñÇÐÃæÇ°ÖÃ¹¤×÷ÖÁ´ËÍê³É¡£
 8. Èç¹û·¢ÉúÒì³£½øÈëstep 10¡£
-9. ¸ù¾ÝTxStatusÊÇ·ñ±»±ê¼Ç»Ø¹ö£¬ÊÂÎñ±¾ÉíÊÇ·ñ±»±ê¼Ç»Ø¹öµÈ¾ö¶¨ÊÇ·ñÒª½øÈë´¦Àí»Ø¹öµÄÂß¼­¡£Ö»ÓÐÔÚÄ³ÊÂÎñ×îÍâ²ã±ß½ç£¬²Å¿ÉÄÜ½øÐÐÎïÀíÌá½»/»Ø¹ö£¬·ñÔò×î¶à¾ÍÔÚÐèÒª»Ø¹öµÄÇé¿öÏÂ¸øÊÂÎñ´ò±êÐèÒª»Ø¹ö£¬²»»áÓÐÕæÕýµÄ¶¯×÷¡£²¢ÇÒÒ»°ãÇé¿öÏÂ£¬Èç¹ûÔÚÊÂÎñ×îÍâ±ß½ç·¢ÏÖÊÂÎñÐèÒª»Ø¹ö£¬»áÅ×³öUnexpectedRollbackException¡£ÆäÓàÇé¿ö½øÈëstep 11¡£
+9. ¸ù¾Ý`TxStatus`ÊÇ·ñ±»±ê¼Ç»Ø¹ö£¬ÊÂÎñ±¾ÉíÊÇ·ñ±»±ê¼Ç»Ø¹öµÈ¾ö¶¨ÊÇ·ñÒª½øÈë´¦Àí»Ø¹öµÄÂß¼­¡£Ö»ÓÐÔÚÄ³ÊÂÎñ×îÍâ²ã±ß½ç£¬²Å¿ÉÄÜ½øÐÐÎïÀíÌá½»/»Ø¹ö£¬·ñÔò×î¶à¾ÍÔÚÐèÒª»Ø¹öµÄÇé¿öÏÂ¸øÊÂÎñ´ò±êÐèÒª»Ø¹ö£¬²»»áÓÐÕæÕýµÄ¶¯×÷¡£²¢ÇÒÒ»°ãÇé¿öÏÂ£¬Èç¹ûÔÚÊÂÎñ×îÍâ±ß½ç·¢ÏÖÊÂÎñÐèÒª»Ø¹ö£¬»áÅ×³ö`UnexpectedRollbackException`¡£ÆäÓàÇé¿ö½øÈëstep 11¡£
 10. ¸ù¾ÝÒì³£Çé¿öÓëÊÂÎñÊôÐÔÅÐ¶ÏÒì³£ÊÇ·ñÐèÒª½øÈë´¦Àí»Ø¹öµÄÂß¼­»¹ÊÇ½øÈë´¦ÀíÌá½»µÄÂß¼­¡£Èç¹ûÐèÒª»Ø¹öÔò¸ù¾ÝÊÇ·ñµ½ÁËÄ³ÊÂÎñ×îÍâ²ã±ß½ç¾ö¶¨ÊÇ·ñ½øÐÐÎïÀí»Ø¹ö£¬·ñÔò¸øÊÂÎñ´ò±êÐèÒª»Ø¹ö¡£Èç¹û½øÈë´¦ÀíÌá½»Âß¼­ÔòÍ¬ÑùÖ»ÓÐÔÚÊÂÎñ×îÍâ²ã±ß½ç²Å¿ÉÄÜÓÐÕæÕýµÄÎïÀíÌá½»¶¯×÷¡£
-11. ÎÞÂÛÊÇ·ñ·¢ÉúÒì³££¬¶¼»á»Ö¸´TxInfoÎªÇ°Ò»¸öÊÂÎñµÄTxInfo£¨ÀàËÆÓÚµ¯Õ»£©¡£
+11. ÎÞÂÛÊÇ·ñ·¢ÉúÒì³££¬¶¼»á»Ö¸´`TxInfo`ÎªÇ°Ò»¸öÊÂÎñµÄ`TxInfo`£¨ÀàËÆÓÚµ¯Õ»£©¡£
