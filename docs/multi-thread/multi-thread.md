@@ -49,9 +49,9 @@ maxPoolSize = (max(tasks)- queueCapacity)/(1/taskcost)
 
 ## AbstractQueuedSynchronizer £¨AQS¿ò¼Ü£©
 ### Ê²Ã´ÊÇAQS¿ò¼Ü
-AQS¿ò¼ÜÊÇJ.U.CÖÐÊµÏÖËø¼°Í¬²½»úÖÆµÄ»ù´¡£¬Æäµ×²ãÊÇÍ¨¹ýµ÷ÓÃ LockSupport .unpark()ºÍ LockSupport .park()ÊµÏÖÏß³ÌµÄ×èÈûºÍ»½ÐÑ¡£
+AQS¿ò¼ÜÊÇJ.U.CÖÐÊµÏÖËø¼°Í¬²½»úÖÆµÄ»ù´¡£¬Æäµ×²ãÊÇÍ¨¹ýµ÷ÓÃ `LockSupport .unpark()`ºÍ `LockSupport .park()`ÊµÏÖÏß³ÌµÄ×èÈûºÍ»½ÐÑ¡£
 
-AbstractQueuedSynchronizerÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö·Ç×èÈû¡¢ÏÈ½øÏÈ³öµÄÏß³ÌµÈ´ý¶ÓÁÐ£»ÆäÖÐstateÊÇÓÃvolatileÐÞÊÎµÄ£¬±£Ö¤Ïß³ÌÖ®¼äµÄ¿É¼ûÐÔ£¬¶ÓÁÐµÄÈë¶ÓºÍ³ö¶Ô²Ù×÷¶¼ÊÇÎÞËø²Ù×÷£¬»ùÓÚ×ÔÐýËøºÍCASÊµÏÖ£»ÁíÍâAQS·ÖÎªÁ½ÖÖÄ£Ê½£º¶ÀÕ¼Ä£Ê½ºÍ¹²ÏíÄ£Ê½£¬ÏñReentrantLockÊÇ»ùÓÚ¶ÀÕ¼Ä£Ê½Ä£Ê½ÊµÏÖµÄ£¬CountDownLatch¡¢CyclicBarrierµÈÊÇ»ùÓÚ¹²ÏíÄ£Ê½¡£
+`AbstractQueuedSynchronizer`ÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö·Ç×èÈû¡¢ÏÈ½øÏÈ³öµÄÏß³ÌµÈ´ý¶ÓÁÐ£»ÆäÖÐstateÊÇÓÃvolatileÐÞÊÎµÄ£¬±£Ö¤Ïß³ÌÖ®¼äµÄ¿É¼ûÐÔ£¬¶ÓÁÐµÄÈë¶ÓºÍ³ö¶Ô²Ù×÷¶¼ÊÇÎÞËø²Ù×÷£¬»ùÓÚ×ÔÐýËøºÍCASÊµÏÖ£»ÁíÍâAQS·ÖÎªÁ½ÖÖÄ£Ê½£º¶ÀÕ¼Ä£Ê½ºÍ¹²ÏíÄ£Ê½£¬ÏñReentrantLockÊÇ»ùÓÚ¶ÀÕ¼Ä£Ê½Ä£Ê½ÊµÏÖµÄ£¬CountDownLatch¡¢CyclicBarrierµÈÊÇ»ùÓÚ¹²ÏíÄ£Ê½¡£
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-aqs-structure.jpg)
 
 ### ¼òµ¥¾Ù¸öÀý×Ó
@@ -66,8 +66,8 @@ AbstractQueuedSynchronizerÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö
     }
 ```
 Ê×ÏÈÊÇ²»¹ÜÏÈºóË³Ðò£¬Ö±½Ó³¢ÊÔ»ñÈ¡Ëø£¨·Ç¹«Æ½µÄÌåÏÖ)£¬³É¹¦µÄ»°£¬Ö±½Ó¶ÀÕ¼·ÃÎÊ£»
-Èç¹û»ñÈ¡ËøÊ§°Ü£¬Ôòµ÷ÓÃAQSµÄacquire·½·¨£¬ÔÚ¸Ã·½·¨ÄÚ²¿»áµ÷ÓÃtryAcquire·½·¨ÔÙ´Î³¢ÊÔ»ñÈ¡ËøÒÔ¼°ÊÇ·ñ¿ÉÖØÈëÅÐ¶Ï£¬Èç¹ûÊ§°Ü£¬Ôò¹ÒÆðµ±Ç°Ïß³Ì²¢¼ÓÈëµ½µÈ´ý¶ÓÁÐ£»
-¾ßÌå¿É²é¿´ReentrantLock.NonfairSyncÀàºÍAbstractQueuedSynchronizerÀà¶ÔÓ¦µÄÔ´Âë¡£
+Èç¹û»ñÈ¡ËøÊ§°Ü£¬Ôòµ÷ÓÃAQSµÄ`acquire`·½·¨£¬ÔÚ¸Ã·½·¨ÄÚ²¿»áµ÷ÓÃ`tryAcquire`·½·¨ÔÙ´Î³¢ÊÔ»ñÈ¡ËøÒÔ¼°ÊÇ·ñ¿ÉÖØÈëÅÐ¶Ï£¬Èç¹ûÊ§°Ü£¬Ôò¹ÒÆðµ±Ç°Ïß³Ì²¢¼ÓÈëµ½µÈ´ý¶ÓÁÐ£»
+¾ßÌå¿É²é¿´`ReentrantLock.NonfairSync`ÀàºÍ`AbstractQueuedSynchronizer`Àà¶ÔÓ¦µÄÔ´Âë¡£
 
   
 ## Locks & Condition£¨ËøºÍÌõ¼þ±äÁ¿£©
@@ -88,7 +88,7 @@ AbstractQueuedSynchronizerÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö
 ### ReentrantLock
 ¿ÉÖØÈëËø£¬ËùÎ½µÄ¿ÉÖØÈëËø£¬Ò²½ÐµÝ¹éËø£¬ÊÇÖ¸Ò»¸öÏß³Ì»ñÈ¡Ëøºó£¬ÔÙ´Î»ñÈ¡¸ÃËøÊ±£¬²»ÐèÒªÖØÐÂµÈ´ý»ñÈ¡¡£ReentrantLock·ÖÎª¹«Æ½ËøºÍ·Ç¹«Æ½Ëø£¬¹«Æ½ËøÖ¸µÄÊÇÑÏ¸ñ°´ÕÕÏÈÀ´ÏÈµÃµÄË³ÐòÅÅ¶ÓµÈ´ýÈ¥»ñÈ¡Ëø£¬¶ø·Ç¹«Æ½ËøÃ¿´Î»ñÈ¡ËøÊ±£¬ÊÇÏÈÖ±½Ó³¢ÊÔ»ñÈ¡Ëø£¬»ñÈ¡²»µ½£¬ÔÙ°´ÕÕÏÈÀ´ÏÈµÃµÄË³ÐòÅÅ¶ÓµÈ´ý¡£
 
-×¢Òâ£ºReentrantLockºÍsynchronized¶¼ÊÇ¿ÉÖØÈëËø¡£
+**×¢Òâ£ºReentrantLockºÍsynchronized¶¼ÊÇ¿ÉÖØÈëËø¡£**
 
 ### ReentrantReadWriteLock
 ¿ÉÖØÈë¶ÁÐ´Ëø£¬Ö¸µÄÊÇÃ»ÓÐÏß³Ì½øÐÐÐ´²Ù×÷Ê±£¬¶à¸öÏß³Ì¿ÉÍ¬Ê±½øÐÐ¶Á²Ù×÷£¬µ±ÓÐÏß³Ì½øÐÐÐ´²Ù×÷Ê±£¬ÆäËü¶ÁÐ´²Ù×÷Ö»ÄÜµÈ´ý¡£¼´¡°¶Á-¶ÁÄÜ¹²´æ£¬¶Á-Ð´²»ÄÜ¹²´æ£¬Ð´-Ð´²»ÄÜ¹²´æ¡±¡£
@@ -96,12 +96,12 @@ AbstractQueuedSynchronizerÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö
 
 ### Condition
 Condition¶ÔÏóÊÇÓÉLock¶ÔÏó´´½¨µÄ£¬Ò»¸öLock¶ÔÏó¿ÉÒÔ´´½¨¶à¸öCondition£¬ÆäÊµLockºÍCondition¶¼ÊÇ»ùÓÚAQSÊµÏÖµÄ¡£
-Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏóµÄwait/notify/notifyAll·½·¨ÊµÏÖµÄ£¬Ê¹ÓÃÆðÀ´²»ÊÇºÜ·½±ã£»
+Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏóµÄ`wait/notify/notifyAll`·½·¨ÊµÏÖµÄ£¬Ê¹ÓÃÆðÀ´²»ÊÇºÜ·½±ã£»
 ÔÚJDK5Ö®ºó£¬J.U.C°üÌá¹©ÁËCondition£¬ÆäÖÐ£º
 
- - Condition.await¶ÔÓ¦ÓÚObject.wait£»
- - Condition.signal ¶ÔÓ¦ÓÚ Object.notify£»
- - Condition.signalAll ¶ÔÓ¦ÓÚ Object.notifyAll£»
+ - `Condition.await`¶ÔÓ¦ÓÚ`Object.wait`£»
+ - `Condition.signal` ¶ÔÓ¦ÓÚ `Object.notify`£»
+ - `Condition.signalAll` ¶ÔÓ¦ÓÚ `Object.notifyAll`£»
 
 Ê¹ÓÃCondition¶ÔÏóÓÐÒ»¸ö±È½ÏÃ÷ÏÔµÄºÃ´¦ÊÇÒ»¸öËø¿ÉÒÔ´´½¨¶à¸öCondition¶ÔÏó£¬ÎÒÃÇ¿ÉÒÔ¸øÄ³ÀàÏß³Ì·ÖÅäÒ»¸öCondition£¬È»ºó¾Í¿ÉÒÔ»½ÐÑÌØ¶¨ÀàµÄÏß³Ì¡£
  
@@ -114,24 +114,24 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
  - ½»»»Æ÷ Exchanger
 
 ### ±ÕËø CountDownLatch
-±ÕËøÖ÷ÒªÓÃÓÚÈÃÒ»¸öÖ÷Ïß³ÌµÈ´ýÒ»×éÊÂ¼þ·¢Éúºó¼ÌÐøÖ´ÐÐ£¬ÕâÀïµÄÊÂ¼þÆäÊµ¾ÍÊÇÖ¸CountDownLatch¶ÔÏóµÄcountDown·½·¨¡£×¢ÒâÆäËüÏß³Ìµ÷ÓÃÍêcountDown·½·¨ºó£¬ÊÇ»á¼ÌÐøÖ´ÐÐµÄ£¬¾ßÌåÈçÏÂÍ¼ËùÊ¾£º
+±ÕËøÖ÷ÒªÓÃÓÚÈÃÒ»¸öÖ÷Ïß³ÌµÈ´ýÒ»×éÊÂ¼þ·¢Éúºó¼ÌÐøÖ´ÐÐ£¬ÕâÀïµÄÊÂ¼þÆäÊµ¾ÍÊÇÖ¸`CountDownLatch`¶ÔÏóµÄ`countDown`·½·¨¡£×¢ÒâÆäËüÏß³Ìµ÷ÓÃÍê`countDown`·½·¨ºó£¬ÊÇ»á¼ÌÐøÖ´ÐÐµÄ£¬¾ßÌåÈçÏÂÍ¼ËùÊ¾£º
 
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-count-down-latch.webp)
 
 ÔÚCountDownLatchÄÚ²¿£¬°üº¬Ò»¸ö¼ÆÊýÆ÷£¬Ò»¿ªÊ¼³õÊ¼»¯ÎªÒ»¸öÕûÊý£¨ÊÂ¼þ¸öÊý£©£¬·¢ÉúÒ»¸öÊÂ¼þºó£¬µ÷ÓÃcountDown·½·¨£¬¼ÆÊýÆ÷¼õ1£¬awaitÓÃÓÚµÈ´ý¼ÆÊýÆ÷Îª0ºó¼ÌÐøÖ´ÐÐµ±Ç°Ïß³Ì£»
-ÈçÉÏÍ¼£ºTAÖ÷Ïß³Ì»áÒ»Ö±µÈ´ý£¬Ö±µ½¼ÆÊýcnt=0,²Å¼ÌÐøÖ´ÐÐ£¬
+ÈçÉÏÍ¼£ºTAÖ÷Ïß³Ì»áÒ»Ö±µÈ´ý£¬Ö±µ½¼ÆÊýcnt=0,²Å¼ÌÐøÖ´ÐÐ.
 
 ### Õ¤À¸ CyclicBarrier
 Õ¤À¸Ö÷ÒªÓÃÓÚµÈ´ýÆäËüÏß³Ì£¬ÇÒ»á×èÈû×Ô¼ºµ±Ç°Ïß³Ì£¬ËùÓÐÏß³Ì±ØÐëÍ¬Ê±µ½´ïÕ¤À¸Î»ÖÃºó£¬²ÅÄÜ¼ÌÐøÖ´ÐÐ£»ÇÒÔÚËùÓÐÏß³Ìµ½´ïÕ¤À¸´¦£¬¿ÉÒÔ´¥·¢Ö´ÐÐÁíÍâÒ»¸öÔ¤ÏÈÉèÖÃµÄÏß³Ì£¬¾ßÌåÈçÏÂÍ¼ËùÊ¾£º
 
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-cyclic-barrier.png)
 
-ÔÚÉÏÍ¼ÖÐ£¬T1¡¢T2¡¢T3Ã¿µ÷ÓÃÒ»´Îawait£¬¼ÆÊý¼õ¼õ£¬ÇÒÔÚËüÃÇµ÷ÓÃawait·½·¨µÄÊ±ºò£¬Èç¹û¼ÆÊý²»Îª0£¬»á×èÈû×Ô¼ºµÄÏß³Ì£»
+ÔÚÉÏÍ¼ÖÐ£¬T1¡¢T2¡¢T3Ã¿µ÷ÓÃÒ»´Îawait£¬¼ÆÊý¼õ1£¬ÇÒÔÚËüÃÇµ÷ÓÃawait·½·¨µÄÊ±ºò£¬Èç¹û¼ÆÊý²»Îª0£¬»á×èÈû×Ô¼ºµÄÏß³Ì£»
 ÁíÍâ£¬TAÏß³Ì»áÔÚËùÓÐÏß³Ìµ½´ïÕ¤À¸´¦£¨¼ÆÊýÎª0£©µÄÊ±ºò£¬²Å¿ªÊ¼Ö´ÐÐ£»
 
 ### ÐÅºÅÁ¿Semaphore
 ÐÅºÅÁ¿Ö÷ÒªÓÃÓÚ¿ØÖÆ·ÃÎÊ×ÊÔ´µÄÏß³Ì¸öÊý£¬³£³£ÓÃÓÚÊµÏÖ×ÊÔ´³Ø£¬ÈçÊý¾Ý¿âÁ¬½Ó³Ø£¬Ïß³Ì³Ø...
-ÔÚSemaphoreÖÐ£¬acquire·½·¨ÓÃÓÚ»ñÈ¡×ÊÔ´£¬ÓÐµÄ»°£¬¼ÌÐøÖ´ÐÐ£¨Ê¹ÓÃ½áÊøºó£¬¼ÇµÃÊÍ·Å×ÊÔ´£©£¬Ã»ÓÐ×ÊÔ´µÄ»°½«×èÈûÖ±µ½ÓÐÆäËüÏß³Ìµ÷ÓÃrelease·½·¨ÊÍ·Å×ÊÔ´£»
+ÔÚSemaphoreÖÐ£¬`acquire`·½·¨ÓÃÓÚ»ñÈ¡×ÊÔ´£¬ÓÐµÄ»°£¬¼ÌÐøÖ´ÐÐ£¨Ê¹ÓÃ½áÊøºó£¬¼ÇµÃÊÍ·Å×ÊÔ´£©£¬Ã»ÓÐ×ÊÔ´µÄ»°½«×èÈûÖ±µ½ÓÐÆäËüÏß³Ìµ÷ÓÃ`release`·½·¨ÊÍ·Å×ÊÔ´£»
 
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-semaphore.png)
 
@@ -144,7 +144,7 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
 ## Atomic Variables£¨Ô­×Ó±äÁ¿£©
 Ô­×Ó±äÁ¿Ö÷ÒªÊÇ·½±ã³ÌÐòÔ±ÔÚ¶àÏß³Ì»·¾³ÏÂ£¬ÎÞËøµÄ½øÐÐÔ­×Ó²Ù×÷£»
 
-Ô­×ÓÀàÊÇ»ùÓÚUnsafeÊµÏÖµÄ°ü×°Àà£¬ºËÐÄ²Ù×÷ÊÇCASÔ­×Ó²Ù×÷£»ËùÎ½µÄCAS²Ù×÷£¬¼´compare and swap£¬Ö¸µÄÊÇ½«Ô¤ÆÚÖµÓëµ±Ç°±äÁ¿µÄÖµ±È½Ï(compare)£¬Èç¹ûÏàµÈÔòÊ¹ÓÃÐÂÖµÌæ»»(swap)µ±Ç°±äÁ¿£¬·ñÔò²»×÷²Ù×÷£»ÎÒÃÇ¿ÉÒÔÕªÈ¡Ò»¶ÎAtomicIntegerµÄÔ´Âë£¬ÈçÏÂ£º
+Ô­×ÓÀàÊÇ»ùÓÚ`Unsafe`ÊµÏÖµÄ°ü×°Àà£¬ºËÐÄ²Ù×÷ÊÇCASÔ­×Ó²Ù×÷£»ËùÎ½µÄCAS²Ù×÷£¬¼´`compare and swap`£¬Ö¸µÄÊÇ½«Ô¤ÆÚÖµÓëµ±Ç°±äÁ¿µÄÖµ±È½Ï(compare)£¬Èç¹ûÏàµÈÔòÊ¹ÓÃÐÂÖµÌæ»»(swap)µ±Ç°±äÁ¿£¬·ñÔò²»×÷²Ù×÷£»ÎÒÃÇ¿ÉÒÔÕªÈ¡Ò»¶Î`AtomicInteger`µÄÔ´Âë£¬ÈçÏÂ£º
 
 ```
     public final boolean compareAndSet(int expect, int update) {
@@ -156,10 +156,10 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
 
 ÔÚJavaÖÐ£¬ÓÐËÄÖÖÔ­×Ó¸üÐÂ·½Ê½£¬ÈçÏÂ£º
 
- - Ô­×Ó·½Ê½¸üÐÂ»ù±¾ÀàÐÍ£» AtomicInteger ¡¢ AtomicLong µÈ
- - Ô­×Ó·½Ê½¸üÐÂÊý×é£» AtomicIntegerArray¡¢ AtomicLongArrayµÈ
- - Ô­×Ó·½Ê½¸üÐÂÒýÓÃ£» AtomicReference¡¢ AtomicReferenceFieldUpdater¡­
- - Ô­×Ó·½Ê½¸üÐÂ×Ö¶Î£» AtomicIntegerFieldUpdater¡¢ AtomicStampedReference(½â¾öCASµÄABAÎÊÌâ)
+ - Ô­×Ó·½Ê½¸üÐÂ»ù±¾ÀàÐÍ£» `AtomicInteger` ¡¢ `AtomicLong` µÈ
+ - Ô­×Ó·½Ê½¸üÐÂÊý×é£» `AtomicIntegerArray`¡¢ `AtomicLongArray`µÈ
+ - Ô­×Ó·½Ê½¸üÐÂÒýÓÃ£» `AtomicReference`¡¢ `AtomicReferenceFieldUpdater`¡­
+ - Ô­×Ó·½Ê½¸üÐÂ×Ö¶Î£» `AtomicIntegerFieldUpdater`¡¢ `AtomicStampedReference`(½â¾öCASµÄABAÎÊÌâ)
 
 ### ABAÎÊÌâ
 `AtomicStampedReference`ºÍ `AtomicMarkableReference`ÊÇÍ¨¹ý°æ±¾ºÅ£¨Ê±¼ä´Á£©À´½â¾öABAÎÊÌâµÄ£¬ÎÒÃÇÒ²¿ÉÒÔÊ¹ÓÃ°æ±¾ºÅ£¨verison£©À´½â¾öABA¡£
@@ -190,7 +190,7 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
 
  - Í¬²½ÈÝÆ÷¶ÔËùÓÐÈÝÆ÷×´Ì¬µÄ·ÃÎÊ¶¼´®ÐÐ»¯£¬ÑÏÖØ½µµÍÁË²¢·¢ÐÔ£»
  - Ä³Ð©¸´ºÏ²Ù×÷£¬ÈÔÈ»ÐèÒª¼ÓËøÀ´±£»¤
- - µü´úÆÚ¼ä£¬ÈôÆäËüÏß³Ì²¢·¢ÐÞ¸Ä¸ÃÈÝÆ÷£¬»áÅ×³öConcurrentModificationExceptionÒì³££¬¼´¿ìËÙÊ§°Ü»úÖÆ
+ - µü´úÆÚ¼ä£¬ÈôÆäËüÏß³Ì²¢·¢ÐÞ¸Ä¸ÃÈÝÆ÷£¬»áÅ×³ö`ConcurrentModificationException`Òì³££¬¼´¿ìËÙÊ§°Ü»úÖÆ
 
 ¶ÔÓÚ¸´ºÏ²Ù×÷£¬ÎÒÃÇ¿ÉÒÔ¾Ù¸öÀý×Ó, ÒòÎª±È½ÏÈÝÒ×±»ºöÊÓ£¬ÈçÏÂ´úÂë£º
 
@@ -202,7 +202,7 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
     }
 ```
 
-ÔÚÒÔÉÏ´úÂëÖÐ£¬ËäÈ»list¼¯ºÏÊÇVectorÀàÐÍ£¬µ«¸Ã·½·¨ÈÔÈ»²»ÊÇÔ­×Ó²Ù×÷£¬ÒòÎªÔÚlist.size()ºÍlist.get(lastIndex)Ö®¼ä£¬¿ÉÄÜÒÑ¾­·¢ÉúÁËºÜ¶àÊÂ¡£
+ÔÚÒÔÉÏ´úÂëÖÐ£¬ËäÈ»list¼¯ºÏÊÇVectorÀàÐÍ£¬µ«¸Ã·½·¨ÈÔÈ»²»ÊÇÔ­×Ó²Ù×÷£¬ÒòÎªÔÚ`list.size()`ºÍ`list.get(lastIndex)`Ö®¼ä£¬¿ÉÄÜÒÑ¾­·¢ÉúÁËºÜ¶àÊÂ¡£
 ÄÇÃ´£¬ÔÚJDK 5Ö®ºó£¬ÓÐÄÄÐ©²¢·¢ÈÝÆ÷ÄØ£¬ÕâÀïÖ÷ÒªËµÁ½ÖÖ£¬ÈçÏÂ£º
 
  - ConcurrentHashMap
@@ -220,11 +220,12 @@ ConcurrentHashMapÊÇ²ÉÓÃ·ÖÀëËø¼¼Êõ£¬ÔÚÍ¬²½ÈÝÆ÷ÖÐ£¬ÊÇÒ»¸öÈÝÆ÷Ò»¸öËø£¬µ«ÔÚConcurren
 ## Fork/Join²¢ÐÐ¼ÆËã¿ò¼Ü
 Õâ¿éÄÚÈÝÊÇÔÚJDK7ÖÐÒýÈëµÄ£¬¸öÈË¾õµÃÏàµ±Å£±Æ£¬¿ÉÒÔ·½±ãÀûÓÃ¶àºËÆ½Ì¨µÄ¼ÆËãÄÜÁ¦£¬¼ò»¯²¢ÐÐ³ÌÐòµÄ±àÐ´£¬¿ª·¢ÈËÔ±½öÐè¹Ø×¢ÈçºÎ»®·ÖÈÎÎñºÍ×éºÏÖÐ¼ä½á¹û¡£
 
-fork/join¿ò¼ÜµÄºËÐÄÊÇForkJoinPoolÀà£¬ÊµÏÖÁË¹¤×÷ÇÔÈ¡Ëã·¨£¨¶ÔÄÇÐ©´¦ÀíÍê×ÔÉíÈÎÎñµÄÏß³Ì£¬»á´ÓÆäËüÏß³ÌÇÔÈ¡ÈÎÎñÖ´ÐÐ£©²¢ÇÒÄÜ¹»Ö´ÐÐ ForkJoinTaskÈÎÎñ¡£
+fork/join¿ò¼ÜµÄºËÐÄÊÇ`ForkJoinPool`Àà£¬ÊµÏÖÁË¹¤×÷ÇÔÈ¡Ëã·¨£¨¶ÔÄÇÐ©´¦ÀíÍê×ÔÉíÈÎÎñµÄÏß³Ì£¬»á´ÓÆäËüÏß³ÌÇÔÈ¡ÈÎÎñÖ´ÐÐ£©²¢ÇÒÄÜ¹»Ö´ÐÐ ForkJoinTaskÈÎÎñ¡£
 
 ÊÊÓÃ³¡¾°£º´óÈÎÎñÄÜ±»µÝ¹é²ð·Ö³É¶à¸ö×ÓÈÎÎñµÄÓ¦ÓÃ£»
 ¿ÉÒÔ²Î¿¼ÏÂÍ¼£¬°ïÖúÀí½â£¬Î»ÓÚÍ¼ÉÏ²¿µÄ Task ÒÀÀµÓÚÎ»ÓÚÆäÏÂµÄ Task µÄÖ´ÐÐ£¬Ö»ÓÐµ±ËùÓÐµÄ×ÓÈÎÎñ¶¼Íê³ÉÖ®ºó£¬µ÷ÓÃÕß²ÅÄÜ»ñµÃ Task 0 µÄ·µ»Ø½á¹û¡£ÆäÊµÕâÊÇÒ»ÖÖ·Ö¶øÖÎÖ®µÄË¼Ïë£º
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-fork-join.webp)
+
 ÆäÊµ¶ÔÓÚÊ¹ÓÃfork/join¿ò¼ÜµÄ¿ª·¢ÈËÔ±À´Ëµ£¬Ö÷ÒªÈÎÎñ»¹ÊÇÔÚÓÚÈÎÎñ»®·Ö£¬¿ÉÒÔ²Î¿¼ÈçÏÂÎ±´úÂë£º
 ```
     if (ÈÎÎñ×ã¹»Ð¡) {
@@ -286,12 +287,12 @@ fork/join¿ò¼ÜµÄºËÐÄÊÇForkJoinPoolÀà£¬ÊµÏÖÁË¹¤×÷ÇÔÈ¡Ëã·¨£¨¶ÔÄÇÐ©´¦ÀíÍê×ÔÉíÈÎÎñµÄÏ
 ÊµÏÖÍ¬²½»úÖÆÓÐÁ½¸ö·½·¨£º
 
  - Í¬²½´úÂë¿é£º
-    synchronized(Í¬Ò»¸öÊý¾Ý){} Í¬Ò»¸öÊý¾Ý£º¾ÍÊÇNÌõÏß³ÌÍ¬Ê±·ÃÎÊÒ»¸öÊý¾Ý¡£
+    `synchronized(Í¬Ò»¸öÊý¾Ý){}` Í¬Ò»¸öÊý¾Ý£º¾ÍÊÇNÌõÏß³ÌÍ¬Ê±·ÃÎÊÒ»¸öÊý¾Ý¡£
  - Í¬²½·½·¨£º
-    public synchronized Êý¾Ý·µ»ØÀàÐÍ ·½·¨Ãû(){}¾ÍÊÇÊ¹ÓÃ synchronized À´ÐÞÊÎÄ³¸ö·½·¨£¬Ôò¸Ã·½·¨³ÆÎªÍ¬²½·½·¨¡£¶ÔÓÚÍ¬²½·½·¨¶øÑÔ£¬ÎÞÐèÏÔÊ¾Ö¸¶¨Í¬²½¼àÊÓÆ÷£¬Í¬²½·½·¨µÄÍ¬²½¼àÊÓÆ÷ÊÇ this Ò²¾ÍÊÇ¸Ã¶ÔÏóµÄ±¾Éí£¨ÕâÀïÖ¸µÄ¶ÔÏó±¾ÉíÓÐµãº¬ºý£¬ÆäÊµ¾ÍÊÇµ÷ÓÃ¸ÃÍ¬²½·½·¨µÄ¶ÔÏó£©Í¨¹ýÊ¹ÓÃÍ¬²½·½·¨£¬¿É·Ç³£·½±ãµÄ½«Ä³Àà±ä³ÉÏß³Ì°²È«µÄÀà
+    `public synchronized Êý¾Ý·µ»ØÀàÐÍ ·½·¨Ãû(){}`¾ÍÊÇÊ¹ÓÃ synchronized À´ÐÞÊÎÄ³¸ö·½·¨£¬Ôò¸Ã·½·¨³ÆÎªÍ¬²½·½·¨¡£¶ÔÓÚÍ¬²½·½·¨¶øÑÔ£¬ÎÞÐèÏÔÊ¾Ö¸¶¨Í¬²½¼àÊÓÆ÷£¬Í¬²½·½·¨µÄÍ¬²½¼àÊÓÆ÷ÊÇ this Ò²¾ÍÊÇ¸Ã¶ÔÏóµÄ±¾Éí£¨ÕâÀïÖ¸µÄ¶ÔÏó±¾ÉíÓÐµãº¬ºý£¬ÆäÊµ¾ÍÊÇµ÷ÓÃ¸ÃÍ¬²½·½·¨µÄ¶ÔÏó£©Í¨¹ýÊ¹ÓÃÍ¬²½·½·¨£¬¿É·Ç³£·½±ãµÄ½«Ä³Àà±ä³ÉÏß³Ì°²È«µÄÀà
 
 ### Ïß³ÌÍ¨Ñ¶
-µ±Ê¹ÓÃsynchronized À´ÐÞÊÎÄ³¸ö¹²Ïí×ÊÔ´Ê±(·ÖÍ¬²½´úÂë¿éºÍÍ¬²½·½·¨Á½ÖÖÇé¿ö£©,µ±Ä³¸öÏß³Ì»ñµÃ¹²Ïí×ÊÔ´µÄËøºó¾Í¿ÉÒÔÖ´ÐÐÏàÓ¦µÄ´úÂë¶Î£¬Ö±µ½¸ÃÏß³ÌÔËÐÐÍê¸Ã´úÂë¶Îºó²ÅÊÍ·Å¶Ô¸Ã ¹²Ïí×ÊÔ´µÄËø£¬ÈÃÆäËûÏß³ÌÓÐ»ú»áÖ´ÐÐ¶Ô¸Ã¹²Ïí×ÊÔ´µÄÐÞ¸Ä¡£µ±Ä³¸öÏß³ÌÕ¼ÓÐÄ³¸ö¹²Ïí×ÊÔ´µÄËøÊ±£¬Èç¹ûÁíÍâÒ»¸öÏß³ÌÒ²Ïë»ñµÃÕâ°ÑËøÔËÐÐ¾ÍÐèÒªÊ¹ÓÃwait() ºÍnotify()/notifyAll()·½·¨À´½øÐÐÏß³ÌÍ¨Ñ¶ÁË¡£
+µ±Ê¹ÓÃsynchronized À´ÐÞÊÎÄ³¸ö¹²Ïí×ÊÔ´Ê±(·ÖÍ¬²½´úÂë¿éºÍÍ¬²½·½·¨Á½ÖÖÇé¿ö£©,µ±Ä³¸öÏß³Ì»ñµÃ¹²Ïí×ÊÔ´µÄËøºó¾Í¿ÉÒÔÖ´ÐÐÏàÓ¦µÄ´úÂë¶Î£¬Ö±µ½¸ÃÏß³ÌÔËÐÐÍê¸Ã´úÂë¶Îºó²ÅÊÍ·Å¶Ô¸Ã¹²Ïí×ÊÔ´µÄËø£¬ÈÃÆäËûÏß³ÌÓÐ»ú»áÖ´ÐÐ¶Ô¸Ã¹²Ïí×ÊÔ´µÄÐÞ¸Ä¡£µ±Ä³¸öÏß³ÌÕ¼ÓÐÄ³¸ö¹²Ïí×ÊÔ´µÄËøÊ±£¬Èç¹ûÁíÍâÒ»¸öÏß³ÌÒ²Ïë»ñµÃÕâ°ÑËøÔËÐÐ¾ÍÐèÒªÊ¹ÓÃ`wait() `ºÍ`notify()/notifyAll()`·½·¨À´½øÐÐÏß³ÌÍ¨Ñ¶ÁË¡£
 
 ## interrupt(),interrupted()ºÍisInterrupted()µÄÇø±ð
 
@@ -412,27 +413,27 @@ public class Test_interrupted implements Runnable {
  ÓÉÓÚ¶ÔÏóÍ·µÄÖÐËø±êÊ¶Ö¸ÏòµÄ¾ÍÊÇmonitor¶ÔÏóµÄÆðÊ¼µØÖ·£¬Òò´ËÃ¿¸ö¶ÔÏóÓëÒ»¸ömonitorÏà¹ØÁª£¬ËùÒÔsynchronizedµÄÊµÖÊ¾ÍÊÇÍ¨¹ýÏß³Ì»ñÈ¡¶ÔÏóµÄmonitorÊµÏÖµÄ¡£
  
 ### synchronized´úÂë¿éµ×²ãÔ­Àí
- ¿ÉÒÔ´Ó·´±àÒëµÄ×Ö½ÚÂëÖÐ¿ÉÖªÍ¬²½Óï¾ä¿éµÄÊµÏÖÊ¹ÓÃµÄÊÇ`monitorenter` ºÍ `monitorexit` Ö¸Áî£¬ÆäÖÐmonitorenterÖ¸ÁîÖ¸ÏòÍ¬²½´úÂë¿éµÄ¿ªÊ¼Î»ÖÃ£¬monitorexitÖ¸ÁîÔòÖ¸Ã÷Í¬²½´úÂë¿éµÄ½áÊøÎ»ÖÃ
+ ¿ÉÒÔ´Ó·´±àÒëµÄ×Ö½ÚÂëÖÐ¿ÉÖªÍ¬²½Óï¾ä¿éµÄÊµÏÖÊ¹ÓÃµÄÊÇ`monitorenter` ºÍ `monitorexit` Ö¸Áî£¬ÆäÖÐ`monitorenter`Ö¸ÁîÖ¸ÏòÍ¬²½´úÂë¿éµÄ¿ªÊ¼Î»ÖÃ£¬`monitorexit`Ö¸ÁîÔòÖ¸Ã÷Í¬²½´úÂë¿éµÄ½áÊøÎ»ÖÃ
  
 ### synchronized·½·¨µ×²ãÔ­Àí
- ·½·¨¼¶µÄÍ¬²½ÊÇÒþÊ½£¬¼´ÎÞÐèÍ¨¹ý×Ö½ÚÂëÖ¸ÁîÀ´¿ØÖÆµÄ£¬ËüÊµÏÖÔÚ·½·¨µ÷ÓÃºÍ·µ»Ø²Ù×÷Ö®ÖÐ¡£JVM¿ÉÒÔ´Ó·½·¨³£Á¿³ØÖÐµÄ·½·¨±í½á¹¹(method_info Structure) ÖÐµÄ `ACC_SYNCHRONIZED` ·ÃÎÊ±êÖ¾Çø·ÖÒ»¸ö·½·¨ÊÇ·ñÍ¬²½·½·¨¡£µ±·½·¨µ÷ÓÃÊ±£¬µ÷ÓÃÖ¸Áî½«»á ¼ì²é·½·¨µÄ ACC_SYNCHRONIZED ·ÃÎÊ±êÖ¾ÊÇ·ñ±»ÉèÖÃ£¬Èç¹ûÉèÖÃÁË£¬Ö´ÐÐÏß³Ì½«ÏÈ³ÖÓÐmonitor£¨ÐéÄâ»ú¹æ·¶ÖÐÓÃµÄÊÇ¹Ü³ÌÒ»´Ê£©£¬ È»ºóÔÙÖ´ÐÐ·½·¨£¬×îºóÔÙ·½·¨Íê³É(ÎÞÂÛÊÇÕý³£Íê³É»¹ÊÇ·ÇÕý³£Íê³É)Ê±ÊÍ·Åmonitor¡£
+ ·½·¨¼¶µÄÍ¬²½ÊÇ**ÒþÊ½**£¬¼´ÎÞÐèÍ¨¹ý×Ö½ÚÂëÖ¸ÁîÀ´¿ØÖÆµÄ£¬ËüÊµÏÖÔÚ·½·¨µ÷ÓÃºÍ·µ»Ø²Ù×÷Ö®ÖÐ¡£JVM¿ÉÒÔ´Ó·½·¨³£Á¿³ØÖÐµÄ·½·¨±í½á¹¹(method_info Structure) ÖÐµÄ `ACC_SYNCHRONIZED` ·ÃÎÊ±êÖ¾Çø·ÖÒ»¸ö·½·¨ÊÇ·ñÍ¬²½·½·¨¡£µ±·½·¨µ÷ÓÃÊ±£¬µ÷ÓÃÖ¸Áî½«»á ¼ì²é·½·¨µÄ`ACC_SYNCHRONIZED`·ÃÎÊ±êÖ¾ÊÇ·ñ±»ÉèÖÃ£¬Èç¹ûÉèÖÃÁË£¬Ö´ÐÐÏß³Ì½«ÏÈ³ÖÓÐmonitor£¨ÐéÄâ»ú¹æ·¶ÖÐÓÃµÄÊÇ¹Ü³ÌÒ»´Ê£©£¬ È»ºóÔÙÖ´ÐÐ·½·¨£¬×îºóÔÙ·½·¨Íê³É(ÎÞÂÛÊÇÕý³£Íê³É»¹ÊÇ·ÇÕý³£Íê³É)Ê±ÊÍ·Åmonitor¡£
  
 ### ËøµÄ·ÖÀà
  
  **Æ«ÏòËø**
- Æ«ÏòËøµÄºËÐÄË¼ÏëÊÇ£¬Èç¹ûÒ»¸öÏß³Ì»ñµÃÁËËø£¬ÄÇÃ´Ëø¾Í½øÈëÆ«ÏòÄ£Ê½£¬´ËÊ±Mark Word µÄ½á¹¹Ò²±äÎªÆ«ÏòËø½á¹¹£¬µ±Õâ¸öÏß³ÌÔÙ´ÎÇëÇóËøÊ±£¬ÎÞÐèÔÙ×öÈÎºÎÍ¬²½²Ù×÷£¬¼´»ñÈ¡ËøµÄ¹ý³Ì£¬ÕâÑù¾ÍÊ¡È¥ÁË´óÁ¿ÓÐ¹ØËøÉêÇëµÄ²Ù×÷£¬´Ó¶øÒ²¾ÍÌá¸ß³ÌÐòµÄÐÔÄÜ¡£
+JDK1.6Ä¬ÈÏ¿ªÆô¡£Æ«ÏòËøµÄºËÐÄË¼ÏëÊÇ£¬Èç¹ûÒ»¸öÏß³Ì»ñµÃÁËËø£¬ÄÇÃ´Ëø¾Í½øÈëÆ«ÏòÄ£Ê½£¬´ËÊ±`Mark Word`µÄ½á¹¹Ò²±äÎªÆ«ÏòËø½á¹¹£¬µ±Õâ¸öÏß³ÌÔÙ´ÎÇëÇóËøÊ±£¬ÎÞÐèÔÙ×öÈÎºÎÍ¬²½²Ù×÷£¬¼´»ñÈ¡ËøµÄ¹ý³Ì£¬ÕâÑù¾ÍÊ¡È¥ÁË´óÁ¿ÓÐ¹ØËøÉêÇëµÄ²Ù×÷£¬´Ó¶øÒ²¾ÍÌá¸ß³ÌÐòµÄÐÔÄÜ¡£
  
  **ÇáÁ¿Ëø**
- ÇáÁ¿¼¶ËøÄÜ¹»ÌáÉý³ÌÐòÐÔÄÜµÄÒÀ¾ÝÊÇ¡°¶Ô¾ø´ó²¿·ÖµÄËø£¬ÔÚÕû¸öÍ¬²½ÖÜÆÚÄÚ¶¼²»´æÔÚ¾ºÕù¡±£¬×¢ÒâÕâÊÇ¾­ÑéÊý¾Ý¡£ÐèÒªÁË½âµÄÊÇ£¬ÇáÁ¿¼¶ËøËùÊÊÓ¦µÄ³¡¾°ÊÇÏß³Ì½»ÌæÖ´ÐÐÍ¬²½¿éµÄ³¡ºÏ£¬Èç¹û´æÔÚÍ¬Ò»Ê±¼ä·ÃÎÊÍ¬Ò»ËøµÄ³¡ºÏ£¬¾Í»áµ¼ÖÂÇáÁ¿¼¶ËøÅòÕÍÎªÖØÁ¿¼¶Ëø¡£
+ ÇáÁ¿¼¶ËøÄÜ¹»ÌáÉý³ÌÐòÐÔÄÜµÄÒÀ¾ÝÊÇ¡°¶Ô¾ø´ó²¿·ÖµÄËø£¬ÔÚÕû¸öÍ¬²½ÖÜÆÚÄÚ¶¼²»´æÔÚ¾ºÕù¡±£¬×¢ÒâÕâÊÇ¾­ÑéÊý¾Ý¡£ÐèÒªÁË½âµÄÊÇ£¬ÇáÁ¿¼¶ËøËùÊÊÓ¦µÄ³¡¾°ÊÇ**Ïß³Ì½»ÌæÖ´ÐÐÍ¬²½¿éµÄ³¡ºÏ**£¬Èç¹û´æÔÚÍ¬Ò»Ê±¼ä·ÃÎÊÍ¬Ò»ËøµÄ³¡ºÏ£¬¾Í»áµ¼ÖÂÇáÁ¿¼¶ËøÅòÕÍÎªÖØÁ¿¼¶Ëø¡£
  
  **×ÔÐýËø**
  ¼ÙÉèÔÚ²»¾Ã½«À´£¬µ±Ç°µÄÏß³Ì¿ÉÒÔ»ñµÃËø£¬Òò´ËÐéÄâ»ú»áÈÃµ±Ç°ÏëÒª»ñÈ¡ËøµÄÏß³Ì×ö¼¸¸ö¿ÕÑ­»·(ÕâÒ²ÊÇ³ÆÎª×ÔÐýµÄÔ­Òò)£¬Ò»°ã²»»áÌ«¾Ã£¬¿ÉÄÜÊÇ50¸öÑ­»·»ò100Ñ­»·£¬ÔÚ¾­¹ýÈô¸É´ÎÑ­»·ºó£¬Èç¹ûµÃµ½Ëø£¬¾ÍË³Àû½øÈëÁÙ½çÇø¡£Èç¹û»¹²»ÄÜ»ñµÃËø£¬ÄÇ¾Í»á½«Ïß³ÌÔÚ²Ù×÷ÏµÍ³²ãÃæ¹ÒÆð£¬Õâ¾ÍÊÇ×ÔÐýËøµÄÓÅ»¯·½Ê½
 
 ### µÈ´ý»½ÐÑ»úÖÆÓësynchronized
 
- - notify/notifyAllºÍwait·½·¨£¬ÔÚÊ¹ÓÃÕâ3¸ö·½·¨Ê±£¬±ØÐë´¦ÓÚsynchronized´úÂë¿é»òÕßsynchronized·½·¨ÖÐ£¬·ñÔò¾Í»áÅ×³öIllegalMonitorStateExceptionÒì³££¬ÕâÊÇÒòÎªµ÷ÓÃÕâ¼¸¸ö·½·¨Ç°±ØÐëÄÃµ½µ±Ç°¶ÔÏóµÄ¼àÊÓÆ÷monitor¶ÔÏó£¬Ò²¾ÍÊÇËµnotify/notifyAllºÍwait·½·¨ÒÀÀµÓÚmonitor¶ÔÏó
- - Óësleep·½·¨²»Í¬µÄÊÇwait·½·¨µ÷ÓÃÍê³Éºó£¬Ïß³Ì½«±»ÔÝÍ££¬µ«wait·½·¨½«»áÊÍ·Åµ±Ç°³ÖÓÐµÄ¼àÊÓÆ÷Ëø(monitor)£¬Ö±µ½ÓÐÏß³Ìµ÷ÓÃnotify/notifyAll·½·¨ºó·½ÄÜ¼ÌÐøÖ´ÐÐ£¬¶øsleep·½·¨Ö»ÈÃÏß³ÌÐÝÃß²¢²»ÊÍ·ÅËø¡£
- - Í¬Ê±notify/notifyAll·½·¨µ÷ÓÃºó£¬²¢²»»áÂíÉÏÊÍ·Å¼àÊÓÆ÷Ëø£¬¶øÊÇÔÚÏàÓ¦µÄsynchronized(){}/synchronized·½·¨Ö´ÐÐ½áÊøºó²Å×Ô¶¯ÊÍ·ÅËø¡£
+ - `notify/notifyAll`ºÍ`wait`·½·¨£¬ÔÚÊ¹ÓÃÕâ3¸ö·½·¨Ê±£¬±ØÐë´¦ÓÚsynchronized´úÂë¿é»òÕßsynchronized·½·¨ÖÐ£¬·ñÔò¾Í»áÅ×³ö`IllegalMonitorStateException`Òì³££¬ÕâÊÇÒòÎªµ÷ÓÃÕâ¼¸¸ö·½·¨Ç°±ØÐëÄÃµ½µ±Ç°¶ÔÏóµÄ¼àÊÓÆ÷monitor¶ÔÏó£¬Ò²¾ÍÊÇËµ`notify/notifyAll`ºÍ`wait`·½·¨ÒÀÀµÓÚmonitor¶ÔÏó
+ - Óë`sleep`·¨²»Í¬µÄÊÇ`wait`·½·¨µ÷ÓÃÍê³Éºó£¬Ïß³Ì½«±»ÔÝÍ££¬µ«wait·½·¨½«»áÊÍ·Åµ±Ç°³ÖÓÐµÄ¼àÊÓÆ÷Ëø(monitor)£¬Ö±µ½ÓÐÏß³Ìµ÷ÓÃ`notify/notifyAll`·½·¨ºó·½ÄÜ¼ÌÐøÖ´ÐÐ£¬¶ø`sleep`·½·¨Ö»ÈÃÏß³ÌÐÝÃß²¢²»ÊÍ·ÅËø¡£
+ - Í¬Ê±`notify/notifyAll`·½·¨µ÷ÓÃºó£¬²¢²»»áÂíÉÏÊÍ·Å¼àÊÓÆ÷Ëø£¬¶øÊÇÔÚÏàÓ¦µÄ`synchronized(){}`/`synchronized`·½·¨Ö´ÐÐ½áÊøºó²Å×Ô¶¯ÊÍ·ÅËø¡£
 
 ## LockµÄµ×²ãÊµÏÖÔ­Àí
 ÕûÌåÀ´¿´LockÖ÷ÒªÊÇÍ¨¹ýÁ½¸ö¶«Î÷À´ÊµÏÖµÄ·Ö±ðÊÇCASºÍAQS(AbstractQueuedSynchronizer)¡£
