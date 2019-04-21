@@ -2,6 +2,7 @@
 
 ## Executor框架（线程池、 Callable 、Future）
 **什么是Executor框架**
+
 简单的说，就是一个任务的执行和调度框架，涉及的类如下图所示：
 其中，最顶层是Executor接口，它的定义很简单，一个用于执行任务的execute方法，如下所示：
 ```
@@ -30,21 +31,22 @@
   - newScheduledThreadPool：创建一个定长线程池，支持定时及周期性任务执行
  
 **线程池参数设计**
-核心线程数：（1+线程IO时间/线程CPU时间）*CPU数
-队列长度：queueCapacity = (coreSizePool/taskcost)*responsetime
-最大线程数：
-最大线程数 = （最大任务数-队列容量）/每个线程每秒处理能力
+
+ - 核心线程数：（1+线程IO时间/线程CPU时间）* CPU数
+ - 队列长度：queueCapacity = (coreSizePool/taskcost) * rt
+ - 最大线程数：最大线程数 = （最大任务数-队列长度）/每个线程每秒处理能力
 maxPoolSize = (max(tasks)- queueCapacity)/(1/taskcost)
 
 
 **补充：批量任务的执行方式**
+
 方式一：首先定义任务集合，然后定义Future集合用于存放执行结果，执行任务，最后遍历Future集合获取结果；
-优点：可以依次得到有序的结果；
-缺点：不能及时获取已完成任务的执行结果；
+ - 优点：可以依次得到有序的结果；
+ - 缺点：不能及时获取已完成任务的执行结果；
 
 方式二：首先定义任务集合，通过CompletionService包装ExecutorService，执行任务，然后调用其take()方法去取Future对象
-优点：及时得到已完成任务的执行结果
-缺点：不能依次得到结果
+ - 优点：及时得到已完成任务的执行结果
+ - 缺点：不能依次得到结果
 
 这里稍微解释下，在方式一中，从集合中遍历的每个Future对象并不一定处于完成状态，这时调用get()方法就会被阻塞住，所以后面的任务即使已完成也不能得到结果；而方式二中，CompletionService的实现是维护一个保存Future对象的BlockingQueue，只有当这个Future对象状态是结束的时候，才会加入到这个Queue中，所以调用take()能从阻塞队列中拿到最新的已完成任务的结果；
 
