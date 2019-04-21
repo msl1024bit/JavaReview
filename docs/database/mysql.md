@@ -102,24 +102,15 @@
 
 **Extra**
 1. using filesort：mysql中无法利用索引完成的排序，这时会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。
-
 ![此处输入图片的描述](images/mysql-explain-extra-using-filesort-1.png)
-
 创建索引时就会对数据先进行排序，出现using filesort一般是因为order by后的条件导致索引失效，最好进行优化。
-
 ![此处输入图片的描述](images/mysql-explain-extra-using-filesort-2.png)
-
 order by的排序最好和所建索引的顺序和个数一致
 2. using temporary：使用了临时表保存中间结果，mysql在对查询结果排序时使用临时表。常见于排序order by和分组查询group by。
-
 ![此处输入图片的描述](images/mysql-explain-extra-using-temporary-1.png)
-
 影响更大，所以要么不建索引，要么group by的顺序要和索引一致
-
 ![此处输入图片的描述](images/mysql-explain-extra-using-temporary-2.png)
-3. using index：表示相应的select操作中使用了覆盖索引，避免访问了表的数据行，效率好
-　　- 覆盖索引：select后的数据列只从索引就能取得，不必读取数据行，且与所建索引的个数（查询列小于等于索引个数）、顺序一致。
-　　- 所以如果要用覆盖索引，就要注意select的列只取需要用到的列，不用select *，同时如果将所有字段一起做索引会导致索引文件过大，性能会下降。
+3. using index：表示相应的select操作中使用了覆盖索引，避免访问了表的数据行，效率好.覆盖索引：select后的数据列只从索引就能取得，不必读取数据行，且与所建索引的个数（查询列小于等于索引个数）、顺序一致。所以如果要用覆盖索引，就要注意select的列只取需要用到的列，不用select *，同时如果将所有字段一起做索引会导致索引文件过大，性能会下降。
 ![此处输入图片的描述](images/mysql-explain-extra-using-index-1.png)
 出现using where，表明索引被用来执行索引键值的查找
 ![此处输入图片的描述](images/mysql-explain-extra-using-index-2.png)
