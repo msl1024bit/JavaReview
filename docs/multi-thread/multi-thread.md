@@ -1,8 +1,7 @@
 # Java¶àÏß³Ì
 
 ## Executor¿ò¼Ü£¨Ïß³Ì³Ø¡¢ Callable ¡¢Future£©
-**Ê²Ã´ÊÇExecutor¿ò¼Ü**
-
+### Ê²Ã´ÊÇExecutor¿ò¼Ü
 ¼òµ¥µÄËµ£¬¾ÍÊÇÒ»¸öÈÎÎñµÄÖ´ÐÐºÍµ÷¶È¿ò¼Ü£¬Éæ¼°µÄÀàÈçÏÂÍ¼ËùÊ¾£º
 ÆäÖÐ£¬×î¶¥²ãÊÇExecutor½Ó¿Ú£¬ËüµÄ¶¨ÒåºÜ¼òµ¥£¬Ò»¸öÓÃÓÚÖ´ÐÐÈÎÎñµÄexecute·½·¨£¬ÈçÏÂËùÊ¾£º
 ```
@@ -12,17 +11,17 @@
 ```
 ÁíÍâ£¬ÎÒÃÇ»¹¿ÉÒÔ¿´µ½Ò»¸öExecutorsÀà£¬ËüÊÇÒ»¸ö¹¤¾ßÀà£¨ÓÐµãÀàËÆ¼¯ºÏ¿ò¼ÜµÄCollectionsÀà£©£¬ÓÃÓÚ´´½¨ExecutorService¡¢ScheduledExecutorService¡¢ThreadFactory ºÍ Callable¶ÔÏó¡£
 
-**ÓÅµã£º**
+### ÓÅµã£º
 ÈÎÎñµÄÌá½»¹ý³ÌÓëÖ´ÐÐ¹ý³Ì½âñî£¬ÓÃ»§Ö»Ðè¶¨ÒåºÃÈÎÎñÌá½»£¬¾ßÌåÈçºÎÖ´ÐÐ£¬Ê²Ã´Ê±ºòÖ´ÐÐ²»ÐèÒª¹ØÐÄ£»
 
-**µäÐÍ²½Öè£º**
+### µäÐÍ²½Öè£º
 ¶¨ÒåºÃÈÎÎñ£¨ÈçCallable¶ÔÏó£©£¬°ÑËüÌá½»¸øExecutorService£¨ÈçÏß³Ì³Ø£©È¥Ö´ÐÐ£¬µÃµ½Future¶ÔÏó£¬È»ºóµ÷ÓÃFutureµÄget·½·¨µÈ´ýÖ´ÐÐ½á¹û¼´¿É¡£
 
-**Ê²Ã´ÊÇÈÎÎñ£º**
+### Ê²Ã´ÊÇÈÎÎñ£º
 ÊµÏÖCallable½Ó¿Ú»òRunnable½Ó¿ÚµÄÀà£¬ÆäÊµÀý¾Í¿ÉÒÔ³ÉÎªÒ»¸öÈÎÎñÌá½»¸øExecutorServiceÈ¥Ö´ÐÐ£»
 ÆäÖÐCallableÈÎÎñ¿ÉÒÔ·µ»ØÖ´ÐÐ½á¹û£¬RunnableÈÎÎñÎÞ·µ»Ø½á¹û£»
 
-**Ê²Ã´ÊÇÏß³Ì³Ø**
+### Ê²Ã´ÊÇÏß³Ì³Ø
 Í¨¹ýExecutors¹¤¾ßÀà¿ÉÒÔ´´½¨¸÷ÖÖÀàÐÍµÄÏß³Ì³Ø£¬ÈçÏÂÎª³£¼ûµÄËÄÖÖ£º
 
   - newCachedThreadPool £º´óÐ¡²»ÊÜÏÞ£¬µ±Ïß³ÌÊÍ·ÅÊ±£¬¿ÉÖØÓÃ¸ÃÏß³Ì£»
@@ -30,16 +29,14 @@
   - newSingleThreadExecutor £º´´½¨Ò»¸öµ¥Ïß³Ì£¬ÈÎÎñ»á°´Ë³ÐòÒÀ´ÎÖ´ÐÐ£»
   - newScheduledThreadPool£º´´½¨Ò»¸ö¶¨³¤Ïß³Ì³Ø£¬Ö§³Ö¶¨Ê±¼°ÖÜÆÚÐÔÈÎÎñÖ´ÐÐ
  
-**Ïß³Ì³Ø²ÎÊýÉè¼Æ**
-
+### Ïß³Ì³Ø²ÎÊýÉè¼Æ
  - ºËÐÄÏß³ÌÊý£º£¨1+Ïß³ÌIOÊ±¼ä/Ïß³ÌCPUÊ±¼ä£©* CPUÊý
  - ¶ÓÁÐ³¤¶È£ºqueueCapacity = (coreSizePool/taskcost) * rt
  - ×î´óÏß³ÌÊý£º×î´óÏß³ÌÊý = £¨×î´óÈÎÎñÊý-¶ÓÁÐ³¤¶È£©/Ã¿¸öÏß³ÌÃ¿Ãë´¦ÀíÄÜÁ¦
 maxPoolSize = (max(tasks)- queueCapacity)/(1/taskcost)
 
 
-**²¹³ä£ºÅúÁ¿ÈÎÎñµÄÖ´ÐÐ·½Ê½**
-
+### ²¹³ä£ºÅúÁ¿ÈÎÎñµÄÖ´ÐÐ·½Ê½
 ·½Ê½Ò»£ºÊ×ÏÈ¶¨ÒåÈÎÎñ¼¯ºÏ£¬È»ºó¶¨ÒåFuture¼¯ºÏÓÃÓÚ´æ·ÅÖ´ÐÐ½á¹û£¬Ö´ÐÐÈÎÎñ£¬×îºó±éÀúFuture¼¯ºÏ»ñÈ¡½á¹û£»
  - ÓÅµã£º¿ÉÒÔÒÀ´ÎµÃµ½ÓÐÐòµÄ½á¹û£»
  - È±µã£º²»ÄÜ¼°Ê±»ñÈ¡ÒÑÍê³ÉÈÎÎñµÄÖ´ÐÐ½á¹û£»
@@ -51,13 +48,13 @@ maxPoolSize = (max(tasks)- queueCapacity)/(1/taskcost)
 ÕâÀïÉÔÎ¢½âÊÍÏÂ£¬ÔÚ·½Ê½Ò»ÖÐ£¬´Ó¼¯ºÏÖÐ±éÀúµÄÃ¿¸öFuture¶ÔÏó²¢²»Ò»¶¨´¦ÓÚÍê³É×´Ì¬£¬ÕâÊ±µ÷ÓÃget()·½·¨¾Í»á±»×èÈû×¡£¬ËùÒÔºóÃæµÄÈÎÎñ¼´Ê¹ÒÑÍê³ÉÒ²²»ÄÜµÃµ½½á¹û£»¶ø·½Ê½¶þÖÐ£¬CompletionServiceµÄÊµÏÖÊÇÎ¬»¤Ò»¸ö±£´æFuture¶ÔÏóµÄBlockingQueue£¬Ö»ÓÐµ±Õâ¸öFuture¶ÔÏó×´Ì¬ÊÇ½áÊøµÄÊ±ºò£¬²Å»á¼ÓÈëµ½Õâ¸öQueueÖÐ£¬ËùÒÔµ÷ÓÃtake()ÄÜ´Ó×èÈû¶ÓÁÐÖÐÄÃµ½×îÐÂµÄÒÑÍê³ÉÈÎÎñµÄ½á¹û£»
 
 ## AbstractQueuedSynchronizer £¨AQS¿ò¼Ü£©
-**Ê²Ã´ÊÇAQS¿ò¼Ü**
+### Ê²Ã´ÊÇAQS¿ò¼Ü
 AQS¿ò¼ÜÊÇJ.U.CÖÐÊµÏÖËø¼°Í¬²½»úÖÆµÄ»ù´¡£¬Æäµ×²ãÊÇÍ¨¹ýµ÷ÓÃ LockSupport .unpark()ºÍ LockSupport .park()ÊµÏÖÏß³ÌµÄ×èÈûºÍ»½ÐÑ¡£
 
 AbstractQueuedSynchronizerÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö·Ç×èÈû¡¢ÏÈ½øÏÈ³öµÄÏß³ÌµÈ´ý¶ÓÁÐ£»ÆäÖÐstateÊÇÓÃvolatileÐÞÊÎµÄ£¬±£Ö¤Ïß³ÌÖ®¼äµÄ¿É¼ûÐÔ£¬¶ÓÁÐµÄÈë¶ÓºÍ³ö¶Ô²Ù×÷¶¼ÊÇÎÞËø²Ù×÷£¬»ùÓÚ×ÔÐýËøºÍCASÊµÏÖ£»ÁíÍâAQS·ÖÎªÁ½ÖÖÄ£Ê½£º¶ÀÕ¼Ä£Ê½ºÍ¹²ÏíÄ£Ê½£¬ÏñReentrantLockÊÇ»ùÓÚ¶ÀÕ¼Ä£Ê½Ä£Ê½ÊµÏÖµÄ£¬CountDownLatch¡¢CyclicBarrierµÈÊÇ»ùÓÚ¹²ÏíÄ£Ê½¡£
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-aqs-structure.jpg)
 
-**¼òµ¥¾Ù¸öÀý×Ó**
+### ¼òµ¥¾Ù¸öÀý×Ó
 ·Ç¹«Æ½ËøµÄlock·½·¨µÄÊµÏÖ£º
 ```
     final void lock() {
@@ -88,16 +85,16 @@ AbstractQueuedSynchronizerÊÇÒ»¸ö³éÏóÀà£¬Ö÷ÒªÊÇÎ¬»¤ÁËÒ»¸öintÀàÐÍµÄstateÊôÐÔºÍÒ»¸ö
  - ReentrantLock
  - ReentrantReadWriteLock
  
-**ReentrantLock**
+### ReentrantLock
 ¿ÉÖØÈëËø£¬ËùÎ½µÄ¿ÉÖØÈëËø£¬Ò²½ÐµÝ¹éËø£¬ÊÇÖ¸Ò»¸öÏß³Ì»ñÈ¡Ëøºó£¬ÔÙ´Î»ñÈ¡¸ÃËøÊ±£¬²»ÐèÒªÖØÐÂµÈ´ý»ñÈ¡¡£ReentrantLock·ÖÎª¹«Æ½ËøºÍ·Ç¹«Æ½Ëø£¬¹«Æ½ËøÖ¸µÄÊÇÑÏ¸ñ°´ÕÕÏÈÀ´ÏÈµÃµÄË³ÐòÅÅ¶ÓµÈ´ýÈ¥»ñÈ¡Ëø£¬¶ø·Ç¹«Æ½ËøÃ¿´Î»ñÈ¡ËøÊ±£¬ÊÇÏÈÖ±½Ó³¢ÊÔ»ñÈ¡Ëø£¬»ñÈ¡²»µ½£¬ÔÙ°´ÕÕÏÈÀ´ÏÈµÃµÄË³ÐòÅÅ¶ÓµÈ´ý¡£
 
 ×¢Òâ£ºReentrantLockºÍsynchronized¶¼ÊÇ¿ÉÖØÈëËø¡£
 
-**ReentrantReadWriteLock**
+### ReentrantReadWriteLock
 ¿ÉÖØÈë¶ÁÐ´Ëø£¬Ö¸µÄÊÇÃ»ÓÐÏß³Ì½øÐÐÐ´²Ù×÷Ê±£¬¶à¸öÏß³Ì¿ÉÍ¬Ê±½øÐÐ¶Á²Ù×÷£¬µ±ÓÐÏß³Ì½øÐÐÐ´²Ù×÷Ê±£¬ÆäËü¶ÁÐ´²Ù×÷Ö»ÄÜµÈ´ý¡£¼´¡°¶Á-¶ÁÄÜ¹²´æ£¬¶Á-Ð´²»ÄÜ¹²´æ£¬Ð´-Ð´²»ÄÜ¹²´æ¡±¡£
 ÔÚ¶Á¶àÓÚÐ´µÄÇé¿öÏÂ£¬¶ÁÐ´ËøÄÜ¹»Ìá¹©±ÈÅÅËüËø¸üºÃµÄ²¢·¢ÐÔºÍÍÌÍÂÁ¿¡£
 
-**Condition**
+### Condition
 Condition¶ÔÏóÊÇÓÉLock¶ÔÏó´´½¨µÄ£¬Ò»¸öLock¶ÔÏó¿ÉÒÔ´´½¨¶à¸öCondition£¬ÆäÊµLockºÍCondition¶¼ÊÇ»ùÓÚAQSÊµÏÖµÄ¡£
 Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏóµÄwait/notify/notifyAll·½·¨ÊµÏÖµÄ£¬Ê¹ÓÃÆðÀ´²»ÊÇºÜ·½±ã£»
 ÔÚJDK5Ö®ºó£¬J.U.C°üÌá¹©ÁËCondition£¬ÆäÖÐ£º
@@ -116,26 +113,32 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
  - ÐÅºÅÁ¿ Semaphore
  - ½»»»Æ÷ Exchanger
 
-**±ÕËø CountDownLatch**
+### ±ÕËø CountDownLatch
 ±ÕËøÖ÷ÒªÓÃÓÚÈÃÒ»¸öÖ÷Ïß³ÌµÈ´ýÒ»×éÊÂ¼þ·¢Éúºó¼ÌÐøÖ´ÐÐ£¬ÕâÀïµÄÊÂ¼þÆäÊµ¾ÍÊÇÖ¸CountDownLatch¶ÔÏóµÄcountDown·½·¨¡£×¢ÒâÆäËüÏß³Ìµ÷ÓÃÍêcountDown·½·¨ºó£¬ÊÇ»á¼ÌÐøÖ´ÐÐµÄ£¬¾ßÌåÈçÏÂÍ¼ËùÊ¾£º
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-count-down-latch.webp)
+
 ÔÚCountDownLatchÄÚ²¿£¬°üº¬Ò»¸ö¼ÆÊýÆ÷£¬Ò»¿ªÊ¼³õÊ¼»¯ÎªÒ»¸öÕûÊý£¨ÊÂ¼þ¸öÊý£©£¬·¢ÉúÒ»¸öÊÂ¼þºó£¬µ÷ÓÃcountDown·½·¨£¬¼ÆÊýÆ÷¼õ1£¬awaitÓÃÓÚµÈ´ý¼ÆÊýÆ÷Îª0ºó¼ÌÐøÖ´ÐÐµ±Ç°Ïß³Ì£»
 ÈçÉÏÍ¼£ºTAÖ÷Ïß³Ì»áÒ»Ö±µÈ´ý£¬Ö±µ½¼ÆÊýcnt=0,²Å¼ÌÐøÖ´ÐÐ£¬
 
-**Õ¤À¸ CyclicBarrier**
+### Õ¤À¸ CyclicBarrier
 Õ¤À¸Ö÷ÒªÓÃÓÚµÈ´ýÆäËüÏß³Ì£¬ÇÒ»á×èÈû×Ô¼ºµ±Ç°Ïß³Ì£¬ËùÓÐÏß³Ì±ØÐëÍ¬Ê±µ½´ïÕ¤À¸Î»ÖÃºó£¬²ÅÄÜ¼ÌÐøÖ´ÐÐ£»ÇÒÔÚËùÓÐÏß³Ìµ½´ïÕ¤À¸´¦£¬¿ÉÒÔ´¥·¢Ö´ÐÐÁíÍâÒ»¸öÔ¤ÏÈÉèÖÃµÄÏß³Ì£¬¾ßÌåÈçÏÂÍ¼ËùÊ¾£º
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-cyclic-barrier.png)
+
 ÔÚÉÏÍ¼ÖÐ£¬T1¡¢T2¡¢T3Ã¿µ÷ÓÃÒ»´Îawait£¬¼ÆÊý¼õ¼õ£¬ÇÒÔÚËüÃÇµ÷ÓÃawait·½·¨µÄÊ±ºò£¬Èç¹û¼ÆÊý²»Îª0£¬»á×èÈû×Ô¼ºµÄÏß³Ì£»
 ÁíÍâ£¬TAÏß³Ì»áÔÚËùÓÐÏß³Ìµ½´ïÕ¤À¸´¦£¨¼ÆÊýÎª0£©µÄÊ±ºò£¬²Å¿ªÊ¼Ö´ÐÐ£»
 
-**ÐÅºÅÁ¿Semaphore**
+### ÐÅºÅÁ¿Semaphore
 ÐÅºÅÁ¿Ö÷ÒªÓÃÓÚ¿ØÖÆ·ÃÎÊ×ÊÔ´µÄÏß³Ì¸öÊý£¬³£³£ÓÃÓÚÊµÏÖ×ÊÔ´³Ø£¬ÈçÊý¾Ý¿âÁ¬½Ó³Ø£¬Ïß³Ì³Ø...
 ÔÚSemaphoreÖÐ£¬acquire·½·¨ÓÃÓÚ»ñÈ¡×ÊÔ´£¬ÓÐµÄ»°£¬¼ÌÐøÖ´ÐÐ£¨Ê¹ÓÃ½áÊøºó£¬¼ÇµÃÊÍ·Å×ÊÔ´£©£¬Ã»ÓÐ×ÊÔ´µÄ»°½«×èÈûÖ±µ½ÓÐÆäËüÏß³Ìµ÷ÓÃrelease·½·¨ÊÍ·Å×ÊÔ´£»
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-semaphore.png)
 
-**½»»»Æ÷ Exchanger**
+### ½»»»Æ÷ Exchanger
 ½»»»Æ÷Ö÷ÒªÓÃÓÚÏß³ÌÖ®¼ä½øÐÐÊý¾Ý½»»»£»
 µ±Á½¸öÏß³Ì¶¼µ½´ï¹²Í¬µÄÍ¬²½µã£¨¶¼Ö´ÐÐµ½exchanger.exchangeµÄÊ±¿Ì£©Ê±£¬·¢ÉúÊý¾Ý½»»»£¬·ñÔò»áµÈ´ýÖ±µ½ÆäËüÏß³Ìµ½´ï£»
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-exchanger.webp)
 
 ## Atomic Variables£¨Ô­×Ó±äÁ¿£©
@@ -158,7 +161,7 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
  - Ô­×Ó·½Ê½¸üÐÂÒýÓÃ£» AtomicReference¡¢ AtomicReferenceFieldUpdater¡­
  - Ô­×Ó·½Ê½¸üÐÂ×Ö¶Î£» AtomicIntegerFieldUpdater¡¢ AtomicStampedReference(½â¾öCASµÄABAÎÊÌâ)
 
-**ABAÎÊÌâ**
+### ABAÎÊÌâ
 `AtomicStampedReference`ºÍ `AtomicMarkableReference`ÊÇÍ¨¹ý°æ±¾ºÅ£¨Ê±¼ä´Á£©À´½â¾öABAÎÊÌâµÄ£¬ÎÒÃÇÒ²¿ÉÒÔÊ¹ÓÃ°æ±¾ºÅ£¨verison£©À´½â¾öABA¡£
 ¼´ÀÖ¹ÛËøÃ¿´ÎÔÚÖ´ÐÐÊý¾ÝµÄÐÞ¸Ä²Ù×÷Ê±£¬¶¼»á´øÉÏÒ»¸ö°æ±¾ºÅ£¬Ò»µ©°æ±¾ºÅºÍÊý¾ÝµÄ°æ±¾ºÅÒ»ÖÂ¾Í¿ÉÒÔÖ´ÐÐÐÞ¸Ä²Ù×÷²¢¶Ô°æ±¾ºÅÖ´ÐÐ+1²Ù×÷£¬·ñÔò¾ÍÖ´ÐÐÊ§°Ü¡£
 
@@ -166,7 +169,9 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
 
 ## BlockingQueue£¨×èÈû¶ÓÁÐ£©
 ×èÈû¶ÓÁÐÌá¹©ÁË¿É×èÈûµÄÈë¶ÓºÍ³ö¶Ô²Ù×÷£¬Èç¹û¶ÓÁÐÂúÁË£¬Èë¶Ó²Ù×÷½«×èÈûÖ±µ½ÓÐ¿Õ¼ä¿ÉÓÃ£¬Èç¹û¶ÓÁÐ¿ÕÁË£¬³ö¶Ó²Ù×÷½«×èÈûÖ±µ½ÓÐÔªËØ¿ÉÓÃ£»
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-blocking-queue.jpg)
+
  ÔÚJavaÖÐ£¬Ö÷ÒªÓÐÒÔÏÂÀàÐÍµÄ×èÈû¶ÓÁÐ£º
 
  - ArrayBlockingQueue £ºÒ»¸öÓÉÊý×é½á¹¹×é³ÉµÄÓÐ½ç×èÈû¶ÓÁÐ¡£
@@ -203,11 +208,11 @@ Condition¶ÔÏóÖ÷ÒªÓÃÓÚÏß³ÌµÄµÈ´ýºÍ»½ÐÑ£¬ÔÚJDK 5Ö®Ç°£¬Ïß³ÌµÄµÈ´ý»½ÐÑÊÇÓÃObject¶ÔÏó
  - ConcurrentHashMap
  - CopyOnWriteArrayList/Set
 
-**ConcurrentHashMap**
+### ConcurrentHashMap
 ConcurrentHashMapÊÇ²ÉÓÃ·ÖÀëËø¼¼Êõ£¬ÔÚÍ¬²½ÈÝÆ÷ÖÐ£¬ÊÇÒ»¸öÈÝÆ÷Ò»¸öËø£¬µ«ÔÚConcurrentHashMapÖÐ£¬»á½«hash±íµÄÊý×é²¿·Ö·Ö³ÉÈô¸É¶Î£¬Ã¿¶ÎÎ¬»¤Ò»¸öËø£»ÕâÐ©¶Î¿ÉÒÔ²¢·¢µÄ½øÐÐÐ´²Ù×÷£¬ÒÔ´ïµ½¸ßÐ§µÄ²¢·¢·ÃÎÊ£¬ÈçÏÂÍ¼Ê¾Àý£º
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-concurrenthashmap.png)
 
-**CopyOnWriteArrayList/Set**
+### CopyOnWriteArrayList/Set
 Ò²½Ð¿½±´ÈÝÆ÷£¬Ö¸µÄÊÇÐ´Êý¾ÝµÄÊ±ºò£¬ÖØÐÂ¿½±´Ò»·Ý½øÐÐÐ´²Ù×÷£¬Íê³Éºó£¬ÔÙ½«Ô­ÈÝÆ÷µÄÒýÓÃÖ¸ÏòÐÂµÄ¿½±´ÈÝÆ÷¡£
 
 ***ÊÊÓÃÇé¿ö£ºµ±¶Á²Ù×÷Ô¶Ô¶´óÓÚÐ´²Ù×÷µÄÊ±ºò£¬¿¼ÂÇÓÃÕâ¸ö²¢·¢¼¯ºÏ¡£***
@@ -275,7 +280,7 @@ fork/join¿ò¼ÜµÄºËÐÄÊÇForkJoinPoolÀà£¬ÊµÏÖÁË¹¤×÷ÇÔÈ¡Ëã·¨£¨¶ÔÄÇÐ©´¦ÀíÍê×ÔÉíÈÎÎñµÄÏ
  - ·ÇÀíÏë×´Ì¬ÏÂdl1ÏÈ´ò³ö"if objA"£¬Ö®ºóÏß³Ìdl2Ö´ÐÐ´ò³ö"else objB"£¬È»ºó1¡¢2Ïß³ÌµÄËø¶ÔÏóAºÍB¶¼´¦ÓÚ±»ËøµÄ×´Ì¬£¬Á½¸öÏß³ÌÕù¶áËø¶ÔÏó·¢ÉúËÀËøÏÖÏó¡£
 
 ## Ïß³ÌÍ¬²½ºÍÍ¨Ñ¶
-**Ïß³ÌÍ¬²½**
+### Ïß³ÌÍ¬²½
 µ±Ê¹ÓÃ¶à¸öÏß³ÌÀ´·ÃÎÊÍ¬Ò»¸öÊý¾ÝÊ±£¬·Ç³£ÈÝÒ×³öÏÖÏß³Ì°²È«ÎÊÌâ(±ÈÈç¶à¸öÏß³Ì¶¼ÔÚ²Ù×÷Í¬Ò»Êý¾Ýµ¼ÖÂÊý¾Ý²»Ò»ÖÂ),ËùÒÔÎÒÃÇÓÃÍ¬²½»úÖÆÀ´½â¾öÕâÐ©ÎÊÌâ¡£
 
 ÊµÏÖÍ¬²½»úÖÆÓÐÁ½¸ö·½·¨£º
@@ -285,12 +290,12 @@ fork/join¿ò¼ÜµÄºËÐÄÊÇForkJoinPoolÀà£¬ÊµÏÖÁË¹¤×÷ÇÔÈ¡Ëã·¨£¨¶ÔÄÇÐ©´¦ÀíÍê×ÔÉíÈÎÎñµÄÏ
  - Í¬²½·½·¨£º
     public synchronized Êý¾Ý·µ»ØÀàÐÍ ·½·¨Ãû(){}¾ÍÊÇÊ¹ÓÃ synchronized À´ÐÞÊÎÄ³¸ö·½·¨£¬Ôò¸Ã·½·¨³ÆÎªÍ¬²½·½·¨¡£¶ÔÓÚÍ¬²½·½·¨¶øÑÔ£¬ÎÞÐèÏÔÊ¾Ö¸¶¨Í¬²½¼àÊÓÆ÷£¬Í¬²½·½·¨µÄÍ¬²½¼àÊÓÆ÷ÊÇ this Ò²¾ÍÊÇ¸Ã¶ÔÏóµÄ±¾Éí£¨ÕâÀïÖ¸µÄ¶ÔÏó±¾ÉíÓÐµãº¬ºý£¬ÆäÊµ¾ÍÊÇµ÷ÓÃ¸ÃÍ¬²½·½·¨µÄ¶ÔÏó£©Í¨¹ýÊ¹ÓÃÍ¬²½·½·¨£¬¿É·Ç³£·½±ãµÄ½«Ä³Àà±ä³ÉÏß³Ì°²È«µÄÀà
 
-**Ïß³ÌÍ¨Ñ¶**
+### Ïß³ÌÍ¨Ñ¶
 µ±Ê¹ÓÃsynchronized À´ÐÞÊÎÄ³¸ö¹²Ïí×ÊÔ´Ê±(·ÖÍ¬²½´úÂë¿éºÍÍ¬²½·½·¨Á½ÖÖÇé¿ö£©,µ±Ä³¸öÏß³Ì»ñµÃ¹²Ïí×ÊÔ´µÄËøºó¾Í¿ÉÒÔÖ´ÐÐÏàÓ¦µÄ´úÂë¶Î£¬Ö±µ½¸ÃÏß³ÌÔËÐÐÍê¸Ã´úÂë¶Îºó²ÅÊÍ·Å¶Ô¸Ã ¹²Ïí×ÊÔ´µÄËø£¬ÈÃÆäËûÏß³ÌÓÐ»ú»áÖ´ÐÐ¶Ô¸Ã¹²Ïí×ÊÔ´µÄÐÞ¸Ä¡£µ±Ä³¸öÏß³ÌÕ¼ÓÐÄ³¸ö¹²Ïí×ÊÔ´µÄËøÊ±£¬Èç¹ûÁíÍâÒ»¸öÏß³ÌÒ²Ïë»ñµÃÕâ°ÑËøÔËÐÐ¾ÍÐèÒªÊ¹ÓÃwait() ºÍnotify()/notifyAll()·½·¨À´½øÐÐÏß³ÌÍ¨Ñ¶ÁË¡£
 
 ## interrupt(),interrupted()ºÍisInterrupted()µÄÇø±ð
 
- - **interrupt()**
+ - ### interrupt()
  ¾¡¹Ü¿´ÉÏÈ¥ÊÇ¸Ã·½·¨ÊÇÓÃÓÚÖÐ¶ÏÏß³ÌµÄ£¬µ«ÊÇÊµÖÊÉÏ£¬ËüµÄÊ¹ÓÃÐ§¹û²¢²»»áÍ£Ö¹Ò»¸öÕýÔÚÔËÐÐµÄÏß³Ì£¬ 
 ½ö½öÊÇÔÚÏß³ÌÖÐ´òÁËÒ»¸öÍ£Ö¹µÄ±ê¼Ç¶øÒÑ£¬ÐèÒª¼ÓÈëÒ»¸öÅÐ¶Ï²ÅÊµÏÖÍ£Ö¹Ïß³ÌµÄ¹¦ÄÜ¡£
 ```
@@ -321,7 +326,7 @@ public class Test_interrupt implements Runnable {
 //½á¹û£ºÏß³ÌÒ»Ö±´òÓ¡£¬²¢Î´ÖÕÖ¹
 ```
 
- - **interrupted()**
+ - ### interrupted()
  ¼ì²âµ±Ç°Ïß³ÌÊÇ·ñÖÐ¶Ï£¬Èç¹ûµ±Ç°Ïß³Ì´¦ÓÚÖÐ¶Ï×´Ì¬£¬ÔÚÊ×´Îµ÷ÓÃ¸Ã·½·¨Ê±»á·µ»Øtrue£¬±êÊ¶µ±Ç°Ïß³ÌÒÑ¾­ÖÐ¶Ï£» 
 ¸Ã·½·¨¾ßÓÐÔÚÖ´ÐÐºó**Çå³ý×´Ì¬±êÊ¶**µÄ¹¦ÄÜ£¬¼´Èç¹ûÁ¬ÐøÁ½´Îµ÷ÓÃ¸Ã·½·¨£¬ÔòµÚÒ»´Î»á·µ»Øtrue£¬µÚ¶þ´Î»á·µ»Øfalse¡£
 ```
@@ -354,7 +359,7 @@ public class Test_interrupted implements Runnable {
 > ÊÇ·ñÍ£Ö¹2?: false
 ```
 
- - **isInterrupted()**
+ - ### isInterrupted()
  ¼ì²â¸ÃÏß³ÌÊÇ·ñÖÐ¶Ï£¬Ïß³ÌµÄÖÐ¶Ï×´Ì¬²»»áÊÜµ½¸Ã·½·¨µÄÓ°Ïì£¬¼´Á¬Ðøµ÷ÓÃ¸Ã·½·¨£¬ÔÚÖ´ÐÐºó**²»»áÇå³ý×´Ì¬±êÊ¶**¡£
 ```
     /*
@@ -385,20 +390,20 @@ public class Test_interrupted implements Runnable {
 > ÊÇ·ñÍ£Ö¹2?: true
 ```
 ## synchronizedÔ­Àí
-**3ÖÖÊ¹ÓÃ·½·¨**
+### 3ÖÖÊ¹ÓÃ·½·¨
 
 - ÐÞÊÎÊµÀý·½·¨£¬×÷ÓÃÓÚµ±Ç°ÊµÀý¼ÓËø£¬½øÈëÍ¬²½´úÂëÇ°Òª»ñµÃµ±Ç°ÊµÀýµÄËø
 - ÐÞÊÎ¾²Ì¬·½·¨£¬×÷ÓÃÓÚµ±Ç°Àà¶ÔÏó¼ÓËø£¬½øÈëÍ¬²½´úÂëÇ°Òª»ñµÃµ±Ç°Àà¶ÔÏóµÄËø
 - ÐÞÊÎ´úÂë¿é£¬Ö¸¶¨¼ÓËø¶ÔÏó£¬¶Ô¸ø¶¨¶ÔÏó¼ÓËø£¬½øÈëÍ¬²½´úÂë¿âÇ°Òª»ñµÃ¸ø¶¨¶ÔÏóµÄËø
 
-**¶ÔÏóÄÚ´æ²¼¾Ö**
+### ¶ÔÏóÄÚ´æ²¼¾Ö
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/multi-thread-object-head-structure.png)
 
  - ÊµÀý±äÁ¿£º´æ·ÅÀàµÄÊôÐÔÊý¾ÝÐÅÏ¢£¬°üÀ¨¸¸ÀàµÄÊôÐÔÐÅÏ¢£¬Èç¹ûÊÇÊý×éµÄÊµÀý²¿·Ö»¹°üÀ¨Êý×éµÄ³¤¶È£¬Õâ²¿·ÖÄÚ´æ°´4×Ö½Ú¶ÔÆë¡£
 
  - Ìî³äÊý¾Ý£ºÓÉÓÚÐéÄâ»úÒªÇó¶ÔÏóÆðÊ¼µØÖ·±ØÐëÊÇ8×Ö½ÚµÄÕûÊý±¶¡£Ìî³äÊý¾Ý²»ÊÇ±ØÐë´æÔÚµÄ£¬½ö½öÊÇÎªÁË×Ö½Ú¶ÔÆë£¬ÕâµãÁË½â¼´¿É¡£
 
-**¶ÔÏóÍ·½á¹¹**
+### ¶ÔÏóÍ·½á¹¹
 ÐéÄâ»úÎ»Êý	 | Í·¶ÔÏó½á¹¹ | ËµÃ÷
 :-: | :-: | :-:
 32/64bit | Mark Word | ´æ´¢¶ÔÏóµÄhashCode¡¢ËøÐÅÏ¢»ò·Ö´úÄêÁä»òGC±êÖ¾µÈÐÅÏ¢
@@ -406,13 +411,13 @@ public class Test_interrupted implements Runnable {
  
  ÓÉÓÚ¶ÔÏóÍ·µÄÖÐËø±êÊ¶Ö¸ÏòµÄ¾ÍÊÇmonitor¶ÔÏóµÄÆðÊ¼µØÖ·£¬Òò´ËÃ¿¸ö¶ÔÏóÓëÒ»¸ömonitorÏà¹ØÁª£¬ËùÒÔsynchronizedµÄÊµÖÊ¾ÍÊÇÍ¨¹ýÏß³Ì»ñÈ¡¶ÔÏóµÄmonitorÊµÏÖµÄ¡£
  
- **synchronized´úÂë¿éµ×²ãÔ­Àí**
+### synchronized´úÂë¿éµ×²ãÔ­Àí
  ¿ÉÒÔ´Ó·´±àÒëµÄ×Ö½ÚÂëÖÐ¿ÉÖªÍ¬²½Óï¾ä¿éµÄÊµÏÖÊ¹ÓÃµÄÊÇ`monitorenter` ºÍ `monitorexit` Ö¸Áî£¬ÆäÖÐmonitorenterÖ¸ÁîÖ¸ÏòÍ¬²½´úÂë¿éµÄ¿ªÊ¼Î»ÖÃ£¬monitorexitÖ¸ÁîÔòÖ¸Ã÷Í¬²½´úÂë¿éµÄ½áÊøÎ»ÖÃ
  
- **synchronized·½·¨µ×²ãÔ­Àí**
+### synchronized·½·¨µ×²ãÔ­Àí
  ·½·¨¼¶µÄÍ¬²½ÊÇÒþÊ½£¬¼´ÎÞÐèÍ¨¹ý×Ö½ÚÂëÖ¸ÁîÀ´¿ØÖÆµÄ£¬ËüÊµÏÖÔÚ·½·¨µ÷ÓÃºÍ·µ»Ø²Ù×÷Ö®ÖÐ¡£JVM¿ÉÒÔ´Ó·½·¨³£Á¿³ØÖÐµÄ·½·¨±í½á¹¹(method_info Structure) ÖÐµÄ `ACC_SYNCHRONIZED` ·ÃÎÊ±êÖ¾Çø·ÖÒ»¸ö·½·¨ÊÇ·ñÍ¬²½·½·¨¡£µ±·½·¨µ÷ÓÃÊ±£¬µ÷ÓÃÖ¸Áî½«»á ¼ì²é·½·¨µÄ ACC_SYNCHRONIZED ·ÃÎÊ±êÖ¾ÊÇ·ñ±»ÉèÖÃ£¬Èç¹ûÉèÖÃÁË£¬Ö´ÐÐÏß³Ì½«ÏÈ³ÖÓÐmonitor£¨ÐéÄâ»ú¹æ·¶ÖÐÓÃµÄÊÇ¹Ü³ÌÒ»´Ê£©£¬ È»ºóÔÙÖ´ÐÐ·½·¨£¬×îºóÔÙ·½·¨Íê³É(ÎÞÂÛÊÇÕý³£Íê³É»¹ÊÇ·ÇÕý³£Íê³É)Ê±ÊÍ·Åmonitor¡£
  
- **Æ«ÏòËø¡ª¡ª>ÇáÁ¿Ëø¡ª¡ª>×ÔÐýËø¡ª¡ª>ÖØÁ¿¼¶Ëø**
+### ËøµÄ·ÖÀà
  
  **Æ«ÏòËø**
  Æ«ÏòËøµÄºËÐÄË¼ÏëÊÇ£¬Èç¹ûÒ»¸öÏß³Ì»ñµÃÁËËø£¬ÄÇÃ´Ëø¾Í½øÈëÆ«ÏòÄ£Ê½£¬´ËÊ±Mark Word µÄ½á¹¹Ò²±äÎªÆ«ÏòËø½á¹¹£¬µ±Õâ¸öÏß³ÌÔÙ´ÎÇëÇóËøÊ±£¬ÎÞÐèÔÙ×öÈÎºÎÍ¬²½²Ù×÷£¬¼´»ñÈ¡ËøµÄ¹ý³Ì£¬ÕâÑù¾ÍÊ¡È¥ÁË´óÁ¿ÓÐ¹ØËøÉêÇëµÄ²Ù×÷£¬´Ó¶øÒ²¾ÍÌá¸ß³ÌÐòµÄÐÔÄÜ¡£
@@ -423,7 +428,7 @@ public class Test_interrupted implements Runnable {
  **×ÔÐýËø**
  ¼ÙÉèÔÚ²»¾Ã½«À´£¬µ±Ç°µÄÏß³Ì¿ÉÒÔ»ñµÃËø£¬Òò´ËÐéÄâ»ú»áÈÃµ±Ç°ÏëÒª»ñÈ¡ËøµÄÏß³Ì×ö¼¸¸ö¿ÕÑ­»·(ÕâÒ²ÊÇ³ÆÎª×ÔÐýµÄÔ­Òò)£¬Ò»°ã²»»áÌ«¾Ã£¬¿ÉÄÜÊÇ50¸öÑ­»·»ò100Ñ­»·£¬ÔÚ¾­¹ýÈô¸É´ÎÑ­»·ºó£¬Èç¹ûµÃµ½Ëø£¬¾ÍË³Àû½øÈëÁÙ½çÇø¡£Èç¹û»¹²»ÄÜ»ñµÃËø£¬ÄÇ¾Í»á½«Ïß³ÌÔÚ²Ù×÷ÏµÍ³²ãÃæ¹ÒÆð£¬Õâ¾ÍÊÇ×ÔÐýËøµÄÓÅ»¯·½Ê½
 
-**µÈ´ý»½ÐÑ»úÖÆÓësynchronized**
+### µÈ´ý»½ÐÑ»úÖÆÓësynchronized
 
  - notify/notifyAllºÍwait·½·¨£¬ÔÚÊ¹ÓÃÕâ3¸ö·½·¨Ê±£¬±ØÐë´¦ÓÚsynchronized´úÂë¿é»òÕßsynchronized·½·¨ÖÐ£¬·ñÔò¾Í»áÅ×³öIllegalMonitorStateExceptionÒì³££¬ÕâÊÇÒòÎªµ÷ÓÃÕâ¼¸¸ö·½·¨Ç°±ØÐëÄÃµ½µ±Ç°¶ÔÏóµÄ¼àÊÓÆ÷monitor¶ÔÏó£¬Ò²¾ÍÊÇËµnotify/notifyAllºÍwait·½·¨ÒÀÀµÓÚmonitor¶ÔÏó
  - Óësleep·½·¨²»Í¬µÄÊÇwait·½·¨µ÷ÓÃÍê³Éºó£¬Ïß³Ì½«±»ÔÝÍ££¬µ«wait·½·¨½«»áÊÍ·Åµ±Ç°³ÖÓÐµÄ¼àÊÓÆ÷Ëø(monitor)£¬Ö±µ½ÓÐÏß³Ìµ÷ÓÃnotify/notifyAll·½·¨ºó·½ÄÜ¼ÌÐøÖ´ÐÐ£¬¶øsleep·½·¨Ö»ÈÃÏß³ÌÐÝÃß²¢²»ÊÍ·ÅËø¡£
@@ -462,10 +467,10 @@ public class Test_interrupted implements Runnable {
 
 
 ## Q&A
- 1. **sleep() ºÍ wait() ÓÐÊ²Ã´Çø±ð?**
+ ### sleep() ºÍ wait() ÓÐÊ²Ã´Çø±ð?
 sleepÊÇÏß³ÌÀà£¨Thread£©µÄ·½·¨£¬µ¼ÖÂ´ËÏß³ÌÔÝÍ£Ö´ÐÐÖ¸¶¨Ê±¼ä£¬¸øÖ´ÐÐ»ú»á¸øÆäËûÏß³Ì£¬µ«ÊÇ¼à¿Ø×´Ì¬ÒÀÈ»±£³Ö£¬µ½Ê±ºó»á×Ô¶¯»Ö¸´¡£µ÷ÓÃsleep²»»áÊÍ·Å¶ÔÏóËø¡£
 waitÊÇObjectÀàµÄ·½·¨£¬¶Ô´Ë¶ÔÏóµ÷ÓÃwait·½·¨µ¼ÖÂ±¾Ïß³Ì·ÅÆú¶ÔÏóËø£¬½øÈëµÈ´ý´Ë¶ÔÏóµÄµÈ´ýËø¶¨³Ø£¬Ö»ÓÐÕë¶Ô´Ë¶ÔÏó·¢³önotify·½·¨£¨»ònotifyAll£©ºó±¾Ïß³Ì²Å½øÈë¶ÔÏóËø¶¨³Ø×¼±¸»ñµÃ¶ÔÏóËø½øÈëÔËÐÐ×´Ì¬¡£
- 2. **µ¥ÀýÄ£Ê½**
+ ### ÊµÏÖµ¥ÀýÄ£Ê½µÄ¼¸ÖÖ·½·¨
 ```
 //Ë«ÖØ¼ì²éËø
 public class Singleton() {
@@ -506,7 +511,7 @@ public class Singleton {
 }
 ```
 
-5. **Ïß³Ìstart()ºÍrun()·½·¨µÄÇø±ð**
+### Ïß³Ìstart()ºÍrun()·½·¨µÄÇø±ð
 ```
     //start()·½·¨
     public static void main(String args[]) {
@@ -543,7 +548,7 @@ public class Singleton {
     //Êä³ö:pongping
 ```
 
-**ÈçºÎ±ÜÃâËÀËø**
+### ÈçºÎ±ÜÃâËÀËø
 
  - È·±£¼ÓËøË³Ðò
  - ÉèÖÃ¼ÓËø³¬Ê±
