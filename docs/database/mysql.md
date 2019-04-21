@@ -2,15 +2,15 @@
 
 ## Mybatis
 ### Mybatis»º´æ
- - £¨Ä¬ÈÏ¿ªÆô£©Ò»¼¶»º´æ£º**×÷ÓÃÓòÊÇÍ¬Ò»¸öSqlSession**£¬ÔÚÍ¬Ò»¸ösqlSessionÖÐÁ½´ÎÖ´ÐÐÏàÍ¬µÄsqlÓï¾ä£¬µÚÒ»´ÎÖ´ÐÐÍê±Ï»á½«Êý¾Ý¿âÖÐ²éÑ¯µÄÊý¾ÝÐ´µ½»º´æ£¨ÄÚ´æ£©£¬µÚ¶þ´Î»á´Ó»º´æÖÐ»ñÈ¡Êý¾Ý½«²»ÔÙ´ÓÊý¾Ý¿â²éÑ¯£¬´Ó¶øÌá¸ß²éÑ¯Ð§ÂÊ¡£µ±Ò»¸ösqlSession½áÊøºó¸ÃsqlSessionÖÐµÄÒ»¼¶»º´æÒ²¾Í²»´æÔÚÁË¡£
- - ¶þ¼¶»º´æ£º**mapper¼¶±ðµÄ»º´æ**£¬¶à¸öSqlSessionÈ¥²Ù×÷Í¬Ò»¸öMapperµÄsqlÓï¾ä£¬¶à¸öSqlSessionÈ¥²Ù×÷Êý¾Ý¿âµÃµ½Êý¾Ý»á´æÔÚ¶þ¼¶»º´æÇøÓò£¬¶à¸öSqlSession¿ÉÒÔ¹²ÓÃ¶þ¼¶»º´æ£¬¶þ¼¶»º´æÊÇ¿çSqlSessionµÄ¡£²»Í¬µÄsqlSessionÁ½´ÎÖ´ÐÐÏàÍ¬namespaceÏÂµÄsqlÓï¾äÇÒÏòsqlÖÐ´«µÝ²ÎÊýÒ²ÏàÍ¬¼´×îÖÕÖ´ÐÐÏàÍ¬µÄsqlÓï¾ä£¬µÚÒ»´ÎÖ´ÐÐÍê±Ï»á½«Êý¾Ý¿âÖÐ²éÑ¯µÄÊý¾ÝÐ´µ½»º´æ£¨ÄÚ´æ£©£¬µÚ¶þ´Î»á´Ó»º´æÖÐ»ñÈ¡Êý¾Ý½«²»ÔÙ´ÓÊý¾Ý¿â²éÑ¯£¬´Ó¶øÌá¸ß²éÑ¯Ð§ÂÊ¡£MybatisÄ¬ÈÏÃ»ÓÐ¿ªÆô¶þ¼¶»º´æÐèÒªÔÚsettingÈ«¾Ö²ÎÊýÖÐÅäÖÃ¿ªÆô¶þ¼¶»º´æ
+ - £¨Ä¬ÈÏ¿ªÆô£©Ò»¼¶»º´æ£º**×÷ÓÃÓòÊÇÍ¬Ò»¸ö`SqlSession`**£¬ÔÚÍ¬Ò»¸ö`sqlSession`ÖÐÁ½´ÎÖ´ÐÐÏàÍ¬µÄsqlÓï¾ä£¬µÚÒ»´ÎÖ´ÐÐÍê±Ï»á½«Êý¾Ý¿âÖÐ²éÑ¯µÄÊý¾ÝÐ´µ½»º´æ£¨ÄÚ´æ£©£¬µÚ¶þ´Î»á´Ó»º´æÖÐ»ñÈ¡Êý¾Ý½«²»ÔÙ´ÓÊý¾Ý¿â²éÑ¯£¬´Ó¶øÌá¸ß²éÑ¯Ð§ÂÊ¡£µ±Ò»¸ösqlSession½áÊøºó¸ÃsqlSessionÖÐµÄÒ»¼¶»º´æÒ²¾Í²»´æÔÚÁË¡£
+ - ¶þ¼¶»º´æ£º**mapper¼¶±ðµÄ»º´æ**£¬¶à¸ö`SqlSession`È¥²Ù×÷Í¬Ò»¸öMapperµÄsqlÓï¾ä£¬¶à¸ö`SqlSession`È¥²Ù×÷Êý¾Ý¿âµÃµ½Êý¾Ý»á´æÔÚ¶þ¼¶»º´æÇøÓò£¬¶à¸ö`SqlSession`¿ÉÒÔ¹²ÓÃ¶þ¼¶»º´æ£¬¶þ¼¶»º´æÊÇ¿ç`SqlSession`µÄ¡£²»Í¬µÄ`sqlSession`Á½´ÎÖ´ÐÐÏàÍ¬namespaceÏÂµÄsqlÓï¾äÇÒÏòsqlÖÐ´«µÝ²ÎÊýÒ²ÏàÍ¬¼´×îÖÕÖ´ÐÐÏàÍ¬µÄsqlÓï¾ä£¬µÚÒ»´ÎÖ´ÐÐÍê±Ï»á½«Êý¾Ý¿âÖÐ²éÑ¯µÄÊý¾ÝÐ´µ½»º´æ£¨ÄÚ´æ£©£¬µÚ¶þ´Î»á´Ó»º´æÖÐ»ñÈ¡Êý¾Ý½«²»ÔÙ´ÓÊý¾Ý¿â²éÑ¯£¬´Ó¶øÌá¸ß²éÑ¯Ð§ÂÊ¡£MybatisÄ¬ÈÏÃ»ÓÐ¿ªÆô¶þ¼¶»º´æÐèÒªÔÚ`setting`È«¾Ö²ÎÊýÖÐÅäÖÃ¿ªÆô¶þ¼¶»º´æ
 
 ### MybatisµÄÖ´ÐÐÁ÷³Ì
-**×¢Òâ£º**ÆäÖÐ»ñÈ¡mapperÊÇÍ¨¹ýJDKµÄ¶¯Ì¬´úÀíÉú³ÉmapperProxy´úÀí¶ÔÏó£¬È»ºóÖ´ÐÐ¶ÔÓ¦µÄsql·½·¨£¬µ×²ãÊÇÍ¨¹ýexecutorÊµÏÖ¾ßÌåµÄsql²Ù×÷¡£
+**×¢Òâ**£ºÆäÖÐ»ñÈ¡mapperÊÇÍ¨¹ýJDKµÄ¶¯Ì¬´úÀíÉú³É`mapperProxy`´úÀí¶ÔÏó£¬È»ºóÖ´ÐÐ¶ÔÓ¦µÄsql·½·¨£¬µ×²ãÊÇÍ¨¹ý`executor`ÊµÏÖ¾ßÌåµÄsql²Ù×÷¡£
 
 **Ê±ÐòÍ¼£º**
 1. SqlSessionFactory Óë SqlSession.
-![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö][1]
+Í¼Æ¬Ã»ÁË£¡£¡£¡
 2. ÀûÆ÷Ö®MapperProxy:
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-mybatis-mapper-proxy.png)
 3. Excutor:
@@ -60,6 +60,7 @@
  - union result£ºunionºóµÄ½á¹û¼¯
 
 **table£º·´Ó³ÕâÒ»ÐÐÊý¾ÝÊÇ¹ØÓÚÄÄÕÅ±íµÄ**
+
 **type£º·ÃÎÊÀàÐÍÅÅÐò**
 ·´Ó³sqlÓÅ»¯µÄ×´Ì¬£¬ÖÁÉÙ´ïµ½range¼¶±ð£¬×îºÃÄÜ´ïµ½ref
 ²éÑ¯Ð§ÂÊ£ºsystem > const > eq_ref > ref > range > index > all
@@ -80,31 +81,45 @@
 
  - possible_keys£ºMysqlÍÆ²â¿ÉÄÜÓÃµ½µÄË÷ÒýÓÐÄÄÐ©£¬µ«²»Ò»¶¨±»²éÑ¯Êµ¼ÊÊ¹ÓÃ
  - key£ºÊµ¼ÊÊ¹ÓÃµÄË÷Òý£¬ÈôÎªnull£¬Ôò¿ÉÄÜÃ»½¨Ë÷Òý»òË÷ÒýÊ§Ð§¡££¨²éÑ¯ÖÐÈôÊ¹ÓÃÁË¸²¸ÇË÷Òý£¬Ôò¸ÃË÷Òý½ö³öÏÖÔÚkeyÁÐ±íÖÐ¡£¸²¸ÇË÷Òý£ºselectºóÃæµÄ×Ö¶ÎºÍËù½¨Ë÷ÒýµÄ¸öÊý¡¢Ë³ÐòÒ»ÖÂ£©
+ 
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-key.png)
+
  - key_len£º±íÊ¾Ë÷ÒýÖÐÊ¹ÓÃµÄ×Ö½ÚÊý£¬¿ÉÍ¨¹ý¸ÃÁÐ¼ÆËã²éÑ¯ÖÐÊ¹ÓÃµÄË÷ÒýµÄ³¤¶È¡£Í¬ÑùµÄ²éÑ¯½á¹ûÏÂ£¬³¤¶ÈÔ½¶ÌÔ½ºÃ¡£key_lenÏÔÊ¾µÄÖµÎªË÷Òý×Ö¶ÎµÄ×î´ó¿ÉÄÜ³¤¶È£¬²¢·ÇÊµ¼ÊÊ¹ÓÃ³¤¶È£¬¼´key_lenÊÇ¸ù¾Ý±í¶¨Òå¼ÆËã¶øµÃ£¬²»ÊÇÍ¨¹ý±íÄÚ¼ìË÷³öµÄ¡£
  
 **ref£º·´Ó³ÄÄÐ©ÁÐ»ò³£Á¿±»ÓÃÓÚ²éÕÒË÷ÒýÁÐÉÏµÄÖµ**
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-ref.png)
 
 **rows£º¸ù¾Ý±íÍ³¼ÆÐÅÏ¢¼°Ë÷ÒýÑ¡ÓÃÇé¿ö£¬´óÖÂ¹ÀËã³öÕÒµ½ËùÐèµÄ¼ÇÂ¼ËùÐèÒª¶ÁÈ¡µÄÐÐÊý**
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-rows-1.png)
+
 ½öÍ¨¹ýÖ÷¼üË÷Òý²éÕÒÊÇ641ÐÐ
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-rows-2.png)
+
 ½¨ÍêÏà¹ØµÄ¸´ºÏË÷ÒýÔÙ²é£¬ÐèÒª²éÑ¯µÄÐÐÊý¾Í±äÉÙÁË
 
 **Extra**
 1. using filesort£ºmysqlÖÐÎÞ·¨ÀûÓÃË÷ÒýÍê³ÉµÄÅÅÐò£¬ÕâÊ±»á¶ÔÊý¾ÝÊ¹ÓÃÒ»¸öÍâ²¿µÄË÷ÒýÅÅÐò£¬¶ø²»ÊÇ°´ÕÕ±íÄÚµÄË÷ÒýË³Ðò½øÐÐ¶ÁÈ¡¡£
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-extra-using-filesort-1.png)
+
 ´´½¨Ë÷ÒýÊ±¾Í»á¶ÔÊý¾ÝÏÈ½øÐÐÅÅÐò£¬³öÏÖusing filesortÒ»°ãÊÇÒòÎªorder byºóµÄÌõ¼þµ¼ÖÂË÷ÒýÊ§Ð§£¬×îºÃ½øÐÐÓÅ»¯¡£
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-extra-using-filesort-2.png)
+
 order byµÄÅÅÐò×îºÃºÍËù½¨Ë÷ÒýµÄË³ÐòºÍ¸öÊýÒ»ÖÂ
 2. using temporary£ºÊ¹ÓÃÁËÁÙÊ±±í±£´æÖÐ¼ä½á¹û£¬mysqlÔÚ¶Ô²éÑ¯½á¹ûÅÅÐòÊ±Ê¹ÓÃÁÙÊ±±í¡£³£¼ûÓÚÅÅÐòorder byºÍ·Ö×é²éÑ¯group by¡£
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-extra-using-temporary-1.png)
+
 Ó°Ïì¸ü´ó£¬ËùÒÔÒªÃ´²»½¨Ë÷Òý£¬ÒªÃ´group byµÄË³ÐòÒªºÍË÷ÒýÒ»ÖÂ
+
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-extra-using-temporary-2.png)
 3. using index£º±íÊ¾ÏàÓ¦µÄselect²Ù×÷ÖÐÊ¹ÓÃÁË¸²¸ÇË÷Òý£¬±ÜÃâ·ÃÎÊÁË±íµÄÊý¾ÝÐÐ£¬Ð§ÂÊºÃ
-¡¡¡¡¸²¸ÇË÷Òý£ºselectºóµÄÊý¾ÝÁÐÖ»´ÓË÷Òý¾ÍÄÜÈ¡µÃ£¬²»±Ø¶ÁÈ¡Êý¾ÝÐÐ£¬ÇÒÓëËù½¨Ë÷ÒýµÄ¸öÊý£¨²éÑ¯ÁÐÐ¡ÓÚµÈÓÚË÷Òý¸öÊý£©¡¢Ë³ÐòÒ»ÖÂ¡£
-¡¡¡¡ËùÒÔÈç¹ûÒªÓÃ¸²¸ÇË÷Òý£¬¾ÍÒª×¢ÒâselectµÄÁÐÖ»È¡ÐèÒªÓÃµ½µÄÁÐ£¬²»ÓÃselect *£¬Í¬Ê±Èç¹û½«ËùÓÐ×Ö¶ÎÒ»Æð×öË÷Òý»áµ¼ÖÂË÷ÒýÎÄ¼þ¹ý´ó£¬ÐÔÄÜ»áÏÂ½µ¡£
+¡¡¡¡- ¸²¸ÇË÷Òý£ºselectºóµÄÊý¾ÝÁÐÖ»´ÓË÷Òý¾ÍÄÜÈ¡µÃ£¬²»±Ø¶ÁÈ¡Êý¾ÝÐÐ£¬ÇÒÓëËù½¨Ë÷ÒýµÄ¸öÊý£¨²éÑ¯ÁÐÐ¡ÓÚµÈÓÚË÷Òý¸öÊý£©¡¢Ë³ÐòÒ»ÖÂ¡£
+¡¡¡¡- ËùÒÔÈç¹ûÒªÓÃ¸²¸ÇË÷Òý£¬¾ÍÒª×¢ÒâselectµÄÁÐÖ»È¡ÐèÒªÓÃµ½µÄÁÐ£¬²»ÓÃselect *£¬Í¬Ê±Èç¹û½«ËùÓÐ×Ö¶ÎÒ»Æð×öË÷Òý»áµ¼ÖÂË÷ÒýÎÄ¼þ¹ý´ó£¬ÐÔÄÜ»áÏÂ½µ¡£
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-extra-using-index-1.png)
 ³öÏÖusing where£¬±íÃ÷Ë÷Òý±»ÓÃÀ´Ö´ÐÐË÷Òý¼üÖµµÄ²éÕÒ
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-explain-extra-using-index-2.png)
@@ -118,27 +133,30 @@ order byµÄÅÅÐò×îºÃºÍËù½¨Ë÷ÒýµÄË³ÐòºÍ¸öÊýÒ»ÖÂ
 ## InnoDBËø»úÖÆ
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-innodb-lock.png)
 
+### ÀÖ¹ÛËø
+ÊµÏÖ£ºÔÚ±íÖÐµÄÊý¾Ý½øÐÐ²Ù×÷Ê±(¸üÐÂ)£¬ÏÈ¸øÊý¾Ý±í¼ÓÒ»¸ö°æ±¾(version)×Ö¶Î£¬Ã¿²Ù×÷Ò»´Î£¬½«ÄÇÌõ¼ÇÂ¼µÄ°æ±¾ºÅ¼Ó1¡£Ò²¾ÍÊÇÏÈ²éÑ¯³öÄÇÌõ¼ÇÂ¼£¬»ñÈ¡³översion×Ö¶Î,Èç¹ûÒª¶ÔÄÇÌõ¼ÇÂ¼½øÐÐ²Ù×÷(¸üÐÂ),ÔòÏÈÅÐ¶Ï´Ë¿ÌversionµÄÖµÊÇ·ñÓë¸Õ¸Õ²éÑ¯³öÀ´Ê±µÄversionµÄÖµÏàµÈ£¬Èç¹ûÏàµÈ£¬ÔòËµÃ÷Õâ¶ÎÆÚ¼ä£¬Ã»ÓÐÆäËû³ÌÐò¶ÔÆä½øÐÐ²Ù×÷£¬Ôò¿ÉÒÔÖ´ÐÐ¸üÐÂ£¬½«version×Ö¶ÎµÄÖµ¼Ó1£»Èç¹û¸üÐÂÊ±·¢ÏÖ´Ë¿ÌµÄversionÖµÓë¸Õ¸Õ»ñÈ¡³öÀ´µÄversionµÄÖµ²»ÏàµÈ£¬ÔòËµÃ÷Õâ¶ÎÆÚ¼äÒÑ¾­ÓÐÆäËû³ÌÐò¶ÔÆä½øÐÐ²Ù×÷ÁË£¬Ôò²»½øÐÐ¸üÐÂ²Ù×÷¡£
+
+### ±¯¹ÛËø
 InnoDBÄ¬ÈÏÊ¹ÓÃÐÐËø£¬ÊµÏÖÁËÁ½ÖÖ±ê×¼µÄÐÐËø¡ª¡ª¹²ÏíËøÓëÅÅËûËø£»
 
-![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-innodb-lock-s lock vs x lock.png)
+![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-innodb-lock-s-lock-vs-x-lock.png)
 ×¢Òâ£º
 1. ³ýÁËÏÔÊ½¼ÓËøµÄÇé¿ö£¬ÆäËûÇé¿öÏÂµÄ¼ÓËøÓë½âËø¶¼ÎÞÐèÈË¹¤¸ÉÔ¤¡£
 2. InnoDBËùÓÐµÄÐÐËøËã·¨¶¼ÊÇ»ùÓÚË÷ÒýÊµÏÖµÄ£¬Ëø¶¨µÄÒ²¶¼ÊÇË÷Òý»òË÷ÒýÇø¼ä£»
 
 ### µ±Ç°¶ÁºÍ¿ìÕÕ¶Á
 
- - **µ±Ç°¶Á£º**¼´¼ÓËø¶Á£¬¶ÁÈ¡¼ÇÂ¼µÄ×îÐÂ°æ±¾£¬»á¼ÓËø±£Ö¤ÆäËû²¢·¢ÊÂÎñ²»ÄÜÐÞ¸Äµ±Ç°¼ÇÂ¼£¬Ö±ÖÁ»ñÈ¡ËøµÄÊÂÎñÊÍ·ÅËø£»
-
-Ê¹ÓÃµ±Ç°¶ÁµÄ²Ù×÷Ö÷Òª°üÀ¨£ºÏÔÊ½¼ÓËøµÄ¶Á²Ù×÷Óë²åÈë/¸üÐÂ/É¾³ýµÈÐ´²Ù×÷£¬ÈçÏÂËùÊ¾£º
-```
-select * from table where ? lock in share mode;
-select * from table where ? for update;
-insert into table values (¡­);
-update table set ? where ?;
-delete from table where ?;
-```
-- **¿ìÕÕ¶Á£º**¼´²»¼ÓËø¶Á£¬¶ÁÈ¡¼ÇÂ¼µÄ¿ìÕÕ°æ±¾¶ø·Ç×îÐÂ°æ±¾£¬Í¨¹ýMVCCÊµÏÖ£»
-InnoDBÄ¬ÈÏµÄRRÊÂÎñ¸ôÀë¼¶±ðÏÂ£¬²»ÏÔÊ½¼Ó¡ºlock in share mode¡»Óë¡ºfor update¡»µÄ¡ºselect¡»²Ù×÷¶¼ÊôÓÚ¿ìÕÕ¶Á£¬±£Ö¤ÊÂÎñÖ´ÐÐ¹ý³ÌÖÐÖ»ÓÐµÚÒ»´Î¶ÁÖ®Ç°Ìá½»µÄÐÞ¸ÄºÍ×Ô¼ºµÄÐÞ¸Ä¿É¼û£¬ÆäËûµÄ¾ù²»¿É¼û£»
+ - **µ±Ç°¶Á**£º¼´¼ÓËø¶Á£¬¶ÁÈ¡¼ÇÂ¼µÄ×îÐÂ°æ±¾£¬»á¼ÓËø±£Ö¤ÆäËû²¢·¢ÊÂÎñ²»ÄÜÐÞ¸Äµ±Ç°¼ÇÂ¼£¬Ö±ÖÁ»ñÈ¡ËøµÄÊÂÎñÊÍ·ÅËø£»
+    Ê¹ÓÃµ±Ç°¶ÁµÄ²Ù×÷Ö÷Òª°üÀ¨£ºÏÔÊ½¼ÓËøµÄ¶Á²Ù×÷Óë²åÈë/¸üÐÂ/É¾³ýµÈÐ´²Ù×÷£¬ÈçÏÂËùÊ¾£º
+  ```
+        select * from table where ? lock in share mode;
+        select * from table where ? for update;
+        insert into table values (¡­);
+        update table set ? where ?;
+        delete from table where ?;
+   ```
+- **¿ìÕÕ¶Á**£º¼´²»¼ÓËø¶Á£¬¶ÁÈ¡¼ÇÂ¼µÄ¿ìÕÕ°æ±¾¶ø·Ç×îÐÂ°æ±¾£¬Í¨¹ýMVCCÊµÏÖ£»
+InnoDBÄ¬ÈÏµÄRRÊÂÎñ¸ôÀë¼¶±ðÏÂ£¬²»ÏÔÊ½¼Ó`lock in share mode`Óë`for update`µÄselect²Ù×÷¶¼ÊôÓÚ¿ìÕÕ¶Á£¬±£Ö¤ÊÂÎñÖ´ÐÐ¹ý³ÌÖÐÖ»ÓÐµÚÒ»´Î¶ÁÖ®Ç°Ìá½»µÄÐÞ¸ÄºÍ×Ô¼ºµÄÐÞ¸Ä¿É¼û£¬ÆäËûµÄ¾ù²»¿É¼û£»
 
 ### MVCC
 (Õª×Ô¡¶¸ßÐÔÄÜMysql¡·)
@@ -191,7 +209,7 @@ InnoDBÖ÷ÒªÊµÏÖÁËÈýÖÖÐÐËøËã·¨£º
 
 ### InnoDBºÍMyISAMµÄÇø±ð
 ÒýÇæ|´æ´¢½á¹¹|´æ´¢¿Õ¼ä|¿ÉÒÆÖ²ÐÔ|ÊÂÎñÖ§³Ö|±íËø²îÒì|È«ÎÄË÷Òý|±íÖ÷¼ü|CURD²Ù×÷|Íâ¼ü
-:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
 MyISAM|±í¶¨Òå¡¢Êý¾ÝÎÄ¼þºÍË÷ÒýÎÄ¼þ|¿É±»Ñ¹Ëõ£¬´æ´¢¿Õ¼äÐ¡|ÒÔÎÄ¼þÐÎÊ½´æ´¢£¬·½±ãÒÆÖ²|²»Ö§³Ö|±íËø|Ö§³Ö|ÔÊÐíÃ»ÓÐÈÎºÎË÷ÒýºÍÖ÷¼üµÄ±í´æÔÚ|ÊÊºÏ´óÁ¿select²Ù×÷|²»Ö§³Ö
 InnoDB|Ò»¸öÊý¾ÝÎÄ¼þ|´æ´¢¿Õ¼ä´ó|ÐèÒª¿½±´Êý¾Ý¡¢±¸·Ýbinlog|Ö§³Ö|ÐÐËøºÍ±íËø|²»Ö§³Ö|ÓÉÓÚÊÇ¾Û´ØË÷Òý£¨Ö÷¼üË÷Òý£©£¬±ØÐëÒªÓÐ|ÊÊºÏ´óÁ¿insert»òupdate|Ö§³Ö
 
@@ -230,8 +248,8 @@ InnoDB|Ò»¸öÊý¾ÝÎÄ¼þ|´æ´¢¿Õ¼ä´ó|ÐèÒª¿½±´Êý¾Ý¡¢±¸·Ýbinlog|Ö§³Ö|ÐÐËøºÍ±íËø|²»Ö§³Ö|Ó
 
 ## MySQLÖ÷´Ó¸´ÖÆ
 ### Ö÷´Ó²¿Êð±ØÒªÌõ¼þ£º
-- Ö÷¿â¿ªÆôbinlogÈÕÖ¾£¨ÉèÖÃlog-bin²ÎÊý£©
-- Ö÷´Óserver-id²»Í¬
+- Ö÷¿â¿ªÆô`binlog`ÈÕÖ¾£¨ÉèÖÃ`log-bin`²ÎÊý£©
+- Ö÷´Ó`server-id`²»Í¬
 - ´Ó¿â·þÎñÆ÷ÄÜÁ¬Í¨Ö÷¿â
 
 ### Ô­Àí
@@ -239,25 +257,25 @@ InnoDB|Ò»¸öÊý¾ÝÎÄ¼þ|´æ´¢¿Õ¼ä´ó|ÐèÒª¿½±´Êý¾Ý¡¢±¸·Ýbinlog|Ö§³Ö|ÐÐËøºÍ±íËø|²»Ö§³Ö|Ó
 
 **¸´ÖÆÁ÷³Ì£º**
 1. ´Ó¿âÉú³ÉÁ½¸öÏß³Ì£¬Ò»¸öI/OÏß³Ì£¬Ò»¸öSQLÏß³Ì£»
-2. i/oÏß³ÌÈ¥ÇëÇóÖ÷¿â µÄbinlog£¬²¢½«µÃµ½µÄbinlogÈÕÖ¾Ð´µ½relay-log£¨ÖÐ¼ÌÈÕÖ¾£© ÎÄ¼þÖÐ£»
-3. Ö÷¿â»áÉú³ÉÒ»¸ö log dump Ïß³Ì£¬ÓÃÀ´¸ø´Ó¿â i/oÏß³Ì´«binlog£»
-4. SQL Ïß³Ì£¬»á¶ÁÈ¡relay-logÎÄ¼þÖÐµÄÈÕÖ¾£¬²¢½âÎö³É¾ßÌå²Ù×÷£¬À´ÊµÏÖÖ÷´ÓµÄ²Ù×÷Ò»ÖÂ£¬¶ø×îÖÕÊý¾ÝÒ»ÖÂ£»
+2. i/oÏß³ÌÈ¥ÇëÇóÖ÷¿â µÄ`binlog`£¬²¢½«µÃµ½µÄ`binlog`ÈÕÖ¾Ð´µ½`relay-log`£¨ÖÐ¼ÌÈÕÖ¾£© ÎÄ¼þÖÐ£»
+3. Ö÷¿â»áÉú³ÉÒ»¸ö`log dump`Ïß³Ì£¬ÓÃÀ´¸ø´Ó¿â i/oÏß³Ì´«`binlog`£»
+4. SQL Ïß³Ì£¬»á¶ÁÈ¡`relay-log`ÎÄ¼þÖÐµÄÈÕÖ¾£¬²¢½âÎö³É¾ßÌå²Ù×÷£¬À´ÊµÏÖÖ÷´ÓµÄ²Ù×÷Ò»ÖÂ£¬¶ø×îÖÕÊý¾ÝÒ»ÖÂ£»
 
 ### mysqlÖ÷´Ó¸´ÖÆ´æÔÚµÄÎÊÌâ£º
 1. Ö÷¿âå´»úºó£¬Êý¾Ý¿ÉÄÜ¶ªÊ§
-2. ´Ó¿âÖ»ÓÐÒ»¸ösql Thread£¬Ö÷¿âÐ´Ñ¹Á¦´ó£¬¸´ÖÆºÜ¿ÉÄÜÑÓÊ±
+2. ´Ó¿âÖ»ÓÐÒ»¸ö`sql Thread`£¬Ö÷¿âÐ´Ñ¹Á¦´ó£¬¸´ÖÆºÜ¿ÉÄÜÑÓÊ±
  
 **½â¾ö·½·¨£º**
-°ëÍ¬²½¸´ÖÆ---½â¾öÊý¾Ý¶ªÊ§µÄÎÊÌâ
-²¢ÐÐ¸´ÖÆ----½â¾ö´Ó¿â¸´ÖÆÑÓ³ÙµÄÎÊÌâ
+ - °ëÍ¬²½¸´ÖÆ---½â¾öÊý¾Ý¶ªÊ§µÄÎÊÌâ
+ - ²¢ÐÐ¸´ÖÆ----½â¾ö´Ó¿â¸´ÖÆÑÓ³ÙµÄÎÊÌâ
 
 ### °ëÍ¬²½¸´ÖÆ£º
-È·±£ÊÂÎñÌá½»ºóbinlogÖÁÉÙ´«Êäµ½Ò»¸ö´Ó¿â£¬µ«ÊÇ²»±£Ö¤´Ó¿âÓ¦ÓÃÍêÕâ¸öÊÂÎñµÄbinlog
+È·±£ÊÂÎñÌá½»ºó`binlog`ÖÁÉÙ´«Êäµ½Ò»¸ö´Ó¿â£¬µ«ÊÇ²»±£Ö¤´Ó¿âÓ¦ÓÃÍêÕâ¸öÊÂÎñµÄ`binlog`
 ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-semi-asyn.jpeg)
 
 ### ²¢ÐÐ¸´ÖÆ
-- ²¢ÐÐÊÇÖ¸´Ó¿â**¶àÏß³Ì**apply binlog
-- ¿â¼¶±ð²¢ÐÐÓ¦ÓÃbinlog£¬Í¬Ò»¸ö¿âÊý¾Ý¸ü¸Ä»¹ÊÇ´®ÐÐµÄ(5.7°æ²¢ÐÐ¸´ÖÆ»ùÓÚÊÂÎñ×é)
+- ²¢ÐÐÊÇÖ¸´Ó¿â**¶àÏß³Ì**`apply binlog`
+- ¿â¼¶±ð²¢ÐÐÓ¦ÓÃ`binlog`£¬Í¬Ò»¸ö¿âÊý¾Ý¸ü¸Ä»¹ÊÇ´®ÐÐµÄ(5.7°æ²¢ÐÐ¸´ÖÆ»ùÓÚÊÂÎñ×é)
 
 ²ÎÊýÉèÖÃ£º
 ```
@@ -268,29 +286,33 @@ InnoDB|Ò»¸öÊý¾ÝÎÄ¼þ|´æ´¢¿Õ¼ä´ó|ÐèÒª¿½±´Êý¾Ý¡¢±¸·Ýbinlog|Ö§³Ö|ÐÐËøºÍ±íËø|²»Ö§³Ö|Ó
 - **°ëÍ¬²½¸´ÖÆ**
 Ö÷´Ó²»Ò»ÖÂµÄÔ­ÒòÊÇÑÓÊ±ÒýÆðµÄ,ËùÒÔÒªÏû³ýÕâ¸öÑÓÊ±µÄÓ°Ïì£¬¿ÉÒÔ´ÓÖ÷¿â½øÐÐCUD²Ù×÷Ê±½øÐÐ¹æ±Ü£¬°ì·¨¾ÍÊÇµÈÖ÷´ÓÍ¬²½Íê³ÉÖ®ºó£¬Ö÷¿âÉÏµÄÐ´ÇëÇóÔÙ·µ»Ø£¬¾ÍÊÇ´ó¼Ò³£ËµµÄ°ëÍ¬²½¸´ÖÆ`semi-sync`¡£
 
- ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-semi-asyn-2.jpeg)
+ ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-semi-asyn-2.jpg)
 
     ·½°¸ÓÅµã£ºÀûÓÃÊý¾Ý¿âÔ­Éú¹¦ÄÜ£¬±È½Ï¼òµ¥
     ·½°¸È±µã£ºÖ÷¿âµÄÐ´ÇëÇóÊ±ÑÓ»áÔö³¤£¬ÍÌÍÂÁ¿»á½µµÍ
 
-- Êý¾Ý¿âÖÐ¼ä¼þ
- - CUD²Ù×÷
- ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-data-consistence-middleware-cud.jpg)
-  - R²Ù×÷
- ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-data-consistence-middleware-r.jpg)
+- **Êý¾Ý¿âÖÐ¼ä¼þ**
+    - CUD²Ù×÷
+    
+    ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-data-consistence-middleware-cud.jpg)
+    - R²Ù×÷
+    
+    ![´Ë´¦ÊäÈëÍ¼Æ¬µÄÃèÊö](images/mysql-data-consistence-middleware-r.jpg)
 
     ·½°¸ÓÅµã£ºÄÜ±£Ö¤¾ø¶ÔÒ»ÖÂ
+    
     ·½°¸È±µã£ºÊý¾Ý¿âÖÐ¼ä¼þµÄ³É±¾±È½Ï¸ß
 
 - **»º´æ¼ÇÂ¼Ð´key·¨**
- - CUD²Ù×÷
-    1. ½«Ä³¸ö¿âÉÏµÄÄ³¸ökeyÒª·¢ÉúÐ´²Ù×÷£¬¼ÇÂ¼ÔÚcacheÀï£¬²¢ÉèÖÃ¡°¾­ÑéÖ÷´ÓÍ¬²½Ê±¼ä¡±µÄcache³¬Ê±Ê±¼ä£¬ÀýÈç500ms
-    2. ÐÞ¸ÄÊý¾Ý¿â
-
- - R²Ù×÷
-    1. ÏÈµ½cacheÀï²é¿´£¬¶ÔÓ¦¿âµÄ¶ÔÓ¦keyÓÐÃ»ÓÐÏà¹ØÊý¾Ý 
-    2. Èç¹ûcache hit£¬ÓÐÏà¹ØÊý¾Ý£¬ËµÃ÷Õâ¸ökeyÉÏ¸Õ·¢Éú¹ýÐ´²Ù×÷£¬´ËÊ±ÐèÒª½«ÇëÇóÂ·ÓÉµ½Ö÷¿â¶Á×îÐÂµÄÊý¾Ý 
-    3. Èç¹ûcache miss£¬ËµÃ÷Õâ¸ökeyÉÏ½üÆÚÃ»ÓÐ·¢Éú¹ýÐ´²Ù×÷£¬´ËÊ±½«ÇëÇóÂ·ÓÉµ½´Ó¿â£¬¼ÌÐø¶ÁÐ´·ÖÀë
-
-    ·½°¸ÓÅµã£ºÏà¶ÔÊý¾Ý¿âÖÐ¼ä¼þ£¬³É±¾½ÏµÍ
-    ·½°¸È±µã£º·½°¸È±µã£ºÎªÁË±£Ö¤¡°Ò»ÖÂÐÔ¡±£¬ÒýÈëÁËÒ»¸öcache×é¼þ£¬²¢ÇÒ¶ÁÐ´Êý¾Ý¿âÊ±¶¼¶àÁËÒ»²½cache²Ù×÷
+    - CUD²Ù×÷
+       1. ½«Ä³¸ö¿âÉÏµÄÄ³¸ökeyÒª·¢ÉúÐ´²Ù×÷£¬¼ÇÂ¼ÔÚcacheÀï£¬²¢ÉèÖÃ¡°¾­ÑéÖ÷´ÓÍ¬²½Ê±¼ä¡±µÄcache³¬Ê±Ê±¼ä£¬ÀýÈç500ms
+       2. ÐÞ¸ÄÊý¾Ý¿â
+    
+    - R²Ù×÷
+       1. ÏÈµ½cacheÀï²é¿´£¬¶ÔÓ¦¿âµÄ¶ÔÓ¦keyÓÐÃ»ÓÐÏà¹ØÊý¾Ý 
+       2. Èç¹ûcache hit£¬ÓÐÏà¹ØÊý¾Ý£¬ËµÃ÷Õâ¸ökeyÉÏ¸Õ·¢Éú¹ýÐ´²Ù×÷£¬´ËÊ±ÐèÒª½«ÇëÇóÂ·ÓÉµ½Ö÷¿â¶Á×îÐÂµÄÊý¾Ý 
+       3. Èç¹ûcache miss£¬ËµÃ÷Õâ¸ökeyÉÏ½üÆÚÃ»ÓÐ·¢Éú¹ýÐ´²Ù×÷£¬´ËÊ±½«ÇëÇóÂ·ÓÉµ½´Ó¿â£¬¼ÌÐø¶ÁÐ´·ÖÀë
+    
+       ·½°¸ÓÅµã£ºÏà¶ÔÊý¾Ý¿âÖÐ¼ä¼þ£¬³É±¾½ÏµÍ
+       
+       ·½°¸È±µã£º·½°¸È±µã£ºÎªÁË±£Ö¤¡°Ò»ÖÂÐÔ¡±£¬ÒýÈëÁËÒ»¸öcache×é¼þ£¬²¢ÇÒ¶ÁÐ´Êý¾Ý¿âÊ±¶¼¶àÁËÒ»²½cache²Ù×÷
