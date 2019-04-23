@@ -157,8 +157,9 @@ InnoDB默认的RR事务隔离级别下，不显式加`lock in share mode`与`for
 每一个事务在启动的时候，都有一个唯一的递增的版本号。 
 1. 在插入操作时 ： 记录的创建版本号就是事务版本号。 
 比如我插入一条记录, 事务id 假设是1 ，那么记录如下：也就是说，创建版本号就是事务版本号。
+
 id | name | create version | delete version
-:--:|:--:|:--:|:--:
+:---:|:---:|:---:|:---:
 1  | test | 1 | 
 
 2. 在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。 
@@ -167,7 +168,7 @@ id | name | create version | delete version
 update table set name= 'new_value' where id=1;
 ```
 id | name | create version | delete version
-:--:|:--:|:--:|:--:
+:---:|:---:|:---:|:---:
 1  | test | 1 | 2
 1  | new_value | 2 |
 
@@ -176,7 +177,7 @@ id | name | create version | delete version
     delete from table where id=1; 
 ```
 id | name | create version | delete version
-:--:|:--:|:--:|:--:
+:---:|:---:|:---:|:---:
 1  | new_value | 2 | 3
 
 4. 查询操作： 
@@ -206,35 +207,19 @@ InnoDB|一个数据文件|存储空间大|需要拷贝数据、备份binlog|支�
 
 
 ## Q&A
-### Limit大表优化
-1.子查询优化法
+### Limit大表分页优化
+1. 利用覆盖索引（适用于查询指定列，并且这些列上有索引）
 ```
-    select * from Member where MemberID >= (select MemberID from Member limit 100000,1) limit 100   
+ select id from product limit 866613, 20
 ```
-缺点：数据必须是连续的，可以说不能有where条件，where条件会筛选数据，导致数据失去连续性
-
-2.使用 id 限定优化
+2. id>=last_id
 ```
-    select * from orders_history where id >= 1000001 limit 100;  
+ SELECT * FROM product WHERE ID > =(select id from product limit 866613, 1) limit 20
 ```
-3.反向查找优化法
-当偏移超过一半记录数的时候，先用排序，这样偏移就反转了
+3. 利用join
 ```
-   总记录数：1,628,775
-   每页记录数： 40
-   总页数：1,628,775 / 40 = 40720
-   中间页数：40720 / 2 = 20360
-   
-第30000页
-   正向查找SQL:
-   SELECT * FROM `abc` WHERE `BatchID` = 123 LIMIT 1199960, 40
-   时间：2.6493 秒
-   
-   反向查找sql:
-   SELECT * FROM `abc` WHERE `BatchID` = 123 ORDER BY InputDate DESC LIMIT 428775, 40
-   时间：1.0035 秒
+ SELECT * FROM product a JOIN (select id from product limit 866613, 20) b ON a.ID = b.id
 ```
-缺点：order by优化比较麻烦，要增加索引，索引影响数据的修改效率，并且要知道总记录数，偏移大于数据的一半
 
 ## MySQL性能优化
 ### 原则
