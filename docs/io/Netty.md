@@ -20,41 +20,40 @@ Rector多线程模型与单线程模型最大的区别就是有一组NIO线程�
 netty通过Reactor模型基于多路复用器接收并处理用户请求（能讲就多讲一点），内部实现了两个线程池，boss线程池和work线程池，其中boss线程池的线程负责处理请求的accept事件，当接收到accept事件的请求时，把对应的socket封装到一个NioSocketChannel中，并交给work线程池，其中work线程池负责请求的read和write事件。
 
 ## Q&A
-1. 为什么选择netty？
+### 为什么选择netty？
  - API使用简单，开发门槛低。
  - 功能强大，预置了多种编解码功能，支持多种协议开发。
  - 定制能力强，可以通过ChannelHadler进行扩展。
  - 性能高，对比其它NIO框架，Netty综合性能最优。
  - 经历了大规模的应用验证。在互联网、大数据、网络游戏、企业应用、电信软件得到成功，很多著名的框架通信底层就用了Netty，比如Dubbo
  - 稳定，修复了NIO出现的所有Bug。
-2. 原生的 NIO 在 JDK 1.7 版本存在 epoll bug？
+### 原生的 NIO 在 JDK 1.7 版本存在 epoll bug？
 ![此处输入图片的描述](images/nio-epoll-bug.png)
-3. 什么是TCP 粘包/拆包以及解决方法？
-**原因：**
- - 要发送的数据大于TCP发送缓冲区剩余空间大小，将会发生拆包。
- - 待发送数据大于MSS（最大报文长度），TCP在传输前将进行拆包。
- - 要发送的数据小于TCP发送缓冲区的大小，TCP将多次写入缓冲区的数据一次发送出去，将会发生粘包。
- - 接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。
+### 什么是TCP 粘包/拆包以及解决方法？
+ **原因：**
+  - 要发送的数据大于TCP发送缓冲区剩余空间大小，将会发生拆包。
+  - 待发送数据大于MSS（最大报文长度），TCP在传输前将进行拆包。
+  - 要发送的数据小于TCP发送缓冲区的大小，TCP将多次写入缓冲区的数据一次发送出去，将会发生粘包。
+  - 接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。
 
+  **解决方案：**
+  - 消息头部包含数据包的长度
+  - 发送端将每个数据包封装为固定长度（不够的可以通过补0填充）
+  - 数据包之间设置分隔符
 
- **解决方案：**
- - 消息头部包含数据包的长度
- - 发送端将每个数据包封装为固定长度（不够的可以通过补0填充）
- - 数据包之间设置分隔符
-
- **Netty解决方案**
- - LineBasedFrameDecoder:以换行符为结束标志的解码器，支持携带结束符或者不携带结束符两种解码方式，同时支持配置单行的最大长度
- - FixedLengthFrameDecoder:固定长度
- - DelimiterBasedFrameDecoder：固定字符切分
+  **Netty解决方案**
+  - LineBasedFrameDecoder:以换行符为结束标志的解码器，支持携带结束符或者不携带结束符两种解码方式，同时支持配置单行的最大长度
+  - FixedLengthFrameDecoder:固定长度
+  - DelimiterBasedFrameDecoder：固定字符切分
  
-4. Netty的零拷贝
+### Netty的零拷贝
  - DirectByteBuf通过直接在堆外分配内存的方式，避免了数据从堆内拷贝到堆外的过程
  - 通过组合ByteBuf类：即CompositeByteBuf，将多个ByteBuf合并为一个逻辑上的ByteBuf
  - 通过各种包装方法, 将 byte[]、ByteBuf、ByteBuffer等包装成一个ByteBuf对象
  - 通过slice方法, 将一个ByteBuf分解为多个共享同一个存储区域的ByteBuf, 避免了内存的拷贝，这在需要进行拆包操作时非常管用
  - 通过FileRegion包装的FileChannel.tranferTo方法进行文件传输时, 可以直接将文件缓冲区的数据发送到目标Channel, 减少了通过循环write方式导致的内存拷贝。但是这种方式是需要得到操作系统的零拷贝的支持的，如果netty所运行的操作系统不支持零拷贝的特性，则netty仍然无法做到零拷贝
 
-5. Netty 内部执行流程
+### Netty 内部执行流程
  - 创建ServerBootStrap实例
  - 设置并绑定Reactor线程池：EventLoopGroup，EventLoop就是处理所有注册到本线程的Selector上面的Channel
  - 设置并绑定服务端的channel
@@ -62,8 +61,8 @@ netty通过Reactor模型基于多路复用器接收并处理用户请求（能�
  - 绑定并启动监听端口（**如果是客户端此步是异步发起TCP连接**）
  - 当轮训到准备就绪的channel后，由Reactor线程：NioEventLoop执行pipline中的方法，最终调度并执行channelHandler 
 
-6. Netty 重连实现
- - *心跳检测*
+### Netty 重连实现
+ - **心跳检测**
  Netty中提供了一个IdleStateHandler类用于心跳检测
     ```
     ch.pipeline().addLast("ping", new IdleStateHandler(60, 20, 60 * 10, TimeUnit.SECONDS));
@@ -71,7 +70,7 @@ netty通过Reactor模型基于多路复用器接收并处理用户请求（能�
     在处理数据的ClientPoHandlerProto中增加userEventTriggered用来接收心跳检测结果,event.state()的状态分别对应上面三个参数的时间设置，当满足某个时间的条件时会触发事件。
 当客户端20秒没往服务端发送过数据，就会触发`IdleState.WRITER_IDLE`事件，这个时候我们就像服务端发送一条心跳数据，跟业务无关，只是心跳。服务端收到心跳之后就会回复一条消息，表示已经收到了心跳的消息，只要收到了服务端回复的消息，那么就不会触发`IdleState.READER_IDLE`事件，如果触发了`IdleState.READER_IDLE`事件就说明服务端没有给客户端响应，这个时候可以选择重新连接。
 
- - 启动时连接重试
+ - **启动时连接重试**
  增加负责重连的监听器ConnectionListener,并添加到ChannelFuture中去即可使用，连接失败的时候会进入ConnectionListener中的operationComplete方法执行我们的重连逻辑
  ```
  public class ConnectionListener implements ChannelFutureListener {
@@ -138,7 +137,7 @@ netty通过Reactor模型基于多路复用器接收并处理用户请求（能�
         }
      ```
    
-   - 运行中连接断开时重试:
+   - **运行中连接断开时重试**
     在连接断开时都会触发 channelInactive 方法, 处理重连的逻辑跟上面的一样。
        ```
     @Override
@@ -155,10 +154,8 @@ netty通过Reactor模型基于多路复用器接收并处理用户请求（能�
         super.channelInactive(ctx);
     }
     ```
-   7. 遇到的问题和解决方案
-   
-   问题：
+  ### 遇到的问题和解决方案
+   - 问题：
    对netty的不过熟悉，把请求的业务逻辑放在work线程池的线程中进行处理，进行压测的时候，发现qps总是上不去，后来看了源码之后才发现，由于业务逻辑的处理比较耗时，完全占用了work线程池的资源，导致新的请求一直处于等待状态。
-   
-   解决：
+   - 解决：
    把处理业务的逻辑封装成一个task提交给一个新建的业务线程池中执行，执行完之后由work线程池执行请求的write事件。
