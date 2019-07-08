@@ -7,6 +7,7 @@ redis 主要有以下几种数据类型：
 - list
 - set
 - sorted set
+sorted set的底层数据结构由ziplist、dict和skiplist组成。详见[Redis 为什么用跳表而不用平衡树？](https://juejin.im/post/57fa935b0e3dd90057c50fbc)
 
 ## Redis的线程模型
 redis 内部使用文件事件处理器 file event handler，这个文件事件处理器是**单线程**的，所以 redis 才叫做单线程的模型。它采用 **IO 多路复用机制**同时监听多个 socket，将产生事件的 socket 压入内存队列中，事件分派器根据 socket 上的事件类型来选择对应的事件处理器进行处理。

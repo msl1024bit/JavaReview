@@ -41,7 +41,9 @@ static final int hash(Object key) {
 - 并发扩容。引入ForwardingNode类，会改变sizeCtl这个值
 
 ### HashMap线程不安全
-- 在HashMap进行扩容重哈希时导致Entry链形成环。一旦Entry链中有环，势必会导致在同一个桶中进行插入、查询、删除等操作时陷入死循环。
+- 在JDK 1.7中，HashMap进行扩容重哈希时导致Entry链形成环。一旦Entry链中有环，势必会导致在同一个桶中进行插入、查询、删除等操作时陷入死循环。
+- 在JDK 1.8中，虽然针对HashMap的扩容操作进行了优化，主要是讲原来的头插法改为尾插法，避免了环形链表的形成。但还是无法避免多线程操作下可能发生的数据丢失。
+[高并发下HashMap的环形链表和数据丢失](https://www.cnblogs.com/xrq730/p/5037299.html)
 
 ### Segment数组
 - Segment 类继承于 ReentrantLock 类，从而使得 Segment 对象能充当锁的角色
