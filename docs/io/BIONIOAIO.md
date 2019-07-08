@@ -1,74 +1,73 @@
-�������� BIO,NIO,AIO �Ļ��������Լ�һЩ������������׼�����ԵĹ����в��ɻ�ȱ��һ���֣�������Щ֪ʶ��Ҳ����ѧϰ Netty �Ļ�����
+熟练掌握 BIO,NIO,AIO 的基本概念以及一些常见问题是你准备面试的过程中不可或缺的一部分，另外这些知识点也是你学习 Netty 的基础。
 
-# BIO,NIO,AIO �ܽ�
+# BIO,NIO,AIO 总结
 
- Java �е� BIO��NIO�� AIO ����Ϊ�� Java ���ԶԲ���ϵͳ�ĸ��� IO ģ�͵ķ�װ������Ա��ʹ����Щ API ��ʱ�򣬲���Ҫ���Ĳ���ϵͳ�����֪ʶ��Ҳ����Ҫ���ݲ�ͬ����ϵͳ��д��ͬ�Ĵ��롣ֻ��Ҫʹ��Java��API�Ϳ����ˡ�
+ Java 中的 BIO、NIO和 AIO 理解为是 Java 语言对操作系统的各种 IO 模型的封装。程序员在使用这些 API 的时候，不需要关心操作系统层面的知识，也不需要根据不同操作系统编写不同的代码。只需要使用Java的API就可以了。
 
-�ڽ� BIO,NIO,AIO ֮ǰ�����ع�һ�������������ͬ�����첽���������������
+在讲 BIO,NIO,AIO 之前先来回顾一下这样几个概念：同步与异步，阻塞与非阻塞。
 
-> 
-һ��IO������ʵ�ֳ����������裺����IO�����ʵ�ʵ�IO������ ͬ��IO���첽IO����������ڵڶ��������Ƿ����������ʵ�ʵ�IO��д����������̣���ô����ͬ��IO�� ����IO�ͷ�����IO���������ڵ�һ��������IO�����Ƿ�ᱻ�������������ֱ�������ô���Ǵ�ͳ������IO���������������ô���Ƿ�����IO��
-ͬ�����첽�����Ӧ�ó�����ں˵Ľ������Եģ�ͬ��ָ�����û����̴���IO�������ȴ�������ѯ��ȥ�鿴IO�����Ƿ���������첽��ָ�û����̴���IO�����Ժ�㿪ʼ���Լ������飬����IO�����Ѿ���ɵ�ʱ���õ�IO��ɵ�֪ͨ���������ͷ�����������ڽ����ڷ������ݵ�ʱ�򣬸���IO�����ľ���״̬����ȡ�Ĳ�ͬ��ʽ��˵������һ�ֶ�ȡ����д�����������ʵ�ַ�ʽ��������ʽ�¶�ȡ����д�뺯����һֱ�ȴ�������������ʽ�£���ȡ����д�뺯������������һ��״ֵ̬��
-����,IO�������Է�Ϊ3�ࣺͬ�������������ڵ�IO��������ͬ����������NIO�����첽��AIO����
+> 一个IO操作其实分成了两个步骤：发起IO请求和实际的IO操作。 同步IO和异步IO的区别就在于第二个步骤是否阻塞，如果实际的IO读写阻塞请求进程，那么就是同步IO。 阻塞IO和非阻塞IO的区别在于第一步，发起IO请求是否会被阻塞，如果阻塞直到完成那么就是传统的阻塞IO，如果不阻塞，那么就是非阻塞IO。
+同步和异步是针对应用程序和内核的交互而言的，同步指的是用户进程触发IO操作并等待或者轮询的去查看IO操作是否就绪，而异步是指用户进程触发IO操作以后便开始做自己的事情，而当IO操作已经完成的时候会得到IO完成的通知。而阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作函数的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入函数会立即返回一个状态值。
+所以,IO操作可以分为3类：同步阻塞（即早期的IO操作）、同步非阻塞（NIO）、异步（AIO）。
 
-- **ͬ��������** �ڴ��ַ�ʽ�£��û������ڷ���һ��IO�����Ժ󣬱���ȴ�IO��������ɣ�ֻ�е����������IO�����Ժ��û����̲������С�JAVA��ͳ��IOģ�����ڴ��ַ�ʽ��
-- **ͬ����������** �ڴ��ַ�ʽ�£��û����̷���һ��IO�����Ժ�߿ɷ������������飬�����û�������Ҫʱ��ʱ��ѯ��IO�����Ƿ���������Ҫ���û����̲�ͣ��ȥѯ�ʣ��Ӷ����벻��Ҫ��CPU��Դ�˷ѡ�����ĿǰJAVA��NIO������ͬ��������IO��
-- **�첽��** ���ַ�ʽ����ָӦ�÷���һ��IO�����Ժ󣬲��ȴ��ں�IO��������ɣ����ں����IO�����Ժ��֪ͨӦ�ó���
+- **同步阻塞：** 在此种方式下，用户进程在发起一个IO操作以后，必须等待IO操作的完成，只有当真正完成了IO操作以后，用户进程才能运行。JAVA传统的IO模型属于此种方式。
+- **同步非阻塞：** 在此种方式下，用户进程发起一个IO操作以后边可返回做其它事情，但是用户进程需要时不时的询问IO操作是否就绪，这就要求用户进程不停的去询问，从而引入不必要的CPU资源浪费。其中目前JAVA的NIO就属于同步非阻塞IO。
+- **异步：** 此种方式下是指应用发起一个IO操作以后，不等待内核IO操作的完成，等内核完成IO操作以后会通知应用程序。
 
-���[ͬ��-�첽������-��������BIO-NIO-AIO](http://www.xuxueli.com/blog/#/notebook/3-%E9%AB%98%E7%BA%A7/%E9%80%9A%E8%AE%AF%EF%BC%9A%E5%90%8C%E6%AD%A5-%E5%BC%82%E6%AD%A5%E3%80%81%E9%98%BB%E5%A1%9E-%E9%9D%9E%E9%98%BB%E5%A1%9E%E3%80%81BIO-NIO-AIO)
+详见[同步-异步、阻塞-非阻塞、BIO-NIO-AIO](http://www.xuxueli.com/blog/#/notebook/3-%E9%AB%98%E7%BA%A7/%E9%80%9A%E8%AE%AF%EF%BC%9A%E5%90%8C%E6%AD%A5-%E5%BC%82%E6%AD%A5%E3%80%81%E9%98%BB%E5%A1%9E-%E9%9D%9E%E9%98%BB%E5%A1%9E%E3%80%81BIO-NIO-AIO)
 
-�ٸ������м򵥵����ӣ�������������ˮ��Сʱ����Ƚϱ�����������ɵ����ˮ����**ͬ������**����������΢�ٳ���һ�㣬��֪��ÿ����ˮ�Ŀ�϶����ȥ�ɵ������£�Ȼ��ֻ��Ҫʱ��ʱ������ˮ����û�У�**ͬ��������**�������������Ǽ�������ˮ���˻ᷢ�������ĺ����������ֻ��Ҫ�����������֪��ˮ���ˣ������ڼ�����������Լ������飬����Ҫȥ��ˮ�ˣ�**�첽**����
+举个生活中简单的例子，你妈妈让你烧水，小时候你比较笨啊，在哪里傻等着水开（**同步阻塞**）。等你稍微再长大一点，你知道每次烧水的空隙可以去干点其他事，然后只需要时不时来看看水开了没有（**同步非阻塞**）。后来，你们家用上了水开了会发出声音的壶，这样你就只需要听到响声后就知道水开了，在这期间你可以随便干自己的事情，你需要去倒水了（**异步**）。
 
 
 ## 1. BIO (Blocking I/O)
 
-ͬ������I/Oģʽ�����ݵĶ�ȡд�����������һ���߳��ڵȴ�����ɡ�
+同步阻塞I/O模式，数据的读取写入必须阻塞在一个线程内等待其完成。
 
-### 1.1 ��ͳ BIO
+### 1.1 传统 BIO
 
-BIOͨ�ţ�һ����һӦ��ģ��ͼ����(ͼԴ���磬ԭ��������)��
+BIO通信（一请求一应答）模型图如下(图源网络，原出处不明)：
 
-![��ͳBIOͨ��ģ��ͼ](images/bio-communicate-model.png)
+![传统BIO通信模型图](images/bio-communicate-model.png)
 
-���� **BIO ͨ��ģ��** �ķ���ˣ�ͨ����һ�������� Acceptor �̸߳�������ͻ��˵����ӡ�����һ��ͨ����`while(true)` ѭ���з���˻���� `accept()` �����ȴ����տͻ��˵����ӵķ�ʽ������������һ�����յ�һ���������󣬾Ϳ��Խ���ͨ���׽��������ͨ���׽����Ͻ��ж�д��������ʱ�����ٽ��������ͻ�����������ֻ�ܵȴ�ͬ��ǰ���ӵĿͻ��˵Ĳ���ִ����ɣ� ��������ͨ�����߳���֧�ֶ���ͻ��˵����ӣ�����ͼ��ʾ��
+采用 **BIO 通信模型** 的服务端，通常由一个独立的 Acceptor 线程负责监听客户端的连接。我们一般通过在`while(true)` 循环中服务端会调用 `accept()` 方法等待接收客户端的连接的方式监听请求，请求一旦接收到一个连接请求，就可以建立通信套接字在这个通信套接字上进行读写操作，此时不能再接收其他客户端连接请求，只能等待同当前连接的客户端的操作执行完成， 不过可以通过多线程来支持多个客户端的连接，如上图所示。
 
-���Ҫ�� **BIO ͨ��ģ��** �ܹ�ͬʱ��������ͻ������󣬾ͱ���ʹ�ö��̣߳���Ҫԭ����`socket.accept()`��`socket.read()`��`socket.write()` �漰��������Ҫ��������ͬ�������ģ���Ҳ����˵���ڽ��յ��ͻ�����������֮��Ϊÿ���ͻ��˴���һ���µ��߳̽�����·�������������֮��ͨ�����������Ӧ����ͻ��ˣ��߳����١�����ǵ��͵� **һ����һӦ��ͨ��ģ��** �����ǿ�������һ�����������Ӳ����κ�����Ļ��ͻ���ɲ���Ҫ���߳̿�������������ͨ�� **�̳߳ػ���** ���ƣ��̳߳ػ��������̵߳Ĵ����ͻ��ճɱ���Խϵ͡�ʹ��`FixedThreadPool` ������Ч�Ŀ������̵߳������������֤��ϵͳ���޵���Դ�Ŀ��ƣ�ʵ����N(�ͻ�����������):M(�����ͻ���������߳�����)��α�첽I/Oģ�ͣ�N ����ԶԶ���� M��������һ��"α�첽 BIO"�л���ϸ���ܵ���
+如果要让 **BIO 通信模型** 能够同时处理多个客户端请求，就必须使用多线程（主要原因是`socket.accept()`、`socket.read()`、`socket.write()` 涉及的三个主要函数都是同步阻塞的），也就是说它在接收到客户端连接请求之后为每个客户端创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端，线程销毁。这就是典型的 **一请求一应答通信模型** 。我们可以设想一下如果这个连接不做任何事情的话就会造成不必要的线程开销，不过可以通过 **线程池机制** 改善，线程池还可以让线程的创建和回收成本相对较低。使用`FixedThreadPool` 可以有效的控制了线程的最大数量，保证了系统有限的资源的控制，实现了N(客户端请求数量):M(处理客户端请求的线程数量)的伪异步I/O模型（N 可以远远大于 M），下面一节"伪异步 BIO"中会详细介绍到。
 
-**����������һ�µ��ͻ��˲������������Ӻ�����ģ�ͻ����ʲô���⣿**
+**我们再设想一下当客户端并发访问量增加后这种模型会出现什么问题？**
 
-�� Java ������У��߳��Ǳ������Դ���̵߳Ĵ��������ٳɱ��ܸߣ�����֮�⣬�̵߳��л��ɱ�Ҳ�Ǻܸߵġ������� Linux �����Ĳ���ϵͳ�У��̱߳����Ͼ���һ�����̣������������̶߳�����������ϵͳ����������������������ӻᵼ���߳����������Ϳ��ܻᵼ���̶߳�ջ������������߳�ʧ�ܵ����⣬���յ��½���崻����߽��������ܶ����ṩ����
+在 Java 虚拟机中，线程是宝贵的资源，线程的创建和销毁成本很高，除此之外，线程的切换成本也是很高的。尤其在 Linux 这样的操作系统中，线程本质上就是一个进程，创建和销毁线程都是重量级的系统函数。如果并发访问量增加会导致线程数急剧膨胀可能会导致线程堆栈溢出、创建新线程失败等问题，最终导致进程宕机或者僵死，不能对外提供服务。
 
-### 1.2 α�첽 IO
+### 1.2 伪异步 IO
 
-Ϊ�˽��ͬ������I/O���ٵ�һ����·��Ҫһ���̴߳��������⣬�������˶������߳�ģ�ͽ������Ż�һһһ���ͨ��һ���̳߳�����������ͻ��˵�������룬�γɿͻ��˸���M���̳߳�����߳���N�ı�����ϵ������M����ԶԶ����N.ͨ���̳߳ؿ������ص����߳���Դ�������̵߳����ֵ����ֹ���ں����������뵼���̺߳ľ���
+为了解决同步阻塞I/O面临的一个链路需要一个线程处理的问题，后来有人对它的线程模型进行了优化一一一后端通过一个线程池来处理多个客户端的请求接入，形成客户端个数M：线程池最大线程数N的比例关系，其中M可以远远大于N.通过线程池可以灵活地调配线程资源，设置线程的最大值，防止由于海量并发接入导致线程耗尽。
 
-α�첽IOģ��ͼ(ͼԴ���磬ԭ��������)��
+伪异步IO模型图(图源网络，原出处不明)：
 
-![α�첽IOģ��ͼ](images/bio-fake-asyn-io-model.png)
+![伪异步IO模型图](images/bio-fake-asyn-io-model.png)
 
-�����̳߳غ�������п���ʵ��һ�ֽ���α�첽�� I/O ͨ�ſ�ܣ�����ģ��ͼ����ͼ��ʾ�������µĿͻ��˽���ʱ�����ͻ��˵� Socket ��װ��һ��Task��������ʵ��java.lang.Runnable�ӿڣ�Ͷ�ݵ���˵��̳߳��н��д�����JDK ���̳߳�ά��һ����Ϣ���к� N ����Ծ�̣߳�����Ϣ�����е�������д����������̳߳ؿ���������Ϣ���еĴ�С������߳�������ˣ�������Դռ���ǿɿصģ����۶��ٸ��ͻ��˲������ʣ������ᵼ����Դ�ĺľ���崻���
+采用线程池和任务队列可以实现一种叫做伪异步的 I/O 通信框架，它的模型图如上图所示。当有新的客户端接入时，将客户端的 Socket 封装成一个Task（该任务实现java.lang.Runnable接口）投递到后端的线程池中进行处理，JDK 的线程池维护一个消息队列和 N 个活跃线程，对消息队列中的任务进行处理。由于线程池可以设置消息队列的大小和最大线程数，因此，它的资源占用是可控的，无论多少个客户端并发访问，都不会导致资源的耗尽和宕机。
 
-α�첽I/Oͨ�ſ�ܲ������̳߳�ʵ�֣���˱�����Ϊÿ�����󶼴���һ�������߳���ɵ��߳���Դ�ľ����⡣������Ϊ���ĵײ���Ȼ��ͬ��������BIOģ�ͣ�����޷��Ӹ����Ͻ�����⡣
+伪异步I/O通信框架采用了线程池实现，因此避免了为每个请求都创建一个独立线程造成的线程资源耗尽问题。不过因为它的底层任然是同步阻塞的BIO模型，因此无法从根本上解决问题。
 
-### 1.3 ����ʾ��
+### 1.3 代码示例
 
-�����������ʾ��BIOͨ�ţ�һ����һӦ��ģ�͡����ǻ��ڿͻ��˴�������߳��������ӷ���˲����䷢��"��ǰʱ��+:hello world"������˻�Ϊÿ���ͻ����̴߳���һ���߳�������������ʾ�������������Ĳ��ͣ�ԭ��ַ���£�        
+下面代码中演示了BIO通信（一请求一应答）模型。我们会在客户端创建多个线程依次连接服务端并向其发送"当前时间+:hello world"，服务端会为每个客户端线程创建一个线程来处理。代码示例出自闪电侠的博客，原地址如下：        
 
 [https://www.jianshu.com/p/a4e03835921a](https://www.jianshu.com/p/a4e03835921a)
 
-**�ͻ���**
+**客户端**
 
 ```java
 /**
  * 
- * @author ������
- * @date 2018��10��14��
- * @Description:�ͻ���
+ * @author 闪电侠
+ * @date 2018年10月14日
+ * @Description:客户端
  */
 public class IOClient {
 
   public static void main(String[] args) {
-    // TODO ��������̣߳�ģ�����ͻ������ӷ����
+    // TODO 创建多个线程，模拟多个客户端连接服务端
     new Thread(() -> {
       try {
         Socket socket = new Socket("127.0.0.1", 3333);
@@ -89,34 +88,34 @@ public class IOClient {
 
 ```
 
-**�����**
+**服务端**
 
 ```java
 /**
- * @author ������
- * @date 2018��10��14��
- * @Description: �����
+ * @author 闪电侠
+ * @date 2018年10月14日
+ * @Description: 服务端
  */
 public class IOServer {
 
   public static void main(String[] args) throws IOException {
-    // TODO ����˴����ͻ�����������
+    // TODO 服务端处理客户端连接请求
     ServerSocket serverSocket = new ServerSocket(3333);
 
-    // ���յ��ͻ�����������֮��Ϊÿ���ͻ��˴���һ���µ��߳̽�����·����
+    // 接收到客户端连接请求之后为每个客户端创建一个新的线程进行链路处理
     new Thread(() -> {
       while (true) {
         try {
-          // ����������ȡ�µ�����
+          // 阻塞方法获取新的连接
           Socket socket = serverSocket.accept();
 
-          // ÿһ���µ����Ӷ�����һ���̣߳������ȡ����
+          // 每一个新的连接都创建一个线程，负责读取数据
           new Thread(() -> {
             try {
               int len;
               byte[] data = new byte[1024];
               InputStream inputStream = socket.getInputStream();
-              // ���ֽ�����ʽ��ȡ����
+              // 按字节流方式读取数据
               while ((len = inputStream.read(data)) != -1) {
                 System.out.println(new String(data, 0, len));
               }
@@ -135,110 +134,110 @@ public class IOServer {
 }
 ```
 
-### 1.4 �ܽ�
+### 1.4 总结
 
-�ڻ�����������ر�ߣ�С�ڵ���1000��������£�����ģ���ǱȽϲ����ģ�������ÿһ������רע���Լ��� I/O ���ұ��ģ�ͼ򵥣�Ҳ���ù��࿼��ϵͳ�Ĺ��ء����������⡣�̳߳ر�������һ����Ȼ��©�������Ի���һЩϵͳ�������˵����ӻ����󡣵��ǣ������ʮ�������������ӵ�ʱ�򣬴�ͳ�� BIO ģ��������Ϊ���ġ���ˣ�������Ҫһ�ָ���Ч�� I/O ����ģ����Ӧ�Ը��ߵĲ�������
+在活动连接数不是特别高（小于单机1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。
 
 
 
 ## 2. NIO (New I/O)
 
-### 2.1 NIO ���
+### 2.1 NIO 简介
 
- NIO��һ��ͬ����������I/Oģ�ͣ���Java 1.4 ��������NIO��ܣ���Ӧ java.nio �����ṩ�� Channel , Selector��Buffer�ȳ���
+ NIO是一种同步非阻塞的I/O模型，在Java 1.4 中引入了NIO框架，对应 java.nio 包，提供了 Channel , Selector，Buffer等抽象。
  
-NIO�е�N��������ΪNon-blocking����������New����֧�����򻺳�ģ�����ͨ����I/O���������� NIO�ṩ���봫ͳBIOģ���е� `Socket` �� `ServerSocket` ���Ӧ�� `SocketChannel` �� `ServerSocketChannel` ���ֲ�ͬ���׽���ͨ��ʵ��,����ͨ����֧�������ͷ���������ģʽ������ģʽʹ�þ���ͳ�е�֧��һ�����Ƚϼ򵥣��������ܺͿɿ��Զ����ã�������ģʽ������֮�෴�����ڵ͸��ء��Ͳ�����Ӧ�ó��򣬿���ʹ��ͬ������I/O�������������ʺ͸��õ�ά���ԣ����ڸ߸��ء��߲����ģ����磩Ӧ�ã�Ӧʹ�� NIO �ķ�����ģʽ��������
+NIO中的N可以理解为Non-blocking，不单纯是New。它支持面向缓冲的，基于通道的I/O操作方法。 NIO提供了与传统BIO模型中的 `Socket` 和 `ServerSocket` 相对应的 `SocketChannel` 和 `ServerSocketChannel` 两种不同的套接字通道实现,两种通道都支持阻塞和非阻塞两种模式。阻塞模式使用就像传统中的支持一样，比较简单，但是性能和可靠性都不好；非阻塞模式正好与之相反。对于低负载、低并发的应用程序，可以使用同步阻塞I/O来提升开发速率和更好的维护性；对于高负载、高并发的（网络）应用，应使用 NIO 的非阻塞模式来开发。
 
-### 2.2 NIO������/NIO��IO����
+### 2.2 NIO的特性/NIO与IO区别
 
-������������лش�������⣬�Ҿ������ȿ϶�Ҫ�� NIO ���Ƿ����� IO �� IO �������� IO ˵��Ȼ�󣬿��Դ� NIO ��3���������/����Ϊ NIO ������һЩ�Ľ�������������������Щ���ش������Ҿ�������� NIO �����˸�Ϊ����һ�����ʶ�����Թ��ʵ���������⣬��Ҳ�ܺ����ɵĻش������ˡ�
+如果是在面试中回答这个问题，我觉得首先肯定要从 NIO 流是非阻塞 IO 而 IO 流是阻塞 IO 说起。然后，可以从 NIO 的3个核心组件/特性为 NIO 带来的一些改进来分析。如果，你把这些都回答上了我觉得你对于 NIO 就有了更为深入一点的认识，面试官问到你这个问题，你也能很轻松的回答上来了。
 
-#### 1)Non-blocking IO��������IO��
+#### 1)Non-blocking IO（非阻塞IO）
 
-**IO���������ģ�NIO���ǲ������ġ�**
+**IO流是阻塞的，NIO流是不阻塞的。**
 
-Java NIOʹ���ǿ��Խ��з�����IO����������˵�����߳��д�ͨ����ȡ���ݵ�buffer��ͬʱ���Լ�����������飬�����ݶ�ȡ��buffer�к��߳��ټ����������ݡ�д����Ҳ��һ���ġ����⣬������дҲ����ˡ�һ���߳�����д��һЩ���ݵ�ĳͨ����������Ҫ�ȴ�����ȫд�룬����߳�ͬʱ����ȥ��������顣
+Java NIO使我们可以进行非阻塞IO操作。比如说，单线程中从通道读取数据到buffer，同时可以继续做别的事情，当数据读取到buffer中后，线程再继续处理数据。写数据也是一样的。另外，非阻塞写也是如此。一个线程请求写入一些数据到某通道，但不需要等待它完全写入，这个线程同时可以去做别的事情。
 
-Java IO�ĸ������������ġ�����ζ�ţ���һ���̵߳��� `read()` ��  `write()` ʱ�����̱߳�������ֱ����һЩ���ݱ���ȡ����������ȫд�롣���߳��ڴ��ڼ䲻���ٸ��κ�������
+Java IO的各种流是阻塞的。这意味着，当一个线程调用 `read()` 或  `write()` 时，该线程被阻塞，直到有一些数据被读取，或数据完全写入。该线程在此期间不能再干任何事情了
 
-#### 2)Buffer(������)
+#### 2)Buffer(缓冲区)
 
-**IO ������(Stream oriented)���� NIO ���򻺳���(Buffer oriented)��**
+**IO 面向流(Stream oriented)，而 NIO 面向缓冲区(Buffer oriented)。**
 
-Buffer��һ������������һЩҪд�����Ҫ���������ݡ���NIO����м���Buffer�����������¿���ԭI/O��һ����Ҫ��������������I/O�С����Խ�����ֱ��д����߽�����ֱ�Ӷ��� Stream �����С���Ȼ Stream ��Ҳ�� Buffer ��ͷ����չ�࣬��ֻ�����İ�װ�࣬���Ǵ����������������� NIO ȴ��ֱ�Ӷ��� Buffer �н��в�����
+Buffer是一个对象，它包含一些要写入或者要读出的数据。在NIO类库中加入Buffer对象，体现了新库与原I/O的一个重要区别。在面向流的I/O中·可以将数据直接写入或者将数据直接读到 Stream 对象中。虽然 Stream 中也有 Buffer 开头的扩展类，但只是流的包装类，还是从流读到缓冲区，而 NIO 却是直接读到 Buffer 中进行操作。
 
-��NIO���У��������ݶ����û����������ġ��ڶ�ȡ����ʱ������ֱ�Ӷ����������е�; ��д������ʱ��д�뵽�������С��κ�ʱ�����NIO�е����ݣ�����ͨ�����������в�����
+在NIO厍中，所有数据都是用缓冲区处理的。在读取数据时，它是直接读到缓冲区中的; 在写入数据时，写入到缓冲区中。任何时候访问NIO中的数据，都是通过缓冲区进行操作。
 
-��õĻ������� ByteBuffer,һ�� ByteBuffer �ṩ��һ�鹦�����ڲ��� byte ���顣����ByteBuffer,����������һЩ����������ʵ�ϣ�ÿһ��Java�������ͣ�����Boolean���ͣ�����Ӧ��һ�ֻ�������
+最常用的缓冲区是 ByteBuffer,一个 ByteBuffer 提供了一组功能用于操作 byte 数组。除了ByteBuffer,还有其他的一些缓冲区，事实上，每一种Java基本类型（除了Boolean类型）都对应有一种缓冲区。
 
-#### 3)Channel (ͨ��)
+#### 3)Channel (通道)
 
-NIO ͨ��Channel��ͨ���� ���ж�д��
+NIO 通过Channel（通道） 进行读写。
 
-ͨ����˫��ģ��ɶ�Ҳ��д�������Ķ�д�ǵ���ġ����۶�д��ͨ��ֻ�ܺ�Buffer��������Ϊ Buffer��ͨ�������첽�ض�д��
+通道是双向的，可读也可写，而流的读写是单向的。无论读写，通道只能和Buffer交互。因为 Buffer，通道可以异步地读写。
 
-####  4)Selectors(ѡ����)
+####  4)Selectors(选择器)
 
-NIO��ѡ��������IOû�С�
+NIO有选择器，而IO没有。
 
-ѡ��������ʹ�õ����̴߳������ͨ������ˣ�����Ҫ���ٵ��߳���������Щͨ�����߳�֮����л����ڲ���ϵͳ��˵�ǰ���ġ� ��ˣ�Ϊ�����ϵͳЧ��ѡ���������õġ�
+选择器用于使用单个线程处理多个通道。因此，它需要较少的线程来处理这些通道。线程之间的切换对于操作系统来说是昂贵的。 因此，为了提高系统效率选择器是有用的。
 
-![һ�����߳���Slectorά��3��Channel��ʾ��ͼ](images/nio-selector.png)
+![一个单线程中Slector维护3个Channel的示意图](images/nio-selector.png)
 
-### 2.3  NIO �����ݺ�д���ݷ�ʽ
-ͨ����˵NIO�е�����IO���Ǵ� Channel��ͨ���� ��ʼ�ġ�
+### 2.3  NIO 读数据和写数据方式
+通常来说NIO中的所有IO都是从 Channel（通道） 开始的。
 
-- ��ͨ���������ݶ�ȡ ������һ����������Ȼ������ͨ����ȡ���ݡ�
-- ��ͨ����������д�� ������һ����������������ݣ���Ҫ��ͨ��д�����ݡ�
+- 从通道进行数据读取 ：创建一个缓冲区，然后请求通道读取数据。
+- 从通道进行数据写入 ：创建一个缓冲区，填充数据，并要求通道写入数据。
 
-���ݶ�ȡ��д�����ͼʾ��
+数据读取和写入操作图示：
 
-![NIO��д���ݵķ�ʽ](images/nio-read-write-data.png)
+![NIO读写数据的方式](images/nio-read-write-data.png)
 
 
-### 2.4 NIO��������򵥽���
+### 2.4 NIO核心组件简单介绍
 
-NIO �������漸�����ĵ������
+NIO 包含下面几个核心的组件：
 
-- Channel(ͨ��)
-- Buffer(������)
-- Selector(ѡ����)
+- Channel(通道)
+- Buffer(缓冲区)
+- Selector(选择器)
 
-����NIO��ϵ��������ԶԶ��ֹ��������ֻ��˵��������NIO��ϵ�ġ�����API�������������Ѿ�����������������˻����Ĳ���������Ͳ����������ˡ�
+整个NIO体系包含的类远远不止这三个，只能说这三个是NIO体系的“核心API”。我们上面已经对这三个概念进行了基本的阐述，这里就不多做解释了。
 
-### 2.5 ����ʾ��
+### 2.5 代码示例
 
-����ʾ�������������Ĳ��ͣ�ԭ��ַ���£�        
+代码示例出自闪电侠的博客，原地址如下：        
 
 [https://www.jianshu.com/p/a4e03835921a](https://www.jianshu.com/p/a4e03835921a)
 
-�ͻ��� IOClient.java �Ĵ��벻�䣬���ǶԷ����ʹ�� NIO ���и��졣���´���϶�����߼��Ƚϸ��ӣ���ҿ����ͺá�
+客户端 IOClient.java 的代码不变，我们对服务端使用 NIO 进行改造。以下代码较多而且逻辑比较复杂，大家看看就好。
 
 ```java
 /**
  * 
- * @author ������
- * @date 2019��2��21��
- * @Description: NIO �����ķ����
+ * @author 闪电侠
+ * @date 2019年2月21日
+ * @Description: NIO 改造后的服务端
  */
 public class NIOServer {
   public static void main(String[] args) throws IOException {
-    // 1. serverSelector������ѯ�Ƿ����µ����ӣ�����˼�⵽�µ�����֮�󣬲��ٴ���һ���µ��̣߳�
-    // ����ֱ�ӽ������Ӱ󶨵�clientSelector�ϣ������Ͳ��� IO ģ���� 1w �� while ѭ��������
+    // 1. serverSelector负责轮询是否有新的连接，服务端监测到新的连接之后，不再创建一个新的线程，
+    // 而是直接将新连接绑定到clientSelector上，这样就不用 IO 模型中 1w 个 while 循环在死等
     Selector serverSelector = Selector.open();
-    // 2. clientSelector������ѯ�����Ƿ������ݿɶ�
+    // 2. clientSelector负责轮询连接是否有数据可读
     Selector clientSelector = Selector.open();
 
     new Thread(() -> {
       try {
-        // ��ӦIO����з��������
+        // 对应IO编程中服务端启动
         ServerSocketChannel listenerChannel = ServerSocketChannel.open();
         listenerChannel.socket().bind(new InetSocketAddress(3333));
         listenerChannel.configureBlocking(false);
         listenerChannel.register(serverSelector, SelectionKey.OP_ACCEPT);
 
         while (true) {
-          // ����Ƿ����µ����ӣ������1ָ����������ʱ��Ϊ 1ms
+          // 监测是否有新的连接，这里的1指的是阻塞的时间为 1ms
           if (serverSelector.select(1) > 0) {
             Set<SelectionKey> set = serverSelector.selectedKeys();
             Iterator<SelectionKey> keyIterator = set.iterator();
@@ -249,7 +248,7 @@ public class NIOServer {
               if (key.isAcceptable()) {
                 try {
                   // (1)
-                  // ÿ��һ�������ӣ�����Ҫ����һ���̣߳�����ֱ��ע�ᵽclientSelector
+                  // 每来一个新连接，不需要创建一个线程，而是直接注册到clientSelector
                   SocketChannel clientChannel = ((ServerSocketChannel) key.channel()).accept();
                   clientChannel.configureBlocking(false);
                   clientChannel.register(clientSelector, SelectionKey.OP_READ);
@@ -267,7 +266,7 @@ public class NIOServer {
     new Thread(() -> {
       try {
         while (true) {
-          // (2) ������ѯ�Ƿ�����Щ���������ݿɶ��������1ָ����������ʱ��Ϊ 1ms
+          // (2) 批量轮询是否有哪些连接有数据可读，这里的1指的是阻塞的时间为 1ms
           if (clientSelector.select(1) > 0) {
             Set<SelectionKey> set = clientSelector.selectedKeys();
             Iterator<SelectionKey> keyIterator = set.iterator();
@@ -279,7 +278,7 @@ public class NIOServer {
                 try {
                   SocketChannel clientChannel = (SocketChannel) key.channel();
                   ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-                  // (3) ���� Buffer
+                  // (3) 面向 Buffer
                   clientChannel.read(byteBuffer);
                   byteBuffer.flip();
                   System.out.println(
@@ -301,22 +300,22 @@ public class NIOServer {
 }
 ```
 
-Ϊʲô��Ҷ���Ը���� JDK ԭ�� NIO ���п����أ�������Ĵ����д�Ҷ����Կ���������������ã����˱�̸��ӡ����ģ����֮�⣬��������������ڸ�������⣺
+为什么大家都不愿意用 JDK 原生 NIO 进行开发呢？从上面的代码中大家都可以看出来，是真的难用！除了编程复杂、编程模型难之外，它还有以下让人诟病的问题：
 
-- JDK �� NIO �ײ��� epoll ʵ�֣���ʵ�ֱ���ڸ���Ŀ���ѯ bug �ᵼ�� cpu ��� 100%
-- ��Ŀ�Ӵ�֮������ʵ�ֵ� NIO �����׳��ָ��� bug��ά���ɱ��ϸߣ�������һ������Ҷ����ܱ�֤û�� bug
+- JDK 的 NIO 底层由 epoll 实现，该实现饱受诟病的空轮询 bug 会导致 cpu 飙升 100%
+- 项目庞大之后，自行实现的 NIO 很容易出现各类 bug，维护成本较高，上面这一坨代码我都不能保证没有 bug
 
-Netty �ĳ��ֺܴ�̶��ϸ����� JDK ԭ�� NIO �����ڵ�һЩ�����������ܵ����⡣
+Netty 的出现很大程度上改善了 JDK 原生 NIO 所存在的一些让人难以忍受的问题。
 
 ### 3. AIO (Asynchronous I/O)
 
-AIO Ҳ���� NIO 2���� Java 7 �������� NIO �ĸĽ��� NIO 2,�����첽��������IOģ�͡��첽 IO �ǻ����¼��ͻص�����ʵ�ֵģ�Ҳ����Ӧ�ò���֮���ֱ�ӷ��أ�����������������̨������ɣ�����ϵͳ��֪ͨ��Ӧ���߳̽��к����Ĳ�����
+AIO 也就是 NIO 2。在 Java 7 中引入了 NIO 的改进版 NIO 2,它是异步非阻塞的IO模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。
 
-AIO ���첽IO����д����Ȼ NIO ����������У��ṩ�˷������ķ��������� NIO �� IO ��Ϊ����ͬ���ġ����� NIO ��˵�����ǵ�ҵ���߳����� IO ����׼����ʱ���õ�֪ͨ�����ž�������߳����н��� IO ������IO����������ͬ���ġ������� AIO ������ IO ���Ͷ���ͬ���ģ���һ����Դӵײ�IO�߳�ģ�ͽ��ͣ��Ƽ�һƪ���£�[����������θ�Ů���ѽ���ʲô��Linux������IOģ�ͣ���](https://mp.weixin.qq.com/s?__biz=Mzg3MjA4MTExMw==&mid=2247484746&amp;idx=1&amp;sn=c0a7f9129d780786cabfcac0a8aa6bb7&source=41#wechat_redirect) ��
+AIO 是异步IO的缩写，虽然 NIO 在网络操作中，提供了非阻塞的方法，但是 NIO 的 IO 行为还是同步的。对于 NIO 来说，我们的业务线程是在 IO 操作准备好时，得到通知，接着就由这个线程自行进行 IO 操作，IO操作本身是同步的。（除了 AIO 其他的 IO 类型都是同步的，这一点可以从底层IO线程模型解释，推荐一篇文章：[《漫话：如何给女朋友解释什么是Linux的五种IO模型？》](https://mp.weixin.qq.com/s?__biz=Mzg3MjA4MTExMw==&mid=2247484746&amp;idx=1&amp;sn=c0a7f9129d780786cabfcac0a8aa6bb7&source=41#wechat_redirect) ）
 
-��������������ϣ��ҷ��־�Ŀǰ��˵ AIO ��Ӧ�û����Ǻܹ㷺��Netty ֮ǰҲ����ʹ�ù� AIO�������ַ����ˡ�
+查阅网上相关资料，我发现就目前来说 AIO 的应用还不是很广泛，Netty 之前也尝试使用过 AIO，不过又放弃了。
 
-## �ο�
+## 参考
 
-- ��Netty Ȩ��ָ�ϡ��ڶ���
-- https://zhuanlan.zhihu.com/p/23488863 (���ż����Ŷ�)
+- 《Netty 权威指南》第二版
+- https://zhuanlan.zhihu.com/p/23488863 (美团技术团队)
