@@ -29,6 +29,8 @@ netty通过Reactor模型基于多路复用器接收并处理用户请求（能�
  - 稳定，修复了NIO出现的所有Bug。
 ### 原生的 NIO 在 JDK 1.7 版本存在 epoll bug？
 ![此处输入图片的描述](images/nio-epoll-bug.png)
+详见[JDK Epoll空轮询bug](https://www.jianshu.com/p/3ec120ca46b2)
+
 ### 什么是TCP 粘包/拆包以及解决方法？
  **原因：**
   - 要发送的数据大于TCP发送缓冲区剩余空间大小，将会发生拆包。
