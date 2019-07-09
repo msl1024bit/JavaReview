@@ -35,6 +35,8 @@
  - 最大线程数：最大线程数 = （最大任务数-队列长度）/每个线程每秒处理能力
 maxPoolSize = (max(tasks)- queueCapacity)/(1/taskcost)
 
+### 线程池深入理解
+详见[如何优雅的使用和理解线程池](https://segmentfault.com/a/1190000015808897#articleHeader3)
 
 ### 补充：批量任务的执行方式
 方式一：首先定义任务集合，然后定义Future集合用于存放执行结果，执行任务，最后遍历Future集合获取结果；
@@ -390,6 +392,10 @@ public class Test_interrupted implements Runnable {
 > 是否停止1?: true
 > 是否停止2?: true
 ```
+
+### ThreadLocal原理
+详见[正确理解Thread Local的原理与适用场景](http://www.jasongj.com/java/threadlocal/)
+
 ## synchronized原理
 ### 3种使用方法
 
