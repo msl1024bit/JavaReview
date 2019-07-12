@@ -186,6 +186,9 @@ id | name | create version | delete version
  - 删除版本号大于当前事务版本号，就是说删除操作是在当前事务启动之后做的。 
  - 创建版本号小于或者等于当前事务版本号 ，就是说记录创建是在事务中（等于的情况）或者事务启动之前。
 
+**MVCC深度分析** 
+详见[MySQL InnoDB MVCC深度分析](https://www.cnblogs.com/stevenczp/p/8018986.html)
+
 
 ### 锁算法
 InnoDB主要实现了三种行锁算法：
