@@ -3,6 +3,20 @@
 ### 基本架构图
 ![此处输入图片的描述](images/dubbo-operating-principle.png)
 
+### 线程模型
+![dubbo线程模型](images/dubbo-thread-model.png)
+
+- 蓝色代表“发送RPC请求”过程，由**业务请求线程** 执行，通过`NettyChannel`将请求数据放入`Netty`的IO任务队列后，构建`ResponseFuture`并返回。此时RPC请求发送及响应接收并未真正完成；
+- 紫色是基于`Netty`的网络消息收发过程，通过**当前网络通道** 绑定的`NioEventLoop`线程**轮询** 完成；
+- 橙色代表“接收RPC响应”过程，该过程在**Dubbo业务线程池** 中执行，处理RPC响应消息并交由`ResponseFuture`触发接收响应的逻辑；
+- 绿色代表“获取RPC调用结果”过程，由**业务请求线程** 执行，阻塞直到从`ResponseFuture`中获取到RPC响应结果；
+- 红色代表“接收并处理RPC请求”过程，在**Dubbo业务线程池** 中执行。RPC请求消息由`HeaderExchangeHandler`处理，通过`DubboInvoker`反射执行**实际接口实现类** 得到执行结果，并封装成`Response`交由网络通道发送RPC响应。
+
+作者：益文的圈
+链接：https://www.jianshu.com/p/1e0c8c08e89d
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
 ### 通信协议
 - dubbo协议
 **默认**就是走 dubbo 协议，单一长连接，进行的是 NIO 异步通信，基于 **hessian** 作为序列化协议。
