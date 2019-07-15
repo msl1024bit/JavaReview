@@ -12,11 +12,6 @@
 - 绿色代表“获取RPC调用结果”过程，由**业务请求线程** 执行，阻塞直到从`ResponseFuture`中获取到RPC响应结果；
 - 红色代表“接收并处理RPC请求”过程，在**Dubbo业务线程池** 中执行。RPC请求消息由`HeaderExchangeHandler`处理，通过`DubboInvoker`反射执行**实际接口实现类** 得到执行结果，并封装成`Response`交由网络通道发送RPC响应。
 
-作者：益文的圈
-链接：https://www.jianshu.com/p/1e0c8c08e89d
-来源：简书
-简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
-
 ### 通信协议
 - dubbo协议
 **默认**就是走 dubbo 协议，单一长连接，进行的是 NIO 异步通信，基于 **hessian** 作为序列化协议。
