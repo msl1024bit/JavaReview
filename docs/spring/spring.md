@@ -302,7 +302,7 @@ setter方法注入：
  - `ResourceLoader`：来完成资源文件位置的定位
  - `BeanDefinitionReader`：来完成定义信息的解析和Bean信息的注册
 
-注册过程就是在 IOC 容器内部维护的一个ConcurrentHashMap来保存得到的`BeanDefinition`的过程。这个ConcurrentHashMap是 IoC 容器持有 bean 信息的场所，以后对 bean 的操作都是围绕这个ConcurrentHashMap来实现的.
+注册过程就是在 IOC 容器内部维护的一个`ConcurrentHashMap`来保存得到的`BeanDefinition`的过程。这个`ConcurrentHashMap`是 IoC 容器持有 bean 信息的场所，以后对 bean 的操作都是围绕这个`ConcurrentHashMap`来实现的.
 
 ### IOC容器的依赖注入
 1. 单例模式并且是非延迟加载的对象，会在**IOC容器初始化**的时候被创建且初始化。
