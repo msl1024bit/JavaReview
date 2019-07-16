@@ -316,21 +316,29 @@ setter方法注入：
 3. 将依赖Bean的名称和被依赖Bean的名称存储在IoC容器的集合中。
 
 ### Spring循环依赖
-定义： 循环依赖就是循环引用，就是两个或多个Bean相互之间的持有对方，比方CircularityA引用CircularityB，CircularityB引用CircularityA，形成一个环状引用关系。
+定义： 循环依赖就是循环引用，就是两个或多个Bean相互之间的持有对方，比方A引用B，B引用C，C引用A，形成一个环状引用关系。
 
 首先，需要明确的是spring对循环依赖的处理有三种情况：
-1. **构造器的循环依赖**：这种依赖spring是处理不了的，直 接抛出BeanCurrentlylnCreationException异常。
-2. **单例模式下的setter循环依赖**：通过“三级缓存”处理循环依赖。
-3. **非单例循环依赖**：无法处理。
+1. **构造器的循环依赖**：无法处理。创建A类是，构造器需要B类，那将去创建B，在创建B时又发现需要C类，则又去创建C类，最终在创建C时发现又需要A，从而形成一个环，没办法创建。直接抛出`BeanCurrentlylnCreationException`异常。
+2. **单例模式下的setter循环依赖**：通过“三级缓存”处理循环依赖。通过Spring容器提前暴露刚完成构造器注入但未完成其他步骤（比如setter注入）的bean来完成的，而且只能解决单例作用域的bean循环依赖。
+3. **非单例循环依赖**：无法处理。因为Spring容器不进行缓存`prototype`作用域的bean，因此无法提前暴露一个创建中的bean，所以检测到循环依赖会直接抛出`BeanCurrentlyInCreationException`异常
 
-- 构造器循环依赖
-    - `this.singletonsCurrentlylnCreation.add(beanNam）`将当前正要创建的bean 记录在缓存中
-    - Spring 容器将每一个正在创建的bean 标识符放在一个**当前创建bean池**中，在创建过程中将一直保持在这个池中，因此如果在创建bean 过程中发现自己已经在“当前创建bean 池” 里时，将抛出`BeanCurrentlylnCreationException` 异常表示循环依赖；而对于创建完毕的bean 将从“ 当前创建bean 池”中清除掉。
-
-- setter循环依赖
+- 构造器循环依赖(构造器依赖 A -> B -> C -> A)
+    - Spring容器创建A bean，首先去 “当前创建bean池”中查找是否当前bean正在创建（通过beanName），如果发现没有，则继续准备其需要的构造器参数B，并将A标识符放到“当前创建bean池”
+    - Spring容器创建B bean，Spring容器创建B bean，首先去 “当前创建bean池”中查找是否当前bean正在创建（通过beanName），如果发现没有，则继续准备其需要的构造器参数C，并将B标识符放到“当前创建bean池”
+    - Spring容器创建C bean，Spring容器创建C bean，首先去 “当前创建bean池”中查找是否当前bean正在创建（通过beanName），如果发现没有，则继续准备其需要的构造器参数A，并将C标识符放到“当前创建bean池”
+    - C的创建需要先创建A bean，此时发现A已经在“当前创建bean池”中，检测到了循环依赖，直接抛出`BeanCurrentlyInCreationException`异常
+    
+- setter循环依赖(setter依赖关系 A -> B -> C -> A)
     - （三级）singletonFactories ： 单例对象工厂的cache
     - （二级）earlySingletonObjects ：提前曝光的单例对象的Cache
     - （一级）singletonObjects：单例对象的cache
+    
+    - Spring容器创建单例A的bean，首先根据无参构造器创建bean，并暴露一个`ObjectFactory`用于返回一个提前暴露一个创建中的bean，并将A标识符放到“当前创建bean池”，然后进行setter注入 B bean
+    - Spring容器创建单例B bean，首先根据无参构造器创建bean，并暴露一个`ObjectFactory`用于返回一个提前暴露一个创建中的bean，并将B标识符放到“当前创建bean池”，然后进行setter注入 C bean
+    - Spring容器创建单例C bean，首先根据无参构造器创建bean，并暴露一个`ObjectFactory`用于返回一个提前暴露一个创建中的bean，并将C标识符放到“当前创建bean池”，然后进行setter注入 A bean，在进行注入A bean 时由于提前暴露了`ObjectFactory`”工厂，从而使用它返回提前暴露一个创建中的bean
+    - 最后从3中循环结束，依次返回完成对 B bean、A bean的setter注入
+    
 
 解释：
 
